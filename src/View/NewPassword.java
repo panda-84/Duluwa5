@@ -1,12 +1,14 @@
 
 package View;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class NewPassword extends javax.swing.JFrame {
 
     public NewPassword() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     
@@ -118,6 +120,7 @@ public class NewPassword extends javax.swing.JFrame {
             }
         });
 
+        oShow.setBackground(new java.awt.Color(126, 168, 190));
         oShow.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         oShow.setText("show");
         oShow.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +129,7 @@ public class NewPassword extends javax.swing.JFrame {
             }
         });
 
+        nShow.setBackground(new java.awt.Color(126, 168, 190));
         nShow.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nShow.setText("show");
         nShow.addActionListener(new java.awt.event.ActionListener() {
@@ -235,13 +239,11 @@ public class NewPassword extends javax.swing.JFrame {
         
     }//GEN-LAST:event_changeButtonActionPerformed
 
-    private void iNpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iNpasswordActionPerformed
-        
-    }//GEN-LAST:event_iNpasswordActionPerformed
-
     private void iEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iEmailFocusGained
         
         if(iEmail.getText().equals("Enter your email")){
+            iEmail.setForeground(Color.black);
+
             iEmail.setText("");
         }
     }//GEN-LAST:event_iEmailFocusGained
@@ -249,60 +251,13 @@ public class NewPassword extends javax.swing.JFrame {
     private void iEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iEmailFocusLost
         
         if(iEmail.getText().isEmpty()){
+            iEmail.setForeground(Color.GRAY);
             iEmail.setText("Enter your email");
         }
     }//GEN-LAST:event_iEmailFocusLost
 
-    private void iOpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iOpasswordFocusGained
-        
-        String pwd = iOpassword.getText();
-        if(pwd.equals("password")){
-            iOpassword.setText("");
-        }
-    }//GEN-LAST:event_iOpasswordFocusGained
-
-    private void iOpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iOpasswordFocusLost
-        
-        String pwd = iOpassword.getText();
-        if(pwd.isEmpty()){
-            iOpassword.setText("password");
-        }
-    }//GEN-LAST:event_iOpasswordFocusLost
-
-    private void iNpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iNpasswordFocusGained
-      
-        String pwd = iNpassword.getText();
-        if(pwd.equals("password")){
-            iNpassword.setText("");
-        }
-    }//GEN-LAST:event_iNpasswordFocusGained
-
-    private void iNpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iNpasswordFocusLost
-       
-        String pwd = iNpassword.getText();
-        if(pwd.isEmpty()){
-            iNpassword.setText("password");
-        }
-    }//GEN-LAST:event_iNpasswordFocusLost
-
-    private void iRpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iRpasswordFocusGained
-      
-        String pwd = iRpassword.getText();
-        if(pwd.equals("password")){
-            iRpassword.setText("");
-        }
-    }//GEN-LAST:event_iRpasswordFocusGained
-
-    private void iRpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iRpasswordFocusLost
-      
-        String pwd = iRpassword.getText();
-        if(pwd.isEmpty()){
-            iRpassword.setText("password");
-        }
-    }//GEN-LAST:event_iRpasswordFocusLost
-
     private void oShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oShowActionPerformed
-     
+//     
         if(oShow.isSelected()){
             iOpassword.setEchoChar((char)0);
         }else
@@ -324,6 +279,61 @@ public class NewPassword extends javax.swing.JFrame {
     private void iEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_iEmailActionPerformed
+
+    private void iRpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iRpasswordFocusLost
+
+        String pwd = iRpassword.getText();
+        if(pwd.isEmpty()){
+            iRpassword.setText("password");
+        }
+    }//GEN-LAST:event_iRpasswordFocusLost
+
+    private void iRpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iRpasswordFocusGained
+
+        String pwd = iRpassword.getText();
+        if(pwd.equals("password")){
+            iRpassword.setText("");
+        }
+    }//GEN-LAST:event_iRpasswordFocusGained
+
+    private void iNpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iNpasswordActionPerformed
+
+    }//GEN-LAST:event_iNpasswordActionPerformed
+
+    private void iNpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iNpasswordFocusLost
+
+        String pwd = iNpassword.getText();
+        if(pwd.isEmpty()){
+            iNpassword.setText("password");
+        }
+    }//GEN-LAST:event_iNpasswordFocusLost
+
+    private void iNpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iNpasswordFocusGained
+
+        String pwd = iNpassword.getText();
+        if(pwd.equals("password")){
+            iNpassword.setText("");
+        }
+    }//GEN-LAST:event_iNpasswordFocusGained
+
+    private void iOpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iOpasswordFocusLost
+
+        String pwd = iOpassword.getText();
+        if(pwd.isEmpty()){
+            iOpassword.setText("password");
+            iOpassword.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_iOpasswordFocusLost
+
+    private void iOpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_iOpasswordFocusGained
+
+        String pwd = iOpassword.getText();
+        if(pwd.equals("password")){
+            iOpassword.setText("");
+            iOpassword.setEchoChar('*');
+
+        }
+    }//GEN-LAST:event_iOpasswordFocusGained
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
