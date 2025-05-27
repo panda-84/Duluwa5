@@ -226,7 +226,7 @@ public class NewPassword extends javax.swing.JFrame {
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
         // TODO add your handling code here:
         
-        if(iEmail.getText().isEmpty() && iOpassword.getText().isEmpty() && iNpassword.getText().isEmpty() && iRpassword.getText().isEmpty()){
+        if(iEmail.getText().isEmpty() || iOpassword.getText().isEmpty() || iNpassword.getText().isEmpty() || iRpassword.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"iEmail.getText().isEmpty()");
         }
         else if(iEmail.getText().contains("sumit@gmail.com") && iRpassword.getText().contains("1234")){
