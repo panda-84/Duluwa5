@@ -9,5 +9,9 @@ package Database;
  * @author Bibek
  */
 public class Database {
+
+    public Object openConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
