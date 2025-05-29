@@ -1,6 +1,7 @@
 package Dao;
 
 import Database.MySqlConnection;
+import Model.Admin;
 import Model.SignUp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,6 +67,25 @@ public class UserDa {
             mysql.closeConnection(conn);
         }
 
+        return false;
+    }
+    
+    
+    // admin
+    public boolean admin(Admin admin){
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM admin_DB WHERE username = ? AND password = ?";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, admin.getUsername());
+            pstmt.setString(2, admin.getPassword());
+            ResultSet result = pstmt.executeQuery();
+            return result.next();
+        } catch (SQLException e){
+            Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            mysql.closeConnection(conn);
+        }
         return false;
     }
 }
