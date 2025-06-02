@@ -226,17 +226,17 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel_Navigation.setLayout(jPanel_NavigationLayout);
         jPanel_NavigationLayout.setHorizontalGroup(
             jPanel_NavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_NavigationLayout.createSequentialGroup()
-                .addGap(445, 445, 445)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_NavigationLayout.createSequentialGroup()
+                .addContainerGap(458, Short.MAX_VALUE)
                 .addComponent(jLabel17)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addGap(264, 264, 264))
         );
         jPanel_NavigationLayout.setVerticalGroup(
             jPanel_NavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_NavigationLayout.createSequentialGroup()
-                .addGap(256, 256, 256)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel17)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(555, Short.MAX_VALUE))
         );
 
         jPanel_Container.add(jPanel_Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
