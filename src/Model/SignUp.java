@@ -22,6 +22,12 @@ public class SignUp {
        this.code = code;
        this.password = password;
     }
+    
+     // Constructor for login
+    public SignUp(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     public int getUserId(){
         return id;
     }

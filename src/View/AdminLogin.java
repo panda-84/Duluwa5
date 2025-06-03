@@ -4,8 +4,10 @@
  */
 package View;
 
+import Dao.AdminDa;
 import Dao.UserDa;
 import Model.Admin;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +21,7 @@ public class AdminLogin extends javax.swing.JFrame {
      */
     public AdminLogin() {
         initComponents();
+        setTitle("ADMIN login");
     }
 
     /**
@@ -39,14 +42,14 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         aPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        userButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(126, 168, 190));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/logo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,14 +90,21 @@ public class AdminLogin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("login");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("User?");
+        userButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userButton.setText("User?");
+        userButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        userButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,7 +131,7 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addGap(44, 208, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(userButton)
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,7 +157,7 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(userButton)
                 .addGap(18, 18, 18))
         );
 
@@ -168,7 +178,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        UserDa dao = new UserDa();
+        AdminDa dao = new AdminDa();
         
         String emailText = aUsername.getText();
         String passwordText = new String(aPassword.getPassword());
@@ -221,6 +231,16 @@ public class AdminLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_aPasswordFocusLost
 
+    private void userButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userButtonMouseClicked
+        // TODO add your handling code here:
+        Login l = new Login();
+        l.setVisible(true);
+        l.pack();
+        l.setLocationRelativeTo(null);
+        l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_userButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -260,12 +280,12 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField aPassword;
     private javax.swing.JTextField aUsername;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton userButton;
     // End of variables declaration//GEN-END:variables
 }

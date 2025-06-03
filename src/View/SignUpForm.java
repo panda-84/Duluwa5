@@ -6,19 +6,21 @@ package View;
 
 import Dao.UserDa;
 import Model.SignUp;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bibek
  */
-public class Sighup extends javax.swing.JFrame {
+public class SignUpForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form Sighup
+     * Creates new form SighUpForm
      */
-    public Sighup() {
+    public SignUpForm() {
         initComponents();
+        setTitle("SignUp");
     }
 
     /**
@@ -114,6 +116,7 @@ public class Sighup extends javax.swing.JFrame {
         signUpButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         signUpButton.setForeground(new java.awt.Color(255, 255, 255));
         signUpButton.setText("SighUp");
+        signUpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         signUpButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 signUpButtonMouseClicked(evt);
@@ -159,13 +162,14 @@ public class Sighup extends javax.swing.JFrame {
 
         show.setBackground(new java.awt.Color(126, 168, 190));
         show.setText("Show");
+        show.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showActionPerformed(evt);
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/logo.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -241,7 +245,7 @@ public class Sighup extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6))
                     .addComponent(reType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
@@ -286,6 +290,12 @@ public class Sighup extends javax.swing.JFrame {
             boolean success = dao.signUp(newUser);
             if (success) {
                 JOptionPane.showMessageDialog(null, "Account created successfully");
+                Login l = new Login();
+                l.setVisible(true);
+                l.pack();
+                l.setLocationRelativeTo(null);
+                l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create account. Please try again.");
             }
@@ -420,21 +430,27 @@ public class Sighup extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sighup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sighup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sighup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sighup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sighup().setVisible(true);
+                new SignUpForm().setVisible(true);
             }
         });
     }

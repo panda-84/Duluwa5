@@ -1,7 +1,7 @@
 package Dao;
 
 import Database.MySqlConnection;
-import Model.Admin;
+
 import Model.SignUp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,21 +71,68 @@ public class UserDa {
     }
     
     
-    // admin
-    public boolean admin(Admin admin){
+    //forgetPassword
+    public boolean forgetPassword(String email,String code,String newPassword){
         Connection conn = mysql.openConnection();
-        String sql = "SELECT * FROM admin_DB WHERE username = ? AND password = ?";
+        String checkSql = "SELECT id FROM user_DB WHERE email = ? AND code = ?";
+        String updateSql = "UPDATE user_DB SET password=? WHERE email = ? AND code = ?";
         
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
-            pstmt.setString(1, admin.getUsername());
-            pstmt.setString(2, admin.getPassword());
-            ResultSet result = pstmt.executeQuery();
-            return result.next();
+        try(
+            PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+            PreparedStatement updateStmt = conn.prepareStatement(updateSql)
+        ){
+            checkStmt.setString(1, email);
+            checkStmt.setString(2,code);
+            ResultSet rs = checkStmt.executeQuery();
+            
+            if (!rs.next()){
+                return false;
+            }
+            
+            updateStmt.setString(1, newPassword);
+            updateStmt.setString(2, email);
+            updateStmt.setString(3, code);
+            
+            int updated = updateStmt.executeUpdate();
+            return updated > 0;
         } catch (SQLException e){
             Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
+            return false;
+        } finally{
             mysql.closeConnection(conn);
         }
-        return false;
+    }
+        
+    //change password
+    public boolean changePassword(String email,String oldPassword,String newPassword){
+        Connection conn = mysql.openConnection();
+        String checkSql = "SELECT id FROM user_DB WHERE email = ? AND password = ?";
+        String updateSql = "UPDATE user_DB SET password=? WHERE email = ? AND password = ?";
+
+        try(
+            PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+            PreparedStatement updateStmt = conn.prepareStatement(updateSql)
+        ){
+            checkStmt.setString(1, email);
+            checkStmt.setString(2,oldPassword);
+            ResultSet rs = checkStmt.executeQuery();
+
+            if (!rs.next()){
+                return false;
+            }
+
+            updateStmt.setString(1, newPassword);
+            updateStmt.setString(2, email);
+            updateStmt.setString(3, oldPassword);
+
+            int updated = updateStmt.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e){
+            Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        } finally{
+            mysql.closeConnection(conn);
+        }
+
     }
 }
