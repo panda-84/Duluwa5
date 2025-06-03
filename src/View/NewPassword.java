@@ -1,13 +1,16 @@
 
 package View;
 
+import Dao.UserDa;
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class NewPassword extends javax.swing.JFrame {
 
     public NewPassword() {
         initComponents();
+        setTitle("New Password");
         this.setLocationRelativeTo(null);
     }
 
@@ -114,6 +117,7 @@ public class NewPassword extends javax.swing.JFrame {
         changeButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         changeButton.setForeground(new java.awt.Color(255, 255, 255));
         changeButton.setText("Change");
+        changeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         changeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changeButtonActionPerformed(evt);
@@ -123,6 +127,7 @@ public class NewPassword extends javax.swing.JFrame {
         oShow.setBackground(new java.awt.Color(126, 168, 190));
         oShow.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         oShow.setText("show");
+        oShow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         oShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 oShowActionPerformed(evt);
@@ -132,13 +137,14 @@ public class NewPassword extends javax.swing.JFrame {
         nShow.setBackground(new java.awt.Color(126, 168, 190));
         nShow.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nShow.setText("show");
+        nShow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nShowActionPerformed(evt);
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/logo.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,16 +232,33 @@ public class NewPassword extends javax.swing.JFrame {
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
         // TODO add your handling code here:
         
-        if(iEmail.getText().isEmpty() || iOpassword.getText().isEmpty() || iNpassword.getText().isEmpty() || iRpassword.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"iEmail.getText().isEmpty()");
+        String email = iEmail.getText();
+        String currentPassword = new String(iOpassword.getPassword());
+        String newPassword = new String(iNpassword.getPassword());
+        String retypePassword = new String(iRpassword.getPassword());
+
+        if (email.isEmpty() || currentPassword.isEmpty() || newPassword.isEmpty() || retypePassword.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields");
+        } else if (!newPassword.equals(retypePassword)) {
+            JOptionPane.showMessageDialog(null, "New passwords do not match");
+        } else {
+            UserDa dao = new UserDa();
+            boolean success = dao.changePassword(email, currentPassword, newPassword);
+
+            if (success) {
+                JOptionPane.showMessageDialog(null, "Password changed successfully");
+                Login l = new Login();
+                l.setVisible(true);
+                l.pack();
+                l.setLocationRelativeTo(null);
+                l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose(); // Close current window
+                // Optionally, redirect to login or another screen
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect email or current password");
+            }
         }
-        else if(iEmail.getText().contains("sumit@gmail.com") && iRpassword.getText().contains("1234")){
-            JOptionPane.showMessageDialog(null,"changed password successfully");
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"incorrect email and password","message",JOptionPane.ERROR_MESSAGE);
-        }
+
         
     }//GEN-LAST:event_changeButtonActionPerformed
 
