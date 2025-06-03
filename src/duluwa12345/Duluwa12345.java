@@ -6,8 +6,8 @@ package duluwa12345;
 
 import Database.Database;
 import Database.MySqlConnection;
-import View.NewPassword;
-import View.Sighup;
+import View.Login;
+
 
 
 
@@ -32,7 +32,7 @@ public class Duluwa12345 {
         
         javax.swing.SwingUtilities.invokeLater(new Runnable(){
             public void run(){
-                new Sighup().setVisible(true);}
+                new Login().setVisible(true);}
         });
         
     }
