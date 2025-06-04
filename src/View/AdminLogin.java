@@ -195,6 +195,12 @@ public class AdminLogin extends javax.swing.JFrame {
             boolean success = dao.admin(adminA);
             if (success) {
                 JOptionPane.showMessageDialog(null, "loged in successfully");
+                adminDashboard ad = new adminDashboard();
+                ad.setVisible(true);
+                ad.pack();
+                ad.setLocationRelativeTo(null);
+                ad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to login.");
             }

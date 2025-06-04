@@ -22,6 +22,18 @@ public class SignUpForm extends javax.swing.JFrame {
         initComponents();
         setTitle("SignUp");
     }
+    public boolean isValidPassword(String password) {
+    if (password.length() < 8 || password.length() > 20) return false;
+    String upperCaseChars = "(.*[A-Z].*)";
+    String lowerCaseChars = "(.*[a-z].*)";
+    String numbers = "(.*[0-9].*)";
+    String specialChars = "(.*[!@#$%^&*()-+=].*)";
+    
+    return password.matches(upperCaseChars) &&
+           password.matches(lowerCaseChars) &&
+           password.matches(numbers) &&
+           password.matches(specialChars);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -281,11 +293,23 @@ public class SignUpForm extends javax.swing.JFrame {
 
         if (emailText.isEmpty() || nameText.isEmpty() || codeText.isEmpty() || passwordText.isEmpty() || retypeText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the fields");
-        } else if (!passwordText.equals(retypeText)) {
+        } 
+        else if (!emailText.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Invalid email address.");
+        } 
+        else if (!codeText.matches("\\d{4}")) {
+            JOptionPane.showMessageDialog(null, "Code must be a 4-digit number");
+        } 
+        else if (!isValidPassword(passwordText)) {
+            JOptionPane.showMessageDialog(null, "Password must be 8-20 characters long and include uppercase, lowercase, digit, and special character");
+        } 
+        else if (!passwordText.equals(retypeText)) {
             JOptionPane.showMessageDialog(null, "Passwords do not match");
-        } else if (dao.emailExists(emailText)) {
+        } 
+        else if (dao.emailExists(emailText)) {
             JOptionPane.showMessageDialog(null, "This email is already registered.");
-        } else {
+        } 
+        else {
             SignUp newUser = new SignUp(emailText, nameText, codeText, passwordText);
             boolean success = dao.signUp(newUser);
             if (success) {
@@ -300,6 +324,7 @@ public class SignUpForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Failed to create account. Please try again.");
             }
         }
+
 
         
     }//GEN-LAST:event_signUpButtonActionPerformed
