@@ -37,7 +37,7 @@ public class UserDa {
     
     public boolean emailExists(String email) {
         Connection conn = mysql.openConnection();
-        String sql = "SELECT id FROM user_DB WHERE email = ?";
+        String sql = "SELECT user_id FROM user_DB WHERE email = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
@@ -74,7 +74,7 @@ public class UserDa {
     //forgetPassword
     public boolean forgetPassword(String email,String code,String newPassword){
         Connection conn = mysql.openConnection();
-        String checkSql = "SELECT id FROM user_DB WHERE email = ? AND code = ?";
+        String checkSql = "SELECT user_id FROM user_DB WHERE email = ? AND code = ?";
         String updateSql = "UPDATE user_DB SET password=? WHERE email = ? AND code = ?";
         
         try(
@@ -106,7 +106,7 @@ public class UserDa {
     //change password
     public boolean changePassword(String email,String oldPassword,String newPassword){
         Connection conn = mysql.openConnection();
-        String checkSql = "SELECT id FROM user_DB WHERE email = ? AND password = ?";
+        String checkSql = "SELECT user_id FROM user_DB WHERE email = ? AND password = ?";
         String updateSql = "UPDATE user_DB SET password=? WHERE email = ? AND password = ?";
 
         try(

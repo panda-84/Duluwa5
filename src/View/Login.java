@@ -245,7 +245,11 @@ public class Login extends javax.swing.JFrame {
         String passwordText = new String(password.getPassword());
         if(emailText.isEmpty() || passwordText.isEmpty()){
             JOptionPane.showMessageDialog(null,"Please fill all the fields");
-        }else if(emailText.equals("Enter your username") || passwordText.equals("password")){
+        }
+        else if (!emailText.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Invalid email address. Please include '@'");
+        }
+        else if(emailText.equals("Enter your username") || passwordText.equals("password")){
             JOptionPane.showMessageDialog(null,"Please enter valid credentials");
         }
             
