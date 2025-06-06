@@ -9,7 +9,7 @@ package Model;
  * @author acer
  */
 public class SignUp {
-    private int id;
+    private int user_id;
     private String email;
     private String name;
     private String code;
@@ -29,10 +29,10 @@ public class SignUp {
         this.password = password;
     }
     public int getUserId(){
-        return id;
+        return user_id;
     }
-    public void setUserId(int id){
-        this.id = id;
+    public void setUserId(int user_id){
+        this.user_id = user_id;
     }
     
     public String getUserEmail(){

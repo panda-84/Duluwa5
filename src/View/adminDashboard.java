@@ -33,6 +33,7 @@ public class adminDashboard extends javax.swing.JFrame {
     /**
      * Creates new form adminDashboard
      */
+    private String imagePath = null;
     
     Border default_border = BorderFactory.createMatteBorder(1,0,1,0,new Color(187,177,147));
     Border gray_border = BorderFactory.createMatteBorder(1,0,1,0,Color.gray);
@@ -165,17 +166,17 @@ public class adminDashboard extends javax.swing.JFrame {
         showPanel(jPanel_home);
     }
     
-    String imagePath = null;
+   
     
     //check input fields
     public boolean checkInputs(){
         if(        gFirstName.getText() == null
                 || gMiddleName.getText() == null
                 || gLastName.getText() == null
-                || gGender.getText() == null
+                || gGender.getSelectedItem() == null
                 || gPhoneNumber.getText() == null
                 || gAge.getText() == null
-                || gStatus.getText() == null
+                || gStatus.getSelectedItem() == null
                 || gBio.getText() == null
                 ){
             return false;
@@ -241,7 +242,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         gLastName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        gGender = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         gPhoneNumber = new javax.swing.JTextField();
@@ -250,20 +250,20 @@ public class adminDashboard extends javax.swing.JFrame {
         gAge = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        gStatus = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        fetchButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         gBio = new javax.swing.JTextArea();
         imageButton = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         i_img = new javax.swing.JLabel();
+        gGender = new javax.swing.JComboBox<>();
+        gStatus = new javax.swing.JComboBox<>();
         jPanel_user = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel_payment = new javax.swing.JPanel();
@@ -433,61 +433,39 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jPanel_guide.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_guide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel_guide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setBackground(new java.awt.Color(217, 217, 217));
-        jPanel_guide.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 21, 245, 34));
 
         jButton1.setBackground(new java.awt.Color(40, 83, 107));
-        jPanel_guide.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 21, 48, 34));
 
         jButton2.setBackground(new java.awt.Color(40, 83, 107));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Filter");
-        jPanel_guide.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 21, -1, 34));
-        jPanel_guide.add(gFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 406, 211, 34));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("First Name:");
-        jPanel_guide.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 405, -1, 34));
-        jPanel_guide.add(gMiddleName, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 459, 211, 34));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Middle Name:");
-        jPanel_guide.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 458, -1, 34));
-        jPanel_guide.add(gLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 512, 211, 34));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Last Name:");
-        jPanel_guide.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 511, -1, 34));
-        jPanel_guide.add(gGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 565, 211, 34));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Gender:");
-        jPanel_guide.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 564, -1, 34));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Phone #:");
-        jPanel_guide.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 617, -1, 34));
-        jPanel_guide.add(gPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 618, 211, 34));
-        jPanel_guide.add(guide_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 712, 211, 34));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Guide ID:");
-        jPanel_guide.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 711, -1, 34));
-        jPanel_guide.add(gAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 406, 211, 34));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Age:");
-        jPanel_guide.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 405, -1, 34));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Status:");
-        jPanel_guide.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(524, 458, -1, 34));
-
-        gStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_guide.add(gStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 459, 212, 34));
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -523,28 +501,42 @@ public class adminDashboard extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(9).setPreferredWidth(200);
         }
 
-        jPanel_guide.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 73, 1152, 314));
+        fetchButton.setBackground(new java.awt.Color(40, 83, 107));
+        fetchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fetchButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(40, 83, 107));
-        jPanel_guide.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 711, 53, 34));
+        clearButton.setBackground(new java.awt.Color(40, 83, 107));
+        clearButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clearButton.setForeground(new java.awt.Color(255, 255, 255));
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(40, 83, 107));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Clear");
-        jPanel_guide.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(524, 711, 75, 34));
+        deleteButton.setBackground(new java.awt.Color(194, 148, 138));
+        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(194, 148, 138));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Delete");
-        jPanel_guide.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(633, 711, -1, 34));
-
-        jButton6.setBackground(new java.awt.Color(126, 168, 190));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Update");
-        jPanel_guide.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 709, -1, 34));
+        updateButton.setBackground(new java.awt.Color(126, 168, 190));
+        updateButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setBackground(new java.awt.Color(126, 168, 190));
         addButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -555,19 +547,17 @@ public class adminDashboard extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
-        jPanel_guide.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 711, 75, 34));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Bio:");
-        jPanel_guide.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 511, -1, 34));
 
         gBio.setColumns(20);
         gBio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gBio.setLineWrap(true);
         gBio.setRows(5);
-        jScrollPane2.setViewportView(gBio);
-
-        jPanel_guide.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 511, 212, 185));
+        gBio.setWrapStyleWord(true);
+        gBio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         imageButton.setBackground(new java.awt.Color(40, 83, 107));
         imageButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -578,17 +568,180 @@ public class adminDashboard extends javax.swing.JFrame {
                 imageButtonActionPerformed(evt);
             }
         });
-        jPanel_guide.add(imageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(969, 645, -1, 34));
 
         jButton9.setBackground(new java.awt.Color(40, 83, 107));
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Check review");
-        jPanel_guide.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 750, -1, 34));
 
         i_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         i_img.setOpaque(true);
-        jPanel_guide.add(i_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(937, 511, 166, 116));
+
+        gGender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
+        gGender.setPreferredSize(new java.awt.Dimension(72, 34));
+
+        gStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "not Available" }));
+        gStatus.setPreferredSize(new java.awt.Dimension(72, 34));
+
+        javax.swing.GroupLayout jPanel_guideLayout = new javax.swing.GroupLayout(jPanel_guide);
+        jPanel_guide.setLayout(jPanel_guideLayout);
+        jPanel_guideLayout.setHorizontalGroup(
+            jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel5)
+                        .addGap(21, 21, 21)
+                        .addComponent(gFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel13)
+                        .addGap(27, 27, 27)
+                        .addComponent(gAge, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel12)
+                        .addGap(22, 22, 22)
+                        .addComponent(guide_id, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fetchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(deleteButton)
+                        .addGap(36, 36, 36)
+                        .addComponent(updateButton)
+                        .addGap(221, 221, 221)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(519, 519, 519)
+                        .addComponent(jButton9))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jLabel11)))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(gLastName)
+                                    .addComponent(gPhoneNumber)
+                                    .addComponent(gGender, 0, 211, Short.MAX_VALUE))
+                                .addGap(149, 149, 149)
+                                .addComponent(jLabel15))
+                            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel8)
+                                .addGap(21, 21, 21)
+                                .addComponent(gMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129)
+                                .addComponent(jLabel14)))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                .addComponent(gBio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(i_img, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(imageButton))))
+                            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                                .addComponent(gStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(297, 297, 297)))))
+                .addGap(22, 22, 22))
+        );
+        jPanel_guideLayout.setVerticalGroup(
+            jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_guideLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gAge, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(gMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(gLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(gPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addComponent(i_img, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(imageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gBio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(guide_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(fetchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_guideLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jPanel_user.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_user.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -833,7 +986,7 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_containerLayout.createSequentialGroup()
                     .addContainerGap(250, Short.MAX_VALUE)
-                    .addComponent(jPanel_guide, javax.swing.GroupLayout.PREFERRED_SIZE, 1193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_guide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(17, Short.MAX_VALUE)))
             .addGroup(jPanel_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_containerLayout.createSequentialGroup()
@@ -857,7 +1010,7 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_containerLayout.createSequentialGroup()
                     .addContainerGap(28, Short.MAX_VALUE)
-                    .addComponent(jPanel_guide, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_guide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(15, Short.MAX_VALUE)))
             .addGroup(jPanel_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_containerLayout.createSequentialGroup()
@@ -905,6 +1058,7 @@ public class adminDashboard extends javax.swing.JFrame {
             File selectedFile = file.getSelectedFile();
             String path  = selectedFile.getAbsolutePath();
             i_img.setIcon(ResizeImage(path, null));
+            imagePath = path;
         }
         else{
             System.out.println("NO FILE SELECTED");
@@ -919,23 +1073,23 @@ public class adminDashboard extends javax.swing.JFrame {
         String firstName = gFirstName.getText().trim();
         String middleName = gMiddleName.getText().trim();
         String lastName = gLastName.getText().trim();
-        String gender = gGender.getText().trim();
+        String gender = (String) gGender.getSelectedItem();
         String phoneNumber = gPhoneNumber.getText().trim();
         String ageText = gAge.getText().trim();
-        String status = gStatus.getText().trim();
+        String status = (String) gStatus.getSelectedItem();
         String bio = gBio.getText().trim();
 
-        System.out.println("firstName: " + firstName);
-        System.out.println("lastName: " + lastName);
-        System.out.println("gender: " + gender);
-        System.out.println("phone: " + phoneNumber);
-        System.out.println("ageText: " + ageText);
-        System.out.println("status: " + status);
-        System.out.println("bio: " + bio);
-        System.out.println("imagePath: " + imagePath);
+//        System.out.println("firstName: " + firstName);
+//        System.out.println("lastName: " + lastName);
+//        System.out.println("gender: " + gender);
+//        System.out.println("phone: " + phoneNumber);
+//        System.out.println("ageText: " + ageText);
+//        System.out.println("status: " + status);
+//        System.out.println("bio: " + bio);
+//        System.out.println("imagePath: " + imagePath);
         
-        if (firstName.isEmpty() || lastName.isEmpty() || gender.isEmpty() || phoneNumber.isEmpty()
-                || ageText.isEmpty() || status.isEmpty() || bio.isEmpty() || imagePath == null) {
+        if (firstName.trim().isEmpty() || lastName.trim().isEmpty() || gender.trim().isEmpty() || phoneNumber.trim().isEmpty()
+                || ageText.trim().isEmpty() || status.trim().isEmpty() || bio.trim().isEmpty() || imagePath == null) {
             JOptionPane.showMessageDialog(null, "Please fill all the required fields and select an image.");
         } else if (!phoneNumber.matches("\\d{10}")) {
             JOptionPane.showMessageDialog(null, "Invalid phone number. Enter 10 digits.");
@@ -964,6 +1118,156 @@ public class adminDashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        
+        String firstName = gFirstName.getText().trim();
+        String middleName = gMiddleName.getText().trim();
+        String lastName = gLastName.getText().trim();
+        String gender = (String) gGender.getSelectedItem();
+        String phoneNumber = gPhoneNumber.getText().trim();
+        String ageText = gAge.getText().trim();
+        String status = (String) gStatus.getSelectedItem();
+        String bio = gBio.getText().trim();
+
+        if (checkInputs() && guide_id.getText() != null && !guide_id.getText().trim().isEmpty()) {
+            try {
+                int age = Integer.parseInt(ageText);
+                int id = Integer.parseInt(guide_id.getText().trim());
+                byte[] imageBytes = java.nio.file.Files.readAllBytes(new File(imagePath).toPath());
+
+                
+                GuideA guide = new GuideA(firstName, middleName, lastName, gender, phoneNumber, age, status, bio, imageBytes);
+
+                
+                guide.setGuideId(id);
+
+                
+                GuideDa dao = new GuideDa();
+                boolean success = dao.updateGuide(guide);
+
+                if (success) {
+                    JOptionPane.showMessageDialog(null, "Guide updated successfully.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to update guide.");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            }
+        }
+
+
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void fetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchButtonActionPerformed
+        
+        String idText = guide_id.getText().trim();
+        if (idText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a guide ID.");
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idText);
+            GuideDa dao = new GuideDa();
+            GuideA guide = dao.getGuideById(id);
+
+            if (guide != null) {
+                // Fill the form fields
+                gFirstName.setText(guide.getFirstName());
+                gMiddleName.setText(guide.getMiddleName());
+                gLastName.setText(guide.getLastName());
+                gGender.setSelectedItem(guide.getGender());
+                gPhoneNumber.setText(guide.getNumber());
+                gAge.setText(String.valueOf(guide.getAge()));
+                gStatus.setSelectedItem(guide.getStatus());
+                gBio.setText(guide.getBio());
+
+                
+                ImageIcon imageIcon = ResizeImage(null, guide.getPicture());
+                i_img.setIcon(imageIcon);
+
+                
+                imagePath = null;
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No guide found with this ID.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a valid number.");
+        }
+    }//GEN-LAST:event_fetchButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        String idText = guide_id.getText().trim();
+
+        if (idText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a Guide ID to delete.");
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idText);
+
+            // Confirm with user
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete guide ID " + id + "?",
+                    "Confirm Deletion",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                GuideDa dao = new GuideDa();
+                boolean success = dao.deleteGuideById(id);
+
+                if (success) {
+                    JOptionPane.showMessageDialog(null, "Guide deleted successfully.");
+                    clearFields();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No guide found with ID: " + id);
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid Guide ID format.");
+        }
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        
+        gFirstName.setText("");
+        gMiddleName.setText("");
+        gLastName.setText("");
+        gPhoneNumber.setText("");
+        gAge.setText("");
+        gBio.setText("");
+
+       
+        gGender.setSelectedIndex(0); 
+        gStatus.setSelectedIndex(0); 
+
+        
+        i_img.setIcon(null);
+
+        imagePath = null;
+    }//GEN-LAST:event_clearButtonActionPerformed
+    
+    private void clearFields(){
+        guide_id.setText("");
+        gFirstName.setText("");
+        gMiddleName.setText("");
+        gLastName.setText("");
+        gPhoneNumber.setText("");
+        gAge.setText("");
+        gBio.setText("");
+        gGender.setSelectedIndex(0);
+        gStatus.setSelectedIndex(0);
+        i_img.setIcon(null);
+        imagePath = null;
+    }
     /**
      * @param args the command line arguments
      */
@@ -1002,14 +1306,17 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Delete;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton fetchButton;
     private javax.swing.JTextField gAge;
     private javax.swing.JTextArea gBio;
     private javax.swing.JTextField gFirstName;
-    private javax.swing.JTextField gGender;
+    private javax.swing.JComboBox<String> gGender;
     private javax.swing.JTextField gLastName;
     private javax.swing.JTextField gMiddleName;
     private javax.swing.JTextField gPhoneNumber;
-    private javax.swing.JTextField gStatus;
+    private javax.swing.JComboBox<String> gStatus;
     private javax.swing.JTextField guide_id;
     private javax.swing.JLabel i_img;
     private javax.swing.JButton imageButton;
@@ -1021,10 +1328,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1070,7 +1373,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_payment;
     private javax.swing.JPanel jPanel_user;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -1091,5 +1393,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
