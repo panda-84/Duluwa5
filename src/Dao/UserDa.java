@@ -37,7 +37,7 @@ public class UserDa {
     
     public boolean emailExists(String email) {
         Connection conn = mysql.openConnection();
-        String sql = "SELECT user_id FROM user_DB WHERE email = ?";
+        String sql = "SELECT * FROM user_DB WHERE email = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();

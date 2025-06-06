@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class GuideDa {
     MySqlConnection mysql = new MySqlConnection();
@@ -126,6 +127,32 @@ public class GuideDa {
         }
     }
 
+    public ArrayList<GuideA> getGuides() {
+        ArrayList<GuideA> guideList = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM guide";
 
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                guideList.add(new GuideA(
+                        rs.getString("first_name"),
+                        rs.getString("middle_name"),
+                        rs.getString("last_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("age"),
+                        rs.getString("status"),
+                        rs.getString("bio"),
+                        rs.getBytes("photo")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return guideList;
+    }
 
 }

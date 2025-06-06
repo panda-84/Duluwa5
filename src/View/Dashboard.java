@@ -4,8 +4,12 @@
  */
 package View;
 
+import Dao.GuideDa;
+import Model.GuideA;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,7 +20,7 @@ import javax.swing.border.Border;
  * @author acer
  */
 public class Dashboard extends javax.swing.JFrame {
-
+ private GuideDa dao = new GuideDa();
     /**
      * Creates new form Dashboard
      */
@@ -28,6 +32,8 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel_Navigation.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
         jPanel_Plans.setVisible(false);
+        jPanel_Guide.setLayout(new javax.swing.BoxLayout(jPanel_Guide, javax.swing.BoxLayout.Y_AXIS));
+        jPanel_Guide.setPreferredSize(null);
         
         //default border for menu item
 //        Border default_Border = BorderFactory.createMatteBorder(1,0,1,0, new Color(46,49,49));
@@ -80,8 +86,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel_Guide = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel_Navigation = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel_Profile_Management = new javax.swing.JPanel();
@@ -251,27 +257,19 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel_Dashboard.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, -1, -1));
 
         jPanel_Container.add(jPanel_Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
+        jPanel_Container.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel_Guide.setPreferredSize(new java.awt.Dimension(1330, 710));
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 100)); // NOI18N
-        jLabel6.setText("Guide");
 
         javax.swing.GroupLayout jPanel_GuideLayout = new javax.swing.GroupLayout(jPanel_Guide);
         jPanel_Guide.setLayout(jPanel_GuideLayout);
         jPanel_GuideLayout.setHorizontalGroup(
             jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_GuideLayout.createSequentialGroup()
-                .addGap(407, 407, 407)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(586, Short.MAX_VALUE))
+            .addGap(0, 1330, Short.MAX_VALUE)
         );
         jPanel_GuideLayout.setVerticalGroup(
             jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_GuideLayout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+            .addGap(0, 710, Short.MAX_VALUE)
         );
 
         jPanel_Container.add(jPanel_Guide, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
@@ -378,7 +376,20 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel_Dashboard.setVisible(false);
         jPanel_Navigation.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
+        ArrayList<GuideA> guides = dao.getGuides();
         jPanel_Guide.setVisible(true);
+        jPanel_Guide.removeAll();
+        
+        for (GuideA guide : guides) {
+            System.out.println("Job: " + guide.getFirstName());
+            card jobPanel = new card(guide);
+            jPanel_Guide.add(jobPanel);
+            jPanel_Guide.add(Box.createVerticalStrut(10));
+        }
+
+        jPanel_Guide.revalidate();
+        jPanel_Guide.repaint();
+        
         jPanel_Plans.setVisible(false);
     }//GEN-LAST:event_guideMouseClicked
 
@@ -469,7 +480,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -487,6 +497,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Navigation;
     private javax.swing.JPanel jPanel_Plans;
     private javax.swing.JPanel jPanel_Profile_Management;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logOut;
     private javax.swing.JLabel map;
