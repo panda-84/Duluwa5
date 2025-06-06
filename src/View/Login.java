@@ -259,7 +259,7 @@ public class Login extends javax.swing.JFrame {
             SignUp user = new SignUp( emailText,passwordText);
             boolean success = dao.checkUser(user);
             if (success) {
-                JOptionPane.showMessageDialog(null, "loged in successfully");
+                JOptionPane.showMessageDialog(null, "logged in successfully");
                 Dashboard d = new Dashboard();
                 d.setVisible(true);
                 d.pack();

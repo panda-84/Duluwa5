@@ -128,7 +128,7 @@ public class UserDa {
             int updated = updateStmt.executeUpdate();
             return updated > 0;
         } catch (SQLException e){
-            Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE,  null, e);
             return false;
         } finally{
             mysql.closeConnection(conn);
