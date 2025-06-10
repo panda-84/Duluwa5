@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class UserDa {
@@ -69,6 +70,9 @@ public class UserDa {
 
         return false;
     }
+    
+   
+
     
     
     //forgetPassword
@@ -135,4 +139,27 @@ public class UserDa {
         }
 
     }
+    
+   
+    
+    public boolean deleteAccountById(int userId) {
+        Connection conn = mysql.openConnection();
+        String sql = "DELETE FROM user_DB WHERE user_id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            int result = pstmt.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    
+   
+    
+    
+
 }

@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.LoginController;
 import Dao.UserDa;
 import Model.SignUp;
 import javax.swing.JFrame;
@@ -238,39 +239,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-         UserDa dao = new UserDa();
-        
         String emailText = email.getText();
         String passwordText = new String(password.getPassword());
-        if(emailText.isEmpty() || passwordText.isEmpty()){
-            JOptionPane.showMessageDialog(null,"Please fill all the fields");
-        }
-        else if (!emailText.contains("@")) {
-            JOptionPane.showMessageDialog(null, "Invalid email address. Please include '@'");
-        }
-        else if(emailText.equals("Enter your username") || passwordText.equals("password")){
-            JOptionPane.showMessageDialog(null,"Please enter valid credentials");
-        }
-            
-            
-            
-            else {
-            SignUp user = new SignUp( emailText,passwordText);
-            boolean success = dao.checkUser(user);
-            if (success) {
-                JOptionPane.showMessageDialog(null, "logged in successfully");
-                Dashboard d = new Dashboard();
-                d.setVisible(true);
-                d.pack();
-                d.setLocationRelativeTo(null);
-                d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to login.");
-            }
-        }
+
+        
+        LoginController.loginUser(emailText, passwordText, Login.this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void adminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminButtonMouseClicked

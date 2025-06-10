@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.ForgetPasswordController;
 import Dao.UserDa;
 import Model.SignUp;
 import javax.swing.JFrame;
@@ -23,16 +24,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         setTitle("Forget Password");
     }
     
-    public boolean isValidPassword(String password) {
-    if (password.length() < 8 || password.length() > 20) return false;
-
-    String upperCaseChars = "(?=.*[A-Z])";
-    String lowerCaseChars = "(?=.*[a-z])";
-    String numbers = "(?=.*[0-9])";
-    String specialChars = "(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?])";
-
-    return password.matches(upperCaseChars + lowerCaseChars + numbers + specialChars + ".{8,20}");
-}
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -243,48 +235,15 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        UserDa dao = new UserDa();
+       
 
         String emailText = Email.getText();
         String codeText = Code.getText();
         String passwordText = new String(iPassword.getPassword());
         String retypeText = new String(rPassword.getPassword());
+        
+        ForgetPasswordController.forgetPasswordUser(emailText, codeText, passwordText, retypeText, ForgetPassword.this);
 
-        if (emailText.isEmpty() || codeText.isEmpty() || passwordText.isEmpty() || retypeText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill all the fields");
-        } 
-        else if (!emailText.contains("@")) {
-            JOptionPane.showMessageDialog(null, "Invalid email address. Please include '@'");
-        } 
-        else if (!codeText.matches("\\d{4}")) {
-            JOptionPane.showMessageDialog(null, "Code must be a 4-digit number");
-        } 
-        else if (!isValidPassword(passwordText)) {
-            JOptionPane.showMessageDialog(null, "Password must be 8-20 characters long and include uppercase, lowercase, digit, and special character");
-        } 
-        else if (!passwordText.equals(retypeText)) {
-            JOptionPane.showMessageDialog(null, "Passwords do not match");
-        } 
-        else {
-            SignUp newUser = new SignUp(emailText, "", codeText, passwordText);
-            boolean success = dao.forgetPassword(
-                newUser.getUserEmail(),
-                newUser.getUserCode(),
-                newUser.getUserPassword()
-            );
-
-            if (success) {
-                JOptionPane.showMessageDialog(null, "Changed password successfully");
-                Login l = new Login();
-                l.setVisible(true);
-                l.pack();
-                l.setLocationRelativeTo(null);
-                l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to change password. Invalid email or code.");
-            }
-        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

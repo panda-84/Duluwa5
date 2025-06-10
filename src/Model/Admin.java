@@ -9,7 +9,7 @@ package Model;
  * @author acer
  */
 public class Admin {
-    private int id;
+    private int admin_id;
     private String username;
     private String password;
     
@@ -19,11 +19,11 @@ public class Admin {
     }
     
     public int getAdminID(){
-        return id;
+        return admin_id;
     }
     
-    public void setAdminID(int id){
-        this.id = id; 
+    public void setAdminID(int admin_id){
+        this.admin_id = admin_id; 
     }
     
     public String getUsername(){

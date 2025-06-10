@@ -4,12 +4,15 @@ package Dao;
 import java.sql.Connection;
 import Database.MySqlConnection;
 import Model.GuideA;
+//import java.awt.List;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class GuideDa {
     MySqlConnection mysql = new MySqlConnection();
@@ -85,6 +88,7 @@ public class GuideDa {
     
     public GuideA getGuideById(int id) {
         Connection conn = mysql.openConnection();
+
         String sql = "SELECT * FROM guide WHERE guide_ID = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -101,6 +105,7 @@ public class GuideDa {
                     rs.getString("bio"),
                     rs.getBytes("photo")
                 );
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -125,6 +130,58 @@ public class GuideDa {
             mysql.closeConnection(conn);
         }
     }
+    
+    public List<GuideA> getAllGuides() {
+        List<GuideA> guides = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM guide";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                GuideA guide = new GuideA(
+                    rs.getString("first_name"),
+                    rs.getString("middle_name"),
+                    rs.getString("last_name"),
+                    rs.getString("gender"),
+                    rs.getString("phone_number"),
+                    rs.getInt("age"),
+                    rs.getString("status"),
+                    rs.getString("bio"),
+                    rs.getBytes("photo")
+                );
+                guide.setGuideId(rs.getInt("guide_ID"));
+                guides.add(guide);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return guides;
+    }
+    
+    public int getGuideCount() {
+        int count = 0;
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT COUNT(*) AS total FROM guide";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return count;
+    }
+
+
 
 
 
