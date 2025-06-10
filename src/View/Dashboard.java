@@ -28,7 +28,7 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         
         jPanel_Dashboard.setVisible(true);
-        jPanel_Guide.setVisible(false);
+        jScrollPane1.setVisible(false);
         jPanel_Navigation.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
         jPanel_Plans.setVisible(false);
@@ -99,7 +99,6 @@ public class Dashboard extends javax.swing.JFrame {
         setBackground(new java.awt.Color(246, 240, 237));
 
         jPanel_Container.setBackground(new java.awt.Color(246, 240, 237));
-        jPanel_Container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel_Menu.setBackground(new java.awt.Color(126, 168, 190));
         jPanel_Menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,8 +144,6 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(79, 79, 79));
         jPanel_Menu.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 8));
 
-        jPanel_Container.add(jPanel_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         jPanel_Head.setBackground(new java.awt.Color(40, 83, 107));
         jPanel_Head.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -162,8 +159,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo1.png"))); // NOI18N
         jLabel12.setText("jLabel12");
         jPanel_Head.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 11, 113, -1));
-
-        jPanel_Container.add(jPanel_Head, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 1338, 120));
 
         jPanel_Dashboard.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_Dashboard.setName(""); // NOI18N
@@ -256,8 +251,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel16.setText("Our Tour Guide Management System connects travelers with guides, enabling easy bookings, real-time schedules, and secure payments. It simplifies tour planning and enhances the overall travel experience efficiently.");
         jPanel_Dashboard.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, -1, -1));
 
-        jPanel_Container.add(jPanel_Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
-        jPanel_Container.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jScrollPane1.setBackground(new java.awt.Color(204, 0, 204));
+        jScrollPane1.setAlignmentX(0.0F);
+        jScrollPane1.setAlignmentY(0.0F);
 
         jPanel_Guide.setPreferredSize(new java.awt.Dimension(1330, 710));
 
@@ -272,7 +268,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 710, Short.MAX_VALUE)
         );
 
-        jPanel_Container.add(jPanel_Guide, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
+        jScrollPane1.setViewportView(jPanel_Guide);
 
         jPanel_Navigation.setPreferredSize(new java.awt.Dimension(1330, 710));
 
@@ -296,8 +292,6 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(332, Short.MAX_VALUE))
         );
 
-        jPanel_Container.add(jPanel_Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
-
         jPanel_Profile_Management.setPreferredSize(new java.awt.Dimension(1330, 710));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 100)); // NOI18N
@@ -319,8 +313,6 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel18)
                 .addContainerGap(332, Short.MAX_VALUE))
         );
-
-        jPanel_Container.add(jPanel_Profile_Management, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, 710));
 
         jPanel_Plans.setPreferredSize(new java.awt.Dimension(1330, 710));
 
@@ -344,13 +336,62 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(291, Short.MAX_VALUE))
         );
 
-        jPanel_Container.add(jPanel_Plans, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 1340, 720));
+        javax.swing.GroupLayout jPanel_ContainerLayout = new javax.swing.GroupLayout(jPanel_Container);
+        jPanel_Container.setLayout(jPanel_ContainerLayout);
+        jPanel_ContainerLayout.setHorizontalGroup(
+            jPanel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                .addComponent(jPanel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                .addGroup(jPanel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jPanel_Navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jPanel_Profile_Management, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel_Head, javax.swing.GroupLayout.PREFERRED_SIZE, 1338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel_Plans, javax.swing.GroupLayout.PREFERRED_SIZE, 1340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jPanel_Dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 1330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel_ContainerLayout.setVerticalGroup(
+            jPanel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                .addComponent(jPanel_Head, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                .addGroup(jPanel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jPanel_Navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jPanel_Profile_Management, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_ContainerLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel_Plans, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 1460, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +405,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
         // TODO add your handling code here:
         jPanel_Dashboard.setVisible(false);
-        jPanel_Guide.setVisible(false);
+        jScrollPane1.setVisible(false);
         jPanel_Navigation.setVisible(false);
         jPanel_Profile_Management.setVisible(true);
         jPanel_Plans.setVisible(false);
@@ -377,7 +418,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel_Navigation.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
         ArrayList<GuideA> guides = dao.getGuides();
-        jPanel_Guide.setVisible(true);
+        jScrollPane1.setVisible(true);
         jPanel_Guide.removeAll();
         
         for (GuideA guide : guides) {
@@ -396,7 +437,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void mapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapMouseClicked
         // TODO add your handling code here:
         jPanel_Dashboard.setVisible(false);
-        jPanel_Guide.setVisible(false);
+        jScrollPane1.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
         jPanel_Navigation.setVisible(true);
         jPanel_Plans.setVisible(false);
@@ -405,7 +446,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void plansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plansMouseClicked
         // TODO add your handling code here:
         jPanel_Dashboard.setVisible(false);
-        jPanel_Guide.setVisible(false);
+        jScrollPane1.setVisible(false);
         jPanel_Profile_Management.setVisible(false);
         jPanel_Navigation.setVisible(false);
         jPanel_Plans.setVisible(true);
