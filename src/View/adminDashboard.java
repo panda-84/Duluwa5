@@ -346,7 +346,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
@@ -366,11 +365,12 @@ public class adminDashboard extends javax.swing.JFrame {
         jTextField24 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
         jButton13 = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1460, 840));
@@ -1277,12 +1277,9 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel20.setText("Email:");
         jPanel_payment.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 609, -1, 34));
 
-        jTextField16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 663, 220, 34));
-
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Start Date:");
-        jPanel_payment.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 662, -1, 34));
+        jPanel_payment.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 500, -1, 34));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Booking ID:");
@@ -1356,11 +1353,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel31.setPreferredSize(new java.awt.Dimension(59, 34));
         jPanel_payment.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 450, -1, -1));
 
-        jTextField25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField25.setPreferredSize(new java.awt.Dimension(64, 34));
-        jPanel_payment.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(954, 451, 220, -1));
-        jTextField25.getAccessibleContext().setAccessibleDescription("");
-
         jButton13.setBackground(new java.awt.Color(40, 83, 107));
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
@@ -1388,6 +1380,14 @@ public class adminDashboard extends javax.swing.JFrame {
         jButton15.setText("Add");
         jButton15.setPreferredSize(new java.awt.Dimension(72, 34));
         jPanel_payment.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 710, -1, -1));
+
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(88, 34));
+        jPanel_payment.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 500, 130, -1));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Esewa" }));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(72, 34));
+        jPanel_payment.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 130, -1));
 
         javax.swing.GroupLayout jPanel_containerLayout = new javax.swing.GroupLayout(jPanel_container);
         jPanel_container.setLayout(jPanel_containerLayout);
@@ -1838,6 +1838,8 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1906,7 +1908,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
@@ -1915,7 +1916,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;

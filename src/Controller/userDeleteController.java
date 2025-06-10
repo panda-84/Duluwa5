@@ -4,10 +4,17 @@
  */
 package Controller;
 
+import Dao.UserDa;
+import Model.SignUp;
+import View.Login;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Bibek
+ * @author acer
  */
-public class Confile {
+public class userDeleteController {
     
+   
 }

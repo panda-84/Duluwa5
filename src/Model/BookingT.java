@@ -1,0 +1,159 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Model;
+
+/**
+ *
+ * @author acer
+ */
+public class BookingT {
+    private int booking_id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+    private String startDate;
+    private String numberOfPeople;
+    private int age;
+    private String country;
+    private String nationality;
+    private String address;
+    private String zipCode;
+    private String payment;
+    
+    public BookingT(String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
+                   int age, String country, String nationality, String address, String zipCode, String payment)
+    {
+       this.firstName = firstName;
+       this.middleName = middleName;
+       this.lastName = lastName;
+       this.phoneNumber = phoneNumber;
+       this.email = email;
+       this.startDate = startDate;
+       this.numberOfPeople = numberOfPeople;
+       this.age = age;
+       this.country = country;
+       this.nationality = nationality;
+       this.address = address;
+       this.zipCode = zipCode;
+       this.payment = payment;
+       
+    }
+    
+    public int getAdminID(){
+        return booking_id;
+    }
+    
+    public void setAdminID(int booking_id){
+        this.booking_id = booking_id;
+    }
+    
+    public String getFirstName(){
+        return firstName;
+    }
+    
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+    
+    public String getMiddleName(){
+        return middleName;
+    }
+    
+    public void setMiddleName(String middleName){
+        this.middleName = middleName;
+    }
+    
+    public String getLastName(){
+        return lastName;
+    }
+    
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+    
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
+    public String getStartDate(){
+        return startDate;
+    }
+    
+    public void setStartDate(String startDate){
+        this.startDate = startDate;
+    }
+    
+    public String getNumberOfPeople(){
+        return numberOfPeople;
+    }
+    
+    public void setNumberOfPeople(String numberOfPeople){
+        this.numberOfPeople = numberOfPeople;
+    }
+    
+    public int getAge(){
+        return age;
+    }
+    
+    public void setAge(int age){
+        this.age = age;
+    }
+    
+    public String getCountry(){
+        return country;
+    }
+    
+    public void setCountry(String country){
+        this.country = country;
+    }
+    
+    public String getNationality(){
+        return nationality;
+    }
+    
+    public void setnationality(String nationality){
+        this.nationality = nationality;
+    }
+    
+    public String getAddress(){
+        return address;
+    }
+    
+    public void setAddress(String address){
+        this.address = address;
+    }
+    
+    public String getZipCode(){
+        return zipCode;
+    }
+    
+    public void setZipCode(String zipCode){
+        this.zipCode = zipCode;
+    }
+    
+    public String getPayment(){
+        return payment;
+    }
+    
+    public void setPayment(String payment){
+        this.payment = payment;
+    }
+    
+    
+}
