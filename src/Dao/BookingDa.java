@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.ResultSet;
 
 
 /**
@@ -47,4 +50,45 @@ public class BookingDa {
             mysql.closeConnection(conn);
         }
     }
+    
+   
+    
+    public List<BookingT> getAllPayment() {
+        List<BookingT> bookings = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM booking";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                BookingT book = new BookingT(
+                    rs.getString("first_name"),
+                    rs.getString("middle_name"),
+                    rs.getString("last_name"),
+                    rs.getString("phone_number"),
+                    rs.getString("email"),
+                    rs.getString("start_date"),
+                    rs.getString("people_number"),
+                    rs.getInt("age"),
+                    rs.getString("country"),
+                    rs.getString("nationality"),
+                    rs.getString("address"),
+                    rs.getString("zip_code"),
+                    rs.getString("payment")
+                    
+                );
+                book.setBookId(rs.getInt("booking_ID"));
+                book.setGuideID(rs.getInt("guide_ID"));
+                bookings.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return bookings;
+    }
+    
+    
 }

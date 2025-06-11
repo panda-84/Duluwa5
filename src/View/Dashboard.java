@@ -96,6 +96,14 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel_Guide = new javax.swing.JPanel();
         guideBack = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jPanel_Navigation = new javax.swing.JPanel();
         navigationBack = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -301,6 +309,32 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setPreferredSize(new java.awt.Dimension(73, 34));
+
+        jButton5.setBackground(new java.awt.Color(40, 83, 107));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
+        jButton5.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jButton7.setBackground(new java.awt.Color(40, 83, 107));
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Filter");
+        jButton7.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jButton8.setBackground(new java.awt.Color(194, 148, 138));
+        jButton8.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jButton9.setBackground(new java.awt.Color(194, 148, 138));
+        jButton9.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jButton10.setBackground(new java.awt.Color(194, 148, 138));
+        jButton10.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jButton11.setBackground(new java.awt.Color(194, 148, 138));
+        jButton11.setPreferredSize(new java.awt.Dimension(76, 34));
+
         javax.swing.GroupLayout jPanel_GuideLayout = new javax.swing.GroupLayout(jPanel_Guide);
         jPanel_Guide.setLayout(jPanel_GuideLayout);
         jPanel_GuideLayout.setHorizontalGroup(
@@ -308,14 +342,50 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel_GuideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(guideBack)
-                .addContainerGap(1300, Short.MAX_VALUE))
+                .addGap(387, 387, 387)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel_GuideLayout.createSequentialGroup()
+                .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_GuideLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_GuideLayout.createSequentialGroup()
+                        .addGap(1089, 1089, 1089)
+                        .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(107, 107, 107))
         );
         jPanel_GuideLayout.setVerticalGroup(
             jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_GuideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(guideBack)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guideBack)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_GuideLayout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jPanel_Container.add(jPanel_Guide, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
@@ -761,10 +831,16 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel guide;
     private javax.swing.JLabel guideBack;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -807,8 +883,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Plans;
     private javax.swing.JPanel jPanel_Profile_Management;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JLabel logOut;
     private javax.swing.JLabel map;
     private javax.swing.JLabel navigationBack;
