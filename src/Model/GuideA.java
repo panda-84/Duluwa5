@@ -16,6 +16,7 @@ public class GuideA {
     private String status;
     private String bio;
     private byte[] picture;
+    private String fullName;
     
     public GuideA( String firstName,String middleName, String lastName, String gender, String phoneNumber, int age, String status, String bio, byte[] picture ){
       
@@ -30,6 +31,22 @@ public class GuideA {
       this.picture = picture;
       
     }
+    public GuideA( String gender, String phoneNumber, int age, String status, String bio, byte[] picture, String fullName ){
+      
+      
+      this.gender = gender;
+      this.phoneNumber = phoneNumber;
+      this.age = age;
+      this.status = status;
+      this.bio = bio;
+      this.picture = picture;
+      this.fullName = fullName;
+      
+    }
+    
+    
+    
+    
     
     public int getGuideId(){
         return guide_id;
@@ -37,6 +54,13 @@ public class GuideA {
     
     public void setGuideId(int guide_id){
         this.guide_id = guide_id;
+    }
+    public String getFullName(){
+        return fullName;
+    }
+    
+    public void setFullName(String fullName){
+        this.fullName = fullName;
     }
     
     public String getFirstName(){

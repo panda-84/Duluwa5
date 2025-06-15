@@ -180,6 +180,37 @@ public class GuideDa {
 
         return count;
     }
+    
+   public ArrayList<GuideA> getGuides() {
+    ArrayList<GuideA> guideList = new ArrayList<>();
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT *, CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name FROM guide";
+
+    try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+        while (rs.next()) {
+            GuideA guide =new GuideA(
+                    rs.getString("gender"),
+                    rs.getString("phone_number"),
+                    rs.getInt("age"),
+                    rs.getString("status"),
+                    rs.getString("bio"),
+                    rs.getBytes("photo"),
+                    rs.getString("full_name")
+            );
+            guide.setGuideId(rs.getInt("guide_ID"));
+            guideList.add(guide);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        mysql.closeConnection(conn);
+    }
+
+    return guideList;
+}
+
+
+                          
 
 
 

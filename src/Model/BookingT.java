@@ -10,6 +10,7 @@ package Model;
  */
 public class BookingT {
     private int booking_id;
+    private int guide_ID;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -24,9 +25,29 @@ public class BookingT {
     private String zipCode;
     private String payment;
     
-    public BookingT(String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
+    public BookingT( String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
                    int age, String country, String nationality, String address, String zipCode, String payment)
     {
+       
+       this.firstName = firstName;
+       this.middleName = middleName;
+       this.lastName = lastName;
+       this.phoneNumber = phoneNumber;
+       this.email = email;
+       this.startDate = startDate;
+       this.numberOfPeople = numberOfPeople;
+       this.age = age;
+       this.country = country;
+       this.nationality = nationality;
+       this.address = address;
+       this.zipCode = zipCode;
+       this.payment = payment;
+       
+    }
+    public BookingT( int guide_ID,String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
+                   int age, String country, String nationality, String address, String zipCode, String payment)
+    {
+       this.guide_ID = guide_ID;
        this.firstName = firstName;
        this.middleName = middleName;
        this.lastName = lastName;
@@ -43,12 +64,20 @@ public class BookingT {
        
     }
     
-    public int getAdminID(){
+    public int getBookId(){
         return booking_id;
     }
     
-    public void setAdminID(int booking_id){
+    public void setBookId(int booking_id){
         this.booking_id = booking_id;
+    }
+    
+    public int getGuideID(){
+        return guide_ID;
+    }
+    
+    public void setGuideID(int guide_ID){
+        this.guide_ID = guide_ID;
     }
     
     public String getFirstName(){

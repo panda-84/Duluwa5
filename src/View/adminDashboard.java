@@ -27,6 +27,15 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import Controller.BookingController;
+import Controller.adminBookingController;
+import Dao.AdminBookingDa;
+import Model.BookingT;
+import View.AdminLogin;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JTable;
 
 /**
  *
@@ -39,6 +48,8 @@ public class adminDashboard extends javax.swing.JFrame {
      */
     private String imagePath = null;
     private GuideA currentGuide;
+    private BookingT currentBook;
+   
     
     Border default_border = BorderFactory.createMatteBorder(1,0,1,0,new Color(187,177,147));
     Border gray_border = BorderFactory.createMatteBorder(1,0,1,0,Color.gray);
@@ -54,6 +65,14 @@ public class adminDashboard extends javax.swing.JFrame {
         
         loadGuideDataIntoTable(); 
         updateGuideCountLabel();
+        
+        // booking update on JTable
+        adminBookingController controller = new adminBookingController();
+
+        controller.loadPaymentDataIntoTable(paymentTable);
+        
+        
+
         
         // menuLabels array
         menuLabels[0] = jLabel_menuItem1;
@@ -238,6 +257,10 @@ public class adminDashboard extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
+   
+   
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -335,42 +358,42 @@ public class adminDashboard extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        paymentTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        bFirstName = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        bMiddleName = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        bLastName = new javax.swing.JTextField();
+        bNumber = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        bEmail = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
+        bBookingId = new javax.swing.JTextField();
+        searchBooking = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        bNumberOfPeople = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        bAge = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        bCountry = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
+        bNationality = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
+        bAddress = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
+        bZipCode = new javax.swing.JTextField();
+        bGuide_ID = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        Delete = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        clearBooking = new javax.swing.JButton();
+        DeleteBooking = new javax.swing.JButton();
+        updateBooking = new javax.swing.JButton();
+        addPayment = new javax.swing.JButton();
+        bStartDate = new com.toedter.calendar.JDateChooser();
+        bPayment = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1460, 840));
@@ -1175,36 +1198,19 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jButton10.setBackground(new java.awt.Color(40, 83, 107));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel_payment.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 18, 48, 34));
 
         jButton11.setBackground(new java.awt.Color(40, 83, 107));
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Filter");
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel_payment.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 18, -1, 34));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Booking ID", "Guide ID", "First Name", "Middle Name", "Last Name", "Phone Number", "Email", "Start Date", "# of people", "Age", "Country", "Nationality", "Address", "Zip code", "payment"
@@ -1218,26 +1224,26 @@ public class adminDashboard extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable2.setShowHorizontalLines(true);
-        jTable2.setShowVerticalLines(true);
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable2.getColumnModel().getColumn(1).setPreferredWidth(200);
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(3).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(4).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(5).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(6).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(7).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(8).setPreferredWidth(200);
-            jTable2.getColumnModel().getColumn(9).setPreferredWidth(150);
-            jTable2.getColumnModel().getColumn(10).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(11).setPreferredWidth(200);
-            jTable2.getColumnModel().getColumn(12).setPreferredWidth(250);
-            jTable2.getColumnModel().getColumn(13).setPreferredWidth(200);
-            jTable2.getColumnModel().getColumn(14).setPreferredWidth(200);
+        paymentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        paymentTable.setShowHorizontalLines(true);
+        paymentTable.setShowVerticalLines(true);
+        jScrollPane3.setViewportView(paymentTable);
+        if (paymentTable.getColumnModel().getColumnCount() > 0) {
+            paymentTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(4).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(5).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(6).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(7).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(8).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(9).setPreferredWidth(150);
+            paymentTable.getColumnModel().getColumn(10).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(11).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(12).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(13).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(14).setPreferredWidth(200);
         }
 
         jPanel_payment.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 81, 1143, 298));
@@ -1246,32 +1252,32 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel7.setText("First Name:");
         jPanel_payment.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 397, -1, 34));
 
-        jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 398, 220, 34));
+        bFirstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 398, 220, 34));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Middle Name:");
         jPanel_payment.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 450, -1, 34));
 
-        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 451, 220, 34));
+        bMiddleName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bMiddleName, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 451, 220, 34));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Last Name:");
         jPanel_payment.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 503, -1, 34));
 
-        jTextField13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 504, 220, 34));
+        bLastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 504, 220, 34));
 
-        jTextField14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 557, 220, 34));
+        bNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 557, 220, 34));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setText("Phone Number:");
         jPanel_payment.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 556, -1, 34));
 
-        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 610, 220, 34));
+        bEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 610, 220, 34));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Email:");
@@ -1285,64 +1291,70 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel22.setText("Booking ID:");
         jPanel_payment.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 720, -1, 34));
 
-        jTextField17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 720, 220, 34));
+        bBookingId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 720, 220, 34));
 
-        jButton12.setBackground(new java.awt.Color(40, 83, 107));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        searchBooking.setBackground(new java.awt.Color(40, 83, 107));
+        searchBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
+        searchBooking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                searchBookingActionPerformed(evt);
             }
         });
-        jPanel_payment.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 720, 55, 34));
+        jPanel_payment.add(searchBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 720, 55, 34));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("# of people:");
         jPanel_payment.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 397, -1, 34));
 
-        jTextField18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 398, 220, 34));
+        bNumberOfPeople.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bNumberOfPeople.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNumberOfPeopleActionPerformed(evt);
+            }
+        });
+        jPanel_payment.add(bNumberOfPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 398, 220, 34));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Age:");
         jPanel_payment.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 450, -1, 34));
 
-        jTextField19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 451, 220, 34));
+        bAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 451, 220, 34));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Country:");
         jPanel_payment.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 503, -1, 34));
 
-        jTextField20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 504, 220, 34));
+        bCountry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 504, 220, 34));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Nationality:");
         jPanel_payment.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 556, -1, 34));
-        jPanel_payment.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 557, 220, 34));
+        jPanel_payment.add(bNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 557, 220, 34));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Address:");
         jPanel_payment.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 609, -1, 34));
 
-        jTextField22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 610, 220, 34));
+        bAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 610, 220, 34));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Zip code:");
         jPanel_payment.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 662, -1, 34));
 
-        jTextField23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel_payment.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 663, 220, 34));
+        bZipCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel_payment.add(bZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 663, 220, 34));
 
-        jTextField24.addActionListener(new java.awt.event.ActionListener() {
+        bGuide_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField24ActionPerformed(evt);
+                bGuide_IDActionPerformed(evt);
             }
         });
-        jPanel_payment.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(954, 398, 220, 34));
+        jPanel_payment.add(bGuide_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(954, 398, 220, 34));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Guide ID:");
@@ -1353,41 +1365,66 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel31.setPreferredSize(new java.awt.Dimension(59, 34));
         jPanel_payment.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 450, -1, -1));
 
-        jButton13.setBackground(new java.awt.Color(40, 83, 107));
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Clear");
-        jButton13.setPreferredSize(new java.awt.Dimension(72, 34));
-        jPanel_payment.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 720, 81, -1));
+        clearBooking.setBackground(new java.awt.Color(40, 83, 107));
+        clearBooking.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clearBooking.setForeground(new java.awt.Color(255, 255, 255));
+        clearBooking.setText("Clear");
+        clearBooking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        clearBooking.setPreferredSize(new java.awt.Dimension(72, 34));
+        clearBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBookingActionPerformed(evt);
+            }
+        });
+        jPanel_payment.add(clearBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 720, 81, -1));
 
-        Delete.setBackground(new java.awt.Color(194, 148, 138));
-        Delete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Delete.setForeground(new java.awt.Color(255, 255, 255));
-        Delete.setText("Delete");
-        Delete.setPreferredSize(new java.awt.Dimension(72, 34));
-        jPanel_payment.add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 720, 80, -1));
+        DeleteBooking.setBackground(new java.awt.Color(194, 148, 138));
+        DeleteBooking.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        DeleteBooking.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteBooking.setText("Delete");
+        DeleteBooking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DeleteBooking.setPreferredSize(new java.awt.Dimension(72, 34));
+        DeleteBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBookingActionPerformed(evt);
+            }
+        });
+        jPanel_payment.add(DeleteBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 720, 80, -1));
 
-        jButton14.setBackground(new java.awt.Color(126, 168, 190));
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Update");
-        jButton14.setPreferredSize(new java.awt.Dimension(101, 34));
-        jPanel_payment.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 720, -1, -1));
+        updateBooking.setBackground(new java.awt.Color(126, 168, 190));
+        updateBooking.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateBooking.setForeground(new java.awt.Color(255, 255, 255));
+        updateBooking.setText("Update");
+        updateBooking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateBooking.setPreferredSize(new java.awt.Dimension(101, 34));
+        updateBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBookingActionPerformed(evt);
+            }
+        });
+        jPanel_payment.add(updateBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 720, -1, -1));
 
-        jButton15.setBackground(new java.awt.Color(126, 168, 190));
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Add");
-        jButton15.setPreferredSize(new java.awt.Dimension(72, 34));
-        jPanel_payment.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 710, -1, -1));
+        addPayment.setBackground(new java.awt.Color(126, 168, 190));
+        addPayment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addPayment.setForeground(new java.awt.Color(255, 255, 255));
+        addPayment.setText("Add");
+        addPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addPayment.setPreferredSize(new java.awt.Dimension(72, 34));
+        addPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPaymentActionPerformed(evt);
+            }
+        });
+        jPanel_payment.add(addPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 710, -1, -1));
 
-        jDateChooser1.setPreferredSize(new java.awt.Dimension(88, 34));
-        jPanel_payment.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 500, 130, -1));
+        bStartDate.setPreferredSize(new java.awt.Dimension(88, 34));
+        jPanel_payment.add(bStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 500, 130, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Esewa" }));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(72, 34));
-        jPanel_payment.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 130, -1));
+        bPayment.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Esewa" }));
+        bPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bPayment.setPreferredSize(new java.awt.Dimension(72, 34));
+        jPanel_payment.add(bPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 130, -1));
 
         javax.swing.GroupLayout jPanel_containerLayout = new javax.swing.GroupLayout(jPanel_container);
         jPanel_container.setLayout(jPanel_containerLayout);
@@ -1457,13 +1494,63 @@ public class adminDashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void searchBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+        String boookingIdText = bBookingId.getText().trim();
+        if (boookingIdText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a booking ID.");
+            return;
+        }
 
-    private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
+        try {
+            int id = Integer.parseInt(boookingIdText);
+            AdminBookingDa dao = new AdminBookingDa();
+            BookingT book = dao.getBookById(id);
+            
+           
+
+            if (book != null) {
+                currentBook = book;
+               
+                
+                // Fill the form fields
+                bFirstName.setText(book.getFirstName());
+                bMiddleName.setText(book.getMiddleName());
+                bLastName.setText(book.getLastName());
+                bNumber.setText(book.getPhoneNumber());
+                bEmail.setText(book.getEmail());
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = sdf.parse(book.getStartDate());
+                    bStartDate.setDate(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+ 
+                bNumberOfPeople.setText(book.getNumberOfPeople());
+                bAge.setText(String.valueOf(book.getAge()));
+                bCountry.setText(book.getCountry());
+                bNationality.setText(book.getNationality());
+                bAddress.setText(book.getAddress());
+                bZipCode.setText(book.getZipCode());
+                bPayment.setSelectedItem(book.getPayment());
+                bGuide_ID.setText(String.valueOf(book.getGuideID()));
+                
+                
+
+               
+            } else {
+                JOptionPane.showMessageDialog(null, "No guide found with this ID.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a valid number.");
+        }
+    }//GEN-LAST:event_searchBookingActionPerformed
+
+    private void bGuide_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuide_IDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField24ActionPerformed
+    }//GEN-LAST:event_bGuide_IDActionPerformed
 
     private void imageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageButtonActionPerformed
         JFileChooser file  = new JFileChooser();
@@ -1496,15 +1583,7 @@ public class adminDashboard extends javax.swing.JFrame {
         String ageText = gAge.getText().trim();
         String status = (String) gStatus.getSelectedItem();
         String bio = gBio.getText().trim();
-
-//        System.out.println("firstName: " + firstName);
-//        System.out.println("lastName: " + lastName);
-//        System.out.println("gender: " + gender);
-//        System.out.println("phone: " + phoneNumber);
-//        System.out.println("ageText: " + ageText);
-//        System.out.println("status: " + status);
-//        System.out.println("bio: " + bio);
-//        System.out.println("imagePath: " + imagePath);
+    
         
         if (firstName.trim().isEmpty() || lastName.trim().isEmpty() || gender.trim().isEmpty() || phoneNumber.trim().isEmpty()
                 || ageText.trim().isEmpty() || status.trim().isEmpty() || bio.trim().isEmpty() || imagePath == null) {
@@ -1582,6 +1661,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
                 if (success) {
                     JOptionPane.showMessageDialog(null, "Guide updated successfully.");
+                    loadGuideDataIntoTable(); 
                 } else {
                     JOptionPane.showMessageDialog(null, "Failed to update guide.");
                 }
@@ -1660,6 +1740,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
                 if (success) {
                     JOptionPane.showMessageDialog(null, "Guide deleted successfully.");
+                    loadGuideDataIntoTable(); 
                     clearFields();
                 } else {
                     JOptionPane.showMessageDialog(null, "No guide found with ID: " + id);
@@ -1712,6 +1793,122 @@ public class adminDashboard extends javax.swing.JFrame {
     private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField31ActionPerformed
+
+    private void addPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = bStartDate.getDate(); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        String firstNameText = bFirstName.getText();
+        String middleNameText = bMiddleName.getText();
+        String lastNameText = bLastName.getText();
+        String phoneNumberText = bNumber.getText();
+        String emailText = bEmail.getText();
+        String startDateText = sdf.format(selectedDate);
+        String peopleText = bNumberOfPeople.getText();
+        String ageText = bAge.getText();
+        String countryText = bCountry.getText();
+        String nationalityText = bNationality.getText();
+        String addressText = bAddress.getText();
+        String zipCodeText = bZipCode.getText();
+        String paymentText =(String) bPayment.getSelectedItem();
+        String guideIdText = bGuide_ID.getText();
+        
+        
+
+        
+        adminBookingController.adminBookingAll(guideIdText, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText ,adminDashboard.this);
+        adminBookingController controller = new adminBookingController();
+        controller.loadPaymentDataIntoTable(paymentTable);
+
+
+    }//GEN-LAST:event_addPaymentActionPerformed
+
+    private void clearBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBookingActionPerformed
+        // TODO add your handling code here:
+        clearBookingFields();
+    }//GEN-LAST:event_clearBookingActionPerformed
+
+    private void DeleteBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBookingActionPerformed
+        // TODO add your handling code here:
+        String bookingIdText = bBookingId.getText().trim();
+
+        adminBookingController delete = new adminBookingController();
+        delete.deleteBookingUpdate(bookingIdText);
+        
+        //table update
+        adminBookingController controller = new adminBookingController();
+        controller.loadPaymentDataIntoTable(paymentTable);
+        
+        
+    }//GEN-LAST:event_DeleteBookingActionPerformed
+
+    private void updateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBookingActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = bStartDate.getDate(); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        String firstNameText = bFirstName.getText();
+        String middleNameText = bMiddleName.getText();
+        String lastNameText = bLastName.getText();
+        String phoneNumberText = bNumber.getText();
+        String emailText = bEmail.getText();
+        String startDateText = sdf.format(selectedDate);
+        String peopleText = bNumberOfPeople.getText();
+        String ageText = bAge.getText();
+        String countryText = bCountry.getText();
+        String nationalityText = bNationality.getText();
+        String addressText = bAddress.getText();
+        String zipCodeText = bZipCode.getText();
+        String paymentText =(String) bPayment.getSelectedItem();
+        String guideIdText = bGuide_ID.getText();
+
+        
+        if (firstNameText.isEmpty() || middleNameText.isEmpty()|| lastNameText.isEmpty()|| phoneNumberText.isEmpty()|| emailText.isEmpty()||
+                startDateText.isEmpty()|| peopleText.isEmpty()|| ageText.isEmpty()|| countryText.isEmpty()|| nationalityText.isEmpty()||
+                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()|| guideIdText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields");
+            
+        }
+        {
+            try {
+                int age = Integer.parseInt(ageText);
+                int booking_id = Integer.parseInt(bBookingId.getText().trim());
+                int guide_ID = Integer.parseInt(bGuide_ID.getText().trim());
+
+                
+               
+                
+
+                
+                BookingT book = new BookingT(guide_ID, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, age, countryText, nationalityText, addressText, zipCodeText, paymentText);
+
+                
+                book.setBookId(booking_id);
+                
+
+                
+                AdminBookingDa dao = new AdminBookingDa();
+                boolean success = dao.updateBooking(book);
+
+                if (success) {
+                    JOptionPane.showMessageDialog(null, "Booking updated successfully.");
+                    // table update
+                    adminBookingController controller = new adminBookingController();
+                    controller.loadPaymentDataIntoTable(paymentTable);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to update guide.");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            }
+        }
+        
+    }//GEN-LAST:event_updateBookingActionPerformed
+
+    private void bNumberOfPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNumberOfPeopleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bNumberOfPeopleActionPerformed
     
     
     private void loadRowDataToFields(int rowIndex) {
@@ -1758,6 +1955,24 @@ public class adminDashboard extends javax.swing.JFrame {
         i_img.setIcon(null);
         imagePath = null;
     }
+     public void clearBookingFields(){
+        bBookingId.setText("");
+        bGuide_ID.setText("");
+        bFirstName.setText("");
+        bMiddleName.setText("");
+        bLastName.setText("");
+        bNumber.setText("");
+        bEmail.setText("");
+        bNumberOfPeople.setText("");
+        bAge.setText("");
+        bCountry.setText("");
+        bNationality.setText("");
+        bAddress.setText("");
+        bZipCode.setText("");
+        bPayment.setSelectedIndex(0);
+        bStartDate.setDate(null);
+        
+    }
     
     
     private void updateGuideCountLabel() {
@@ -1802,9 +2017,26 @@ public class adminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Delete;
+    private javax.swing.JButton DeleteBooking;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addPayment;
     private javax.swing.JLabel adminTotalLabel;
+    private javax.swing.JTextField bAddress;
+    private javax.swing.JTextField bAge;
+    private javax.swing.JTextField bBookingId;
+    private javax.swing.JTextField bCountry;
+    private javax.swing.JTextField bEmail;
+    private javax.swing.JTextField bFirstName;
+    private javax.swing.JTextField bGuide_ID;
+    private javax.swing.JTextField bLastName;
+    private javax.swing.JTextField bMiddleName;
+    private javax.swing.JTextField bNationality;
+    private javax.swing.JTextField bNumber;
+    private javax.swing.JTextField bNumberOfPeople;
+    private javax.swing.JComboBox<String> bPayment;
+    private com.toedter.calendar.JDateChooser bStartDate;
+    private javax.swing.JTextField bZipCode;
+    private javax.swing.JButton clearBooking;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton fetchButton;
@@ -1823,10 +2055,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
@@ -1838,8 +2066,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1900,30 +2126,19 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTable paymentTable;
+    private javax.swing.JButton searchBooking;
     private javax.swing.JTextField uFirstName;
     private javax.swing.JTextField uLastName;
     private javax.swing.JTextField uMiddleName;
+    private javax.swing.JButton updateBooking;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

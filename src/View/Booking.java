@@ -5,20 +5,32 @@
 package View;
 
 import Controller.BookingController;
+import Model.GuideA;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author shita
  */
 public class Booking extends javax.swing.JFrame {
-
+    private GuideA guide;
     /**
      * Creates new form Booking
      */
     public Booking() {
         initComponents();
+    }
+    
+    public Booking(GuideA guide){
+        initComponents();
+        this.guide = guide;
+        System.out.println("Guide ID passed to Booking: " + guide.getGuideId());
+        
+       System.out.println(guide.getFullName());
+        
+        
     }
 
     /**
@@ -147,6 +159,7 @@ public class Booking extends javax.swing.JFrame {
         bBookNow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bBookNow.setForeground(new java.awt.Color(255, 255, 255));
         bBookNow.setText("Book Now");
+        bBookNow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bBookNow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bBookNowActionPerformed(evt);
@@ -375,6 +388,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void bBookNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBookNowActionPerformed
         // TODO add your handling code here:
+        
         Date selectedDate = bStartDate.getDate(); 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
         String firstNameText = bFirstName.getText();
@@ -392,48 +406,54 @@ public class Booking extends javax.swing.JFrame {
         String paymentText =(String) bPayment.getSelectedItem();
         
         
+        
+        if (guide != null) {
+             BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,guide, Booking.this);
+        } else {
+            JOptionPane.showMessageDialog(this, "Guide is missing. Cannot complete booking.");
+        }
 
         
-        BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText, Booking.this);
+//        BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,guide, Booking.this);
     }//GEN-LAST:event_bBookNowActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Booking().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Booking().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bAddress;
