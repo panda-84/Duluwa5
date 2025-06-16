@@ -5,9 +5,11 @@
 package View;
 
 import Controller.BookingController;
+import Model.BookingT;
 import Model.GuideA;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Booking extends javax.swing.JFrame {
     private GuideA guide;
+    private BookingT book;
     /**
      * Creates new form Booking
      */
@@ -32,6 +35,13 @@ public class Booking extends javax.swing.JFrame {
         
         
     }
+    
+    public Booking(BookingT book){
+        initComponents();
+        this.book = book;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +83,9 @@ public class Booking extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         bStartDate = new com.toedter.calendar.JDateChooser();
         bPayment = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        bEndDate = new com.toedter.calendar.JDateChooser();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -174,6 +187,16 @@ public class Booking extends javax.swing.JFrame {
         bPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "esewa", "cash" }));
         bPayment.setPreferredSize(new java.awt.Dimension(72, 34));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("How long would you like to book the guide for?");
+
+        bEndDate.setPreferredSize(new java.awt.Dimension(88, 34));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setText("End Date:");
+        jLabel17.setPreferredSize(new java.awt.Dimension(44, 34));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -192,28 +215,6 @@ public class Booking extends javax.swing.JFrame {
                                 .addComponent(jLabel12)
                                 .addGap(30, 30, 30)
                                 .addComponent(bAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel6)
-                                .addGap(16, 16, 16)
-                                .addComponent(bEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel13)
-                                .addGap(26, 26, 26)
-                                .addComponent(bZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(bStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(bPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(24, 24, 24)
-                                .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,11 +250,43 @@ public class Booking extends javax.swing.JFrame {
                                 .addGap(59, 59, 59)
                                 .addComponent(jLabel4)
                                 .addGap(15, 15, 15)
-                                .addComponent(bLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(bStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(86, 86, 86)
+                                        .addComponent(bPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(16, 16, 16)
+                                        .addComponent(bEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(70, 70, 70)
+                                        .addComponent(jLabel13))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel14)))
+                                .addGap(26, 26, 26)
+                                .addComponent(bZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(bBookNow)
-                        .addGap(344, 344, 344))))
+                        .addGap(344, 344, 344))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(24, 24, 24)
+                        .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(bEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,12 +365,17 @@ public class Booking extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel7)))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel8))
-                    .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(bBookNow, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -390,7 +428,9 @@ public class Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Date selectedDate = bStartDate.getDate(); 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = bEndDate.getDate(); 
+        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
         String firstNameText = bFirstName.getText();
         String middleNameText = bMiddleName.getText();
         String lastNameText = bLastName.getText();
@@ -404,19 +444,47 @@ public class Booking extends javax.swing.JFrame {
         String addressText = bAddress.getText();
         String zipCodeText = bZipCode.getText();
         String paymentText =(String) bPayment.getSelectedItem();
+        String endDateText = end.format(endDate);
         
         
         
-        if (guide != null) {
-             BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,guide, Booking.this);
+        this.book = BookingController.bookingAll(
+            firstNameText, middleNameText, lastNameText, phoneNumberText, emailText,
+            startDateText, peopleText, ageText, countryText, nationalityText,
+            addressText, zipCodeText, paymentText, endDateText, guide, Booking.this
+        );
+
+        if (this.book != null) {
+            BookingReceipt receipt = new BookingReceipt(this.book); 
+            receipt.setVisible(true);
+            receipt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         } else {
-            JOptionPane.showMessageDialog(this, "Guide is missing. Cannot complete booking.");
+            JOptionPane.showMessageDialog(this, "Booking failed. Cannot show receipt.");
         }
 
-        
 //        BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,guide, Booking.this);
     }//GEN-LAST:event_bBookNowActionPerformed
-
+    
+    public void generateReceipt(){
+        Date selectedDate = bStartDate.getDate(); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        Date endDate = bEndDate.getDate(); 
+        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
+        String firstNameText = bFirstName.getText();
+        String middleNameText = bMiddleName.getText();
+        String lastNameText = bLastName.getText();
+        String phoneNumberText = bNumber.getText();
+        String emailText = bEmail.getText();
+        String startDateText = sdf.format(selectedDate);
+        String peopleText = bNumberOfPeople.getText();
+        String ageText = bAge.getText();
+        String countryText = bCountry.getText();
+        String nationalityText = bNationality.getText();
+        String addressText = bAddress.getText();
+        String zipCodeText = bZipCode.getText();
+        String paymentText =(String) bPayment.getSelectedItem();
+        String endDateText = end.format(endDate);
+    }
     /**
      * @param args the command line arguments
      */
@@ -461,6 +529,7 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JButton bBookNow;
     private javax.swing.JTextField bCountry;
     private javax.swing.JTextField bEmail;
+    private com.toedter.calendar.JDateChooser bEndDate;
     private javax.swing.JTextField bFirstName;
     private javax.swing.JTextField bLastName;
     private javax.swing.JTextField bMiddleName;
@@ -477,6 +546,8 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

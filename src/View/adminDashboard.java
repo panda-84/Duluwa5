@@ -30,6 +30,7 @@ import java.util.List;
 import Controller.BookingController;
 import Controller.adminBookingController;
 import Dao.AdminBookingDa;
+import Dao.UserDa;
 import Model.BookingT;
 import View.AdminLogin;
 import java.text.ParseException;
@@ -65,6 +66,7 @@ public class adminDashboard extends javax.swing.JFrame {
         
         loadGuideDataIntoTable(); 
         updateGuideCountLabel();
+        updateUserCountLabel();
         
         // booking update on JTable
         adminBookingController controller = new adminBookingController();
@@ -285,7 +287,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel_home = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
+        userTotalLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         adminTotalLabel = new javax.swing.JLabel();
@@ -394,6 +396,8 @@ public class adminDashboard extends javax.swing.JFrame {
         addPayment = new javax.swing.JButton();
         bStartDate = new com.toedter.calendar.JDateChooser();
         bPayment = new javax.swing.JComboBox<>();
+        bEndDate = new com.toedter.calendar.JDateChooser();
+        jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1460, 840));
@@ -495,10 +499,10 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Users");
 
-        jLabel33.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("00");
+        userTotalLabel.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        userTotalLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userTotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userTotalLabel.setText("00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -508,14 +512,14 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(userTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(102, Short.MAX_VALUE)
-                .addComponent(jLabel33)
+                .addComponent(userTotalLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(61, 61, 61))
@@ -1213,11 +1217,11 @@ public class adminDashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Booking ID", "Guide ID", "First Name", "Middle Name", "Last Name", "Phone Number", "Email", "Start Date", "# of people", "Age", "Country", "Nationality", "Address", "Zip code", "payment"
+                "Booking ID", "Guide ID", "First Name", "Middle Name", "Last Name", "Phone Number", "Email", "Start Date", "# of people", "Age", "Country", "Nationality", "Address", "Zip code", "payment", "End Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1244,6 +1248,7 @@ public class adminDashboard extends javax.swing.JFrame {
             paymentTable.getColumnModel().getColumn(12).setPreferredWidth(250);
             paymentTable.getColumnModel().getColumn(13).setPreferredWidth(200);
             paymentTable.getColumnModel().getColumn(14).setPreferredWidth(200);
+            paymentTable.getColumnModel().getColumn(15).setPreferredWidth(250);
         }
 
         jPanel_payment.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 81, 1143, 298));
@@ -1426,6 +1431,14 @@ public class adminDashboard extends javax.swing.JFrame {
         bPayment.setPreferredSize(new java.awt.Dimension(72, 34));
         jPanel_payment.add(bPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 130, -1));
 
+        bEndDate.setPreferredSize(new java.awt.Dimension(88, 34));
+        jPanel_payment.add(bEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 550, 130, -1));
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel30.setText("End Date:");
+        jLabel30.setPreferredSize(new java.awt.Dimension(44, 34));
+        jPanel_payment.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 70, -1));
+
         javax.swing.GroupLayout jPanel_containerLayout = new javax.swing.GroupLayout(jPanel_container);
         jPanel_container.setLayout(jPanel_containerLayout);
         jPanel_containerLayout.setHorizontalGroup(
@@ -1534,6 +1547,13 @@ public class adminDashboard extends javax.swing.JFrame {
                 bAddress.setText(book.getAddress());
                 bZipCode.setText(book.getZipCode());
                 bPayment.setSelectedItem(book.getPayment());
+                try {
+                    SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd");
+                    Date endDate = end.parse(book.getEndDate());
+                    bEndDate.setDate(endDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 bGuide_ID.setText(String.valueOf(book.getGuideID()));
                 
                 
@@ -1798,6 +1818,8 @@ public class adminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date selectedDate = bStartDate.getDate(); 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        Date endDate = bEndDate.getDate(); 
+        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
         String firstNameText = bFirstName.getText();
         String middleNameText = bMiddleName.getText();
         String lastNameText = bLastName.getText();
@@ -1811,12 +1833,13 @@ public class adminDashboard extends javax.swing.JFrame {
         String addressText = bAddress.getText();
         String zipCodeText = bZipCode.getText();
         String paymentText =(String) bPayment.getSelectedItem();
+        String endDateText = end.format(endDate);
         String guideIdText = bGuide_ID.getText();
         
         
 
         
-        adminBookingController.adminBookingAll(guideIdText, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText ,adminDashboard.this);
+        adminBookingController.adminBookingAll(guideIdText, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,endDateText ,adminDashboard.this);
         adminBookingController controller = new adminBookingController();
         controller.loadPaymentDataIntoTable(paymentTable);
 
@@ -1846,6 +1869,8 @@ public class adminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date selectedDate = bStartDate.getDate(); 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+         Date endDate = bEndDate.getDate(); 
+        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
         String firstNameText = bFirstName.getText();
         String middleNameText = bMiddleName.getText();
         String lastNameText = bLastName.getText();
@@ -1859,12 +1884,13 @@ public class adminDashboard extends javax.swing.JFrame {
         String addressText = bAddress.getText();
         String zipCodeText = bZipCode.getText();
         String paymentText =(String) bPayment.getSelectedItem();
+        String endDateText = end.format(endDate);
         String guideIdText = bGuide_ID.getText();
 
         
         if (firstNameText.isEmpty() || middleNameText.isEmpty()|| lastNameText.isEmpty()|| phoneNumberText.isEmpty()|| emailText.isEmpty()||
                 startDateText.isEmpty()|| peopleText.isEmpty()|| ageText.isEmpty()|| countryText.isEmpty()|| nationalityText.isEmpty()||
-                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()|| guideIdText.isEmpty()) {
+                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()||endDateText.isEmpty()|| guideIdText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the fields");
             
         }
@@ -1879,7 +1905,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 
 
                 
-                BookingT book = new BookingT(guide_ID, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, age, countryText, nationalityText, addressText, zipCodeText, paymentText);
+                BookingT book = new BookingT(guide_ID, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, age, countryText, nationalityText, addressText, zipCodeText, paymentText, endDateText);
 
                 
                 book.setBookId(booking_id);
@@ -1971,6 +1997,7 @@ public class adminDashboard extends javax.swing.JFrame {
         bZipCode.setText("");
         bPayment.setSelectedIndex(0);
         bStartDate.setDate(null);
+        bEndDate.setDate(null);
         
     }
     
@@ -1979,6 +2006,11 @@ public class adminDashboard extends javax.swing.JFrame {
     GuideDa dao = new GuideDa();
     int count = dao.getGuideCount();
     adminTotalLabel.setText(String.valueOf(count));
+}
+     private void updateUserCountLabel() {
+    UserDa dao = new UserDa();
+    int count = dao.getUserCount();
+    userTotalLabel.setText(String.valueOf(count));
 }
 
     /**
@@ -2026,6 +2058,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField bBookingId;
     private javax.swing.JTextField bCountry;
     private javax.swing.JTextField bEmail;
+    private com.toedter.calendar.JDateChooser bEndDate;
     private javax.swing.JTextField bFirstName;
     private javax.swing.JTextField bGuide_ID;
     private javax.swing.JTextField bLastName;
@@ -2089,8 +2122,8 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -2140,5 +2173,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField uMiddleName;
     private javax.swing.JButton updateBooking;
     private javax.swing.JButton updateButton;
+    private javax.swing.JLabel userTotalLabel;
     // End of variables declaration//GEN-END:variables
 }

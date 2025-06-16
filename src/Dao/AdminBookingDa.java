@@ -26,7 +26,7 @@ public class AdminBookingDa {
     MySqlConnection mysql = new MySqlConnection();
     public boolean adminBookTicket(BookingT book) {
         Connection conn = mysql.openConnection();
-        String sql = "INSERT INTO booking (guide_ID, first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO booking (guide_ID, first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, book.getGuideID());
@@ -48,6 +48,8 @@ public class AdminBookingDa {
                 return false;
             }
             pstmt.setString(14, payment);
+            
+            pstmt.setString(15, book.getEndDate());
 
             int result = pstmt.executeUpdate();
             return result >0;
@@ -80,7 +82,8 @@ public class AdminBookingDa {
                     rs.getString("nationality"),
                     rs.getString("address"),
                     rs.getString("zip_code"),
-                    rs.getString("payment")
+                    rs.getString("payment"),
+                    rs.getString("end_date")
                     
                 );
                 book.setBookId(rs.getInt("booking_ID"));
@@ -134,7 +137,8 @@ public class AdminBookingDa {
                     rs.getString("nationality"),
                     rs.getString("address"),
                     rs.getString("zip_code"),
-                    rs.getString("payment")
+                    rs.getString("payment"),
+                    rs.getString("end_date")
                 );
                  
 
@@ -150,7 +154,7 @@ public class AdminBookingDa {
     
     public boolean updateBooking(BookingT book) {
         Connection conn = mysql.openConnection();
-        String sql = "UPDATE booking SET guide_ID=?, first_name=?, middle_name=?, last_name=?, phone_number=?, email=?, start_date=?, people_number=?, age=?, country=?, nationality=?, address=?, zip_code=?, payment=? WHERE booking_id=?";
+        String sql = "UPDATE booking SET guide_ID=?, first_name=?, middle_name=?, last_name=?, phone_number=?, email=?, start_date=?, people_number=?, age=?, country=?, nationality=?, address=?, zip_code=?, payment=?, end_date=? WHERE booking_id=?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             
@@ -168,7 +172,8 @@ public class AdminBookingDa {
             pstmt.setString(12, book.getAddress());
             pstmt.setString(13, book.getZipCode());
             pstmt.setString(14, book.getPayment());
-            pstmt.setInt(15, book.getBookId()); 
+            pstmt.setString(15, book.getEndDate());
+            pstmt.setInt(16, book.getBookId()); 
 
             int result = pstmt.executeUpdate();
             return result > 0;

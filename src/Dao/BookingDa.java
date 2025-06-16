@@ -23,12 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class BookingDa {
     MySqlConnection mysql = new MySqlConnection();
-    public boolean bookTicket(BookingT book) {
+    public BookingT bookTicket(BookingT book) {
         Connection conn = mysql.openConnection();
         
-        String sql = "INSERT INTO booking (guide_ID,first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO booking (guide_ID,first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+    try (PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, book.getGuideID());
             pstmt.setString(2, book.getFirstName());
             pstmt.setString(3, book.getMiddleName());
@@ -43,14 +44,25 @@ public class BookingDa {
             pstmt.setString(12, book.getAddress());
             pstmt.setString(13, book.getZipCode());
             pstmt.setString(14, book.getPayment());
+            pstmt.setString(15, book.getEndDate());
 
             int result = pstmt.executeUpdate();
-            return result >0;
+            
+            if (result > 0) {
+                ResultSet rs = pstmt.getGeneratedKeys();
+                if (rs.next()) {
+                    int generatedId = rs.getInt(1);
+                    book.setBookId(generatedId); // ✅ Set booking ID
+                }
+                return book;
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             
             Logger.getLogger(UserDa.class.getName()).log(Level.SEVERE, null, e);
-            return false;
+            return null;
         } finally {
             mysql.closeConnection(conn);
         }
@@ -79,7 +91,8 @@ public class BookingDa {
                     rs.getString("nationality"),
                     rs.getString("address"),
                     rs.getString("zip_code"),
-                    rs.getString("payment")
+                    rs.getString("payment"),
+                    rs.getString("endDate")
                     
                 );
                 book.setBookId(rs.getInt("booking_ID"));
@@ -94,6 +107,40 @@ public class BookingDa {
 
         return bookings;
     }
+    
+    public ArrayList<BookingT> getBookings() {
+    ArrayList<BookingT> bookList = new ArrayList<>();
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT *, CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name FROM booking";
+
+    try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+        while (rs.next()) {
+            BookingT book =new BookingT(
+                    rs.getString("full_name"),
+                    rs.getInt("age"),
+                    rs.getString("phone_number"),
+                    rs.getString("email"),
+                    rs.getString("country"),
+                    rs.getString("address"),
+                    rs.getString("people_number"),
+                    rs.getString("payment"),
+                    rs.getString("start_date"),
+                    rs.getString("end_date")
+            );
+                    
+            book.setGuideID(rs.getInt("guide_ID"));
+            book.setBookId(rs.getInt("booking_id"));
+            bookList.add(book);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        mysql.closeConnection(conn);
+    }
+
+    return bookList;
+}
+   
     
     
 }

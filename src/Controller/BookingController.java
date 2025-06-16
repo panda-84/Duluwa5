@@ -7,6 +7,7 @@ package Controller;
 import Dao.BookingDa;
 import Model.BookingT;
 import Model.GuideA;
+import View.BookingReceipt;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,32 +21,31 @@ import javax.swing.table.DefaultTableModel;
 public class BookingController {
    
 
-    public static boolean bookingAll(String firstNameText, String middleNameText, String lastNameText, String phoneNumberText, String emailText,
-        String startDateText, String peopleText, String ageText, String countryText, String nationalityText, String addressText, String zipCodeText, String paymentText,GuideA guide, JFrame frame){
+    public static BookingT bookingAll(String firstNameText, String middleNameText, String lastNameText, String phoneNumberText, String emailText,
+        String startDateText, String peopleText, String ageText, String countryText, String nationalityText, String addressText, String zipCodeText, String paymentText, String endDateText,GuideA guide,JFrame frame){
         BookingDa dao = new BookingDa();
         System.out.println("Guide ID: " + guide.getGuideId());
         if (firstNameText.isEmpty() || middleNameText.isEmpty()|| lastNameText.isEmpty()|| phoneNumberText.isEmpty()|| emailText.isEmpty()||
                 startDateText.isEmpty()|| peopleText.isEmpty()|| ageText.isEmpty()|| countryText.isEmpty()|| nationalityText.isEmpty()||
                 addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the fields");
-            return false;
+            return null;
         }
          else {
             try{
                 int age = Integer.parseInt(ageText);
-                BookingT book = new BookingT(guide.getGuideId(),firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText,
-                age, countryText, nationalityText, addressText, zipCodeText, paymentText);
-
-                boolean success = dao.bookTicket(book);
+                String fullName = firstNameText + " " + middleNameText + " " + lastNameText;
+                BookingT book = new BookingT(guide.getGuideId(), firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText,
+                age, countryText, nationalityText, addressText, zipCodeText, paymentText,endDateText);
                 
-
-                if (success) {
-                    JOptionPane.showMessageDialog(null, "successfully Booked");
-
-//                    clearBooking();
-                    return true;
+                
+                book.setFullName(fullName);
+                BookingT inserted = dao.bookTicket(book);
+                if (inserted != null) {
+                    JOptionPane.showMessageDialog(null, "Successfully Booked");
+                    return inserted;
                 } else {
-                   return false;
+                    return null;
                 }
                 
             }
@@ -54,7 +54,7 @@ public class BookingController {
                 JOptionPane.showMessageDialog(frame, "Booking failed: " + e.getMessage());
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                 
-                return false;
+                return null;
             }
             
         }
@@ -105,7 +105,8 @@ public class BookingController {
                 book.getNationality(),
                 book.getAddress(),
                 book.getZipCode(),
-                book.getPayment()
+                book.getPayment(),
+                book.getEndDate()
                 
             };
             model.addRow(row);

@@ -4,17 +4,26 @@
  */
 package View;
 
+import Model.BookingT;
+
 /**
  *
  * @author acer
  */
 public class BookingReceipt extends javax.swing.JFrame {
-
+    private BookingT book;
     /**
      * Creates new form BookingReceipt
      */
     public BookingReceipt() {
         initComponents();
+        
+    }
+    
+    public BookingReceipt(BookingT book){
+        this.book = book;
+        initComponents();
+        generateReceipt(book);
     }
 
     /**
@@ -26,22 +35,153 @@ public class BookingReceipt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        downloadButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        area = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(187, 177, 147));
+
+        downloadButton.setBackground(new java.awt.Color(79, 79, 79));
+        downloadButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        downloadButton.setForeground(new java.awt.Color(255, 255, 255));
+        downloadButton.setText("Download");
+        downloadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        downloadButton.setPreferredSize(new java.awt.Dimension(76, 34));
+        downloadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Make sure to download it before closing.");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        area.setEditable(false);
+        area.setBackground(new java.awt.Color(255, 255, 255));
+        area.setColumns(20);
+        area.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        area.setRows(5);
+        jScrollPane1.setViewportView(area);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jLabel1)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
+        // TODO add your handling code here:
+        
+//        try {
+//        java.io.FileWriter writer = new java.io.FileWriter("booking_receipt.txt");
+//            writer.write(area.getText());
+//            writer.close();
+//            javax.swing.JOptionPane.showMessageDialog(this, "Receipt downloaded as booking_receipt.txt");
+//        } catch (Exception e) {
+//            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+//        }
+
+          try{
+              area.print();
+          }catch(Exception e){
+              javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+          }
+
+    }//GEN-LAST:event_downloadButtonActionPerformed
+
+    public void generateReceipt(BookingT book){
+        area.append("");
+        area.append("                                       Duluwa Trave Receipt                   \n");
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+       
+        area.append("Booking ID: " + book.getBookId() +"\n" );
+        area.append("Guide ID: " + book.getGuideID() + "\n\n");
+        
+         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Customer Info:\n");
+         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Name: " + book.getFullName() + "\n");
+        area.append("Age: " + book.getAge() + "\n");
+        area.append("Phone Number: " + book.getPhoneNumber() + "\n");
+        area.append("email: " + book.getEmail() + "\n");
+        area.append("Country: " + book.getCountry() + "\n");
+        area.append("Address: " + book.getAddress() + "\n");
+        area.append("Number Of People: " + book.getNumberOfPeople() + "\n\n");
+//        area.append("Payment: " + book.getPayment() + "\n");
+         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Booking Dates:\n");
+         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Start Date: " + book.getStartDate() + "\n");
+        area.append("End Date: " + book.getEndDate() + "\n");
+        
+        try {
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date start = sdf.parse(book.getStartDate());
+            java.util.Date end = sdf.parse(book.getEndDate());
+
+            long diffInMillies = end.getTime() - start.getTime();
+            long days = (diffInMillies / (1000 * 60 * 60 * 24)) + 1;
+
+            long total = days * 5000;
+
+            area.append("Total Days: " + days + "\n");
+            area.append("Rate Per Day: Rs. 5000\n");
+            area.append("Total Payment: Rs. " + total + "\n");
+
+        } catch (Exception e) {
+            area.append("Error calculating date difference.\n");
+        }
+
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("                                       Thank you for choosing Duluwa.\n");
+
+        }
     /**
      * @param args the command line arguments
      */
@@ -78,5 +218,10 @@ public class BookingReceipt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea area;
+    private javax.swing.JButton downloadButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

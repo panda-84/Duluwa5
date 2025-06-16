@@ -161,5 +161,26 @@ public class UserDa {
    
     
     
+    
+    public int getUserCount() {
+        int count = 0;
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT COUNT(*) AS total FROM user_DB";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return count;
+    }
+    
+    
 
 }

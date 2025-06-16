@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class adminBookingController {
     public static boolean adminBookingAll(String guideIdText, String firstNameText, String middleNameText, String lastNameText, String phoneNumberText, String emailText,
-        String startDateText, String peopleText, String ageText, String countryText, String nationalityText, String addressText, String zipCodeText, String paymentText, JFrame frame){
+        String startDateText, String peopleText, String ageText, String countryText, String nationalityText, String addressText, String zipCodeText, String paymentText, String endDateText, JFrame frame){
         AdminBookingDa dao = new AdminBookingDa();
         
         if (firstNameText.isEmpty() || middleNameText.isEmpty()|| lastNameText.isEmpty()|| phoneNumberText.isEmpty()|| emailText.isEmpty()||
                 startDateText.isEmpty()|| peopleText.isEmpty()|| ageText.isEmpty()|| countryText.isEmpty()|| nationalityText.isEmpty()||
-                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()|| guideIdText.isEmpty()) {
+                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()|| endDateText.isEmpty()|| guideIdText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all the fields");
             return false;
         }
@@ -34,7 +34,7 @@ public class adminBookingController {
                 int guide_ID = Integer.parseInt(guideIdText);
                 
                 BookingT book = new BookingT( guide_ID,firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText,
-                age, countryText, nationalityText, addressText, zipCodeText, paymentText);
+                age, countryText, nationalityText, addressText, zipCodeText, paymentText, endDateText);
 
                 boolean success = dao.adminBookTicket(book);
 
@@ -87,7 +87,8 @@ public class adminBookingController {
                 book.getNationality(),
                 book.getAddress(),
                 book.getZipCode(),
-                book.getPayment()
+                book.getPayment(),
+                book.getEndDate()
                 
             };
             model.addRow(row);
