@@ -6,6 +6,7 @@ package View;
 
 import Controller.userDeleteController;
 import Dao.GuideDa;
+import Dao.UserDa;
 import Model.GuideA;
 import Model.SignUp;
 import com.sun.jdi.connect.spi.Connection;
@@ -27,7 +28,8 @@ import javax.swing.border.Border;
  * @author acer
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    private SignUp user;
+//    private SignUp currentUser;
     
 
     /**
@@ -37,12 +39,11 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
 //        int height = guideArrayPanel.getComponentCount() * 150;
 //        guideArrayPanel.setPreferredSize(new Dimension(1020,height));
-        loadGuideCards();
+//        loadGuideCards();
          jScrollPane2.setViewportView(guideArrayPanel);
         showOnlyPanel(jPanel_Dashboard);
         
-        
-        
+     
       
 
         //default border for menu item
@@ -52,6 +53,12 @@ public class Dashboard extends javax.swing.JFrame {
 //        Border yellow_Border = BorderFactory.createMatteBorder(1,0,1,0, Color.yellow);
       
     }
+    
+//    public Dashboard(SignUp user){
+//        initComponents();
+//        this.currentUser = user;
+//        loadGuideCards();
+//    }
     
     
     
@@ -155,7 +162,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        changePButton = new javax.swing.JButton();
         deleteAccount = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -597,6 +604,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Change Photo");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -606,24 +614,33 @@ public class Dashboard extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Edit");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setPreferredSize(new java.awt.Dimension(72, 34));
 
         jButton3.setBackground(new java.awt.Color(187, 177, 147));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Booked History");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setPreferredSize(new java.awt.Dimension(76, 40));
 
-        jButton4.setBackground(new java.awt.Color(40, 83, 107));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Change Password");
-        jButton4.setPreferredSize(new java.awt.Dimension(76, 40));
+        changePButton.setBackground(new java.awt.Color(40, 83, 107));
+        changePButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        changePButton.setForeground(new java.awt.Color(255, 255, 255));
+        changePButton.setText("Change Password");
+        changePButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePButton.setPreferredSize(new java.awt.Dimension(76, 40));
+        changePButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePButtonActionPerformed(evt);
+            }
+        });
 
         deleteAccount.setBackground(new java.awt.Color(194, 148, 138));
         deleteAccount.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteAccount.setForeground(new java.awt.Color(255, 255, 255));
         deleteAccount.setText("Delete Account");
+        deleteAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteAccount.setPreferredSize(new java.awt.Dimension(137, 40));
         deleteAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -660,7 +677,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(changePButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(320, 320, 320))
             .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                 .addContainerGap()
@@ -718,7 +735,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(changePButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -851,13 +868,46 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_navigationBackMouseClicked
 
     private void deleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountActionPerformed
-     
-        
+       
+//       int response = JOptionPane.showConfirmDialog(
+//        this,
+//        "Are you sure you want to delete your account? This action cannot be undone.",
+//        "Confirm Account Deletion",
+//        JOptionPane.YES_NO_OPTION,
+//        JOptionPane.WARNING_MESSAGE
+//    );
+//
+//    if (response == JOptionPane.YES_OPTION) {
+//        int userId = SignUp.getUserId(); // or however you're tracking the logged-in user
+//
+//        boolean deleted = userDeleteController.deleteUserById(userId); // you must have this in controller
+//
+//        if (deleted) {
+//            JOptionPane.showMessageDialog(this, "Account deleted successfully.");
+//            // Redirect to login or exit
+//            Login loginScreen = new Login();
+//            loginScreen.setVisible(true);
+//            this.dispose(); // close current window
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Failed to delete account. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
+//        
     }//GEN-LAST:event_deleteAccountActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void changePButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePButtonActionPerformed
+        // TODO add your handling code here:
+        NewPassword n = new NewPassword();
+                n.setVisible(true);
+                n.pack();
+                n.setLocationRelativeTo(null);
+                n.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                
+    }//GEN-LAST:event_changePButtonActionPerformed
 
     
     
@@ -920,6 +970,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changePButton;
     private javax.swing.JButton deleteAccount;
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
@@ -929,7 +980,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

@@ -16,5 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class userDeleteController {
     
-   
+//    public static boolean deleteUserById(int userId) {
+//        return UserDa.deleteAccountById(userId);
+//    }
+//   
 }

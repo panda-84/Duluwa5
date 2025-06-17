@@ -247,11 +247,11 @@ public class NewPassword extends javax.swing.JFrame {
 
             if (success) {
                 JOptionPane.showMessageDialog(null, "Password changed successfully");
-                Login l = new Login();
-                l.setVisible(true);
-                l.pack();
-                l.setLocationRelativeTo(null);
-                l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                Dashboard d = new Dashboard();
+                d.setVisible(true);
+                d.pack();
+                d.setLocationRelativeTo(null);
+                d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.dispose(); // Close current window
                 // Optionally, redirect to login or another screen
             } else {
