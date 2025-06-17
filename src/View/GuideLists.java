@@ -5,6 +5,7 @@
 package View;
 
 import Model.GuideA;
+import Model.SignUp;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
  */
 public class GuideLists extends javax.swing.JPanel {
     private GuideA guide;
+//    private SignUp user;
     /**
      * Creates new form GuideLists
      */
@@ -23,6 +25,7 @@ public class GuideLists extends javax.swing.JPanel {
     }
     public GuideLists(GuideA guide) {
         this.guide = guide;
+//        this.user = user;
         initComponents();
         setGuide(guide);
 

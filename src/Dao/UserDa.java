@@ -142,7 +142,7 @@ public class UserDa {
     
    
     
-    public boolean deleteAccountById(int userId) {
+    public  boolean deleteAccountById(int userId) {
         Connection conn = mysql.openConnection();
         String sql = "DELETE FROM user_DB WHERE user_id = ?";
 
@@ -157,8 +157,31 @@ public class UserDa {
             mysql.closeConnection(conn);
         }
     }
+
+   
     
    
+    
+    
+    
+    public int getUserCount() {
+        int count = 0;
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT COUNT(*) AS total FROM user_DB";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return count;
+    }
     
     
 

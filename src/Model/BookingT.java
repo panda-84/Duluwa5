@@ -24,9 +24,11 @@ public class BookingT {
     private String address;
     private String zipCode;
     private String payment;
+    private String endDate;
+    private String fullName;
     
     public BookingT( String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
-                   int age, String country, String nationality, String address, String zipCode, String payment)
+                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate)
     {
        
        this.firstName = firstName;
@@ -42,10 +44,12 @@ public class BookingT {
        this.address = address;
        this.zipCode = zipCode;
        this.payment = payment;
+       this.endDate = endDate;
+       
        
     }
     public BookingT( int guide_ID,String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
-                   int age, String country, String nationality, String address, String zipCode, String payment)
+                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate)
     {
        this.guide_ID = guide_ID;
        this.firstName = firstName;
@@ -61,7 +65,30 @@ public class BookingT {
        this.address = address;
        this.zipCode = zipCode;
        this.payment = payment;
+       this.endDate = endDate;
        
+    }
+    
+    public BookingT(String fullName,int age, String phoneNumber, String email, String country, String address,String numberOfPeople, String payment, String startDate, String endDate){
+       
+        this.fullName = fullName;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.country = country;
+        this.address = address;
+        this.numberOfPeople= numberOfPeople;
+        this.payment = payment;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    public String getEndDate(){
+        return endDate;
+    }
+    
+    public void setEndDate(String endDate){
+        this.endDate = endDate;
     }
     
     public int getBookId(){
@@ -78,6 +105,14 @@ public class BookingT {
     
     public void setGuideID(int guide_ID){
         this.guide_ID = guide_ID;
+    }
+    
+     public String getFullName(){
+        return fullName;
+    }
+    
+    public void setFullName(String fullName){
+        this.fullName = fullName;
     }
     
     public String getFirstName(){

@@ -28,6 +28,8 @@ public class SignUp {
         this.email = email;
         this.password = password;
     }
+    
+    
     public int getUserId(){
         return user_id;
     }
