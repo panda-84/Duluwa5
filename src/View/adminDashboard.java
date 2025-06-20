@@ -78,6 +78,9 @@ public class adminDashboard extends javax.swing.JFrame {
 
         controller.loadPaymentDataIntoTable(paymentTable);
         
+        ProfileController profileController = new ProfileController();
+        profileController.loadAllUserProfilesIntoTable(this);
+        
         
 
         
@@ -354,7 +357,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         uLastName = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         uNationality = new javax.swing.JTextField();
@@ -364,8 +367,6 @@ public class adminDashboard extends javax.swing.JFrame {
         uCountry = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        uBio = new javax.swing.JTextPane();
         uImageButton = new javax.swing.JButton();
         u_img = new javax.swing.JLabel();
         uSearch = new javax.swing.JButton();
@@ -374,6 +375,8 @@ public class adminDashboard extends javax.swing.JFrame {
         uUpdate = new javax.swing.JButton();
         uGender = new javax.swing.JComboBox<>();
         uAge = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        uBio = new javax.swing.JTextArea();
         jPanel_payment = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
@@ -937,41 +940,37 @@ public class adminDashboard extends javax.swing.JFrame {
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 412));
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "User ID", "First Name", "Middle Name", "Last Name", "Age", "Nationality", "Bio", "Country", "Address", "Zip Code", "Email", "Gender", "Phone Number"
+                "User ID", "First Name", "Middle Name", "Last Name", "Age", "Nationality", "Bio", "Country", "Gender"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(300);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(10).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(11).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(12).setPreferredWidth(250);
+        userTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        userTable.setShowHorizontalLines(true);
+        userTable.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(userTable);
+        if (userTable.getColumnModel().getColumnCount() > 0) {
+            userTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            userTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+            userTable.getColumnModel().getColumn(5).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(6).setPreferredWidth(300);
+            userTable.getColumnModel().getColumn(7).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(8).setPreferredWidth(200);
         }
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1003,8 +1002,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Bio:");
         jLabel6.setPreferredSize(new java.awt.Dimension(38, 34));
-
-        jScrollPane4.setViewportView(uBio);
 
         uImageButton.setBackground(new java.awt.Color(40, 83, 107));
         uImageButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1074,6 +1071,13 @@ public class adminDashboard extends javax.swing.JFrame {
 
         uAge.setPreferredSize(new java.awt.Dimension(73, 34));
 
+        uBio.setColumns(20);
+        uBio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        uBio.setLineWrap(true);
+        uBio.setRows(5);
+        uBio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane5.setViewportView(uBio);
+
         javax.swing.GroupLayout jPanel_userLayout = new javax.swing.GroupLayout(jPanel_user);
         jPanel_user.setLayout(jPanel_userLayout);
         jPanel_userLayout.setHorizontalGroup(
@@ -1120,9 +1124,9 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(uCountry, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4)
-                    .addComponent(uAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(uCountry)
+                    .addComponent(uAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_userLayout.createSequentialGroup()
@@ -1156,7 +1160,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(uDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(uUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel_userLayout.setVerticalGroup(
             jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1170,21 +1174,6 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_userLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel_userLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(uCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel_userLayout.createSequentialGroup()
                         .addComponent(u_img, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
@@ -1215,8 +1204,23 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(uNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(81, 81, 81)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel_userLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel_userLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(uCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_userLayout.createSequentialGroup()
@@ -1981,47 +1985,44 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void uSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uSearchActionPerformed
         // TODO add your handling code here:
+        String idText = uProfile_id.getText().trim();
+
+        if (idText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a user ID.");
+            return;
+        }
+
+        int userId;
+        try {
+            userId = Integer.parseInt(idText);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid user ID format.");
+            return;
+        }
+
+        ProfileController controller = new ProfileController(); // create controller
+        controller.searchUserProfileById(userId, this);
     }//GEN-LAST:event_uSearchActionPerformed
 
     private void uClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uClearActionPerformed
         // TODO add your handling code here:
+         ProfileController controller = new ProfileController();
+         controller.clearUserProfileFields(this);
     }//GEN-LAST:event_uClearActionPerformed
-
+    public void setUserIdText(String text){
+        uProfile_id.setText(text);
+    }
     private void uDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uDeleteActionPerformed
         // TODO add your handling code here:
+        ProfileController controller = new ProfileController();
+        controller.deleteUserProfileFromAdmin(this);
     }//GEN-LAST:event_uDeleteActionPerformed
-
+    
+    
     private void uUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uUpdateActionPerformed
         // TODO add your handling code here:
-//        String profileIdText = uProfile_id.getText();
-        String firstName = uFirstName.getText();
-        String middleName = uMiddleName.getText();
-        String lastName = uLastName.getText();
-        String ageText = uAge.getText();
-        String nationality = uNationality.getText();
-        String country= uCountry.getText();
-        String gender =(String) uGender.getSelectedItem();
-        String bio= uBio.getText();
-        String profileIdText = uProfile_id.getText().trim();
-        
-        byte[] imageBytes = null;
-        try {
-            if (picturePath != null) {
-                imageBytes = Files.readAllBytes(new File(picturePath).toPath());
-            } else {
-                JOptionPane.showMessageDialog(null, "Please select a photo.");
-                return;
-            }
-
-            ProfileController controller = new ProfileController();
-            controller.updateProfileAdmin(firstName, middleName, lastName, gender,
-                                     nationality, country, bio, ageText,
-                                     profileIdText, imageBytes);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Image loading failed: " + e.getMessage());
-        }
+        ProfileController controller = new ProfileController();
+        controller.updateUserProfileFromAdmin(this);
     }//GEN-LAST:event_uUpdateActionPerformed
 
     private void uImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uImageButtonActionPerformed
@@ -2109,25 +2110,7 @@ public class adminDashboard extends javax.swing.JFrame {
         
     }
     
-      public void clearUserFields(){
-        bBookingId.setText("");
-        bGuide_ID.setText("");
-        bFirstName.setText("");
-        bMiddleName.setText("");
-        bLastName.setText("");
-        bNumber.setText("");
-        bEmail.setText("");
-        bNumberOfPeople.setText("");
-        bAge.setText("");
-        bCountry.setText("");
-        bNationality.setText("");
-        bAddress.setText("");
-        bZipCode.setText("");
-        bPayment.setSelectedIndex(0);
-        bStartDate.setDate(null);
-        bEndDate.setDate(null);
-        
-    }
+    
     
     private void updateGuideCountLabel() {
     GuideDa dao = new GuideDa();
@@ -2140,7 +2123,83 @@ public class adminDashboard extends javax.swing.JFrame {
     userTotalLabel.setText(String.valueOf(count));
 }
      
+    public JLabel getUImageLabel() {
+        return u_img;
+    }
+
+    public void setUImageIcon(ImageIcon icon) {
+        u_img.setIcon(icon);
+    }
+
+    public void setUFirstName(String firstName) {
+        uFirstName.setText(firstName);
+    }
+    public void setUMiddleName(String middleName) {
+        uMiddleName.setText(middleName);
+    }
+    public void setULastName(String lastName) {
+        uLastName.setText(lastName);
+    }
+    public void setUNationality(String nationality) {
+        uNationality.setText(nationality);
+    }
+    public void setUCountry(String country) {
+        uCountry.setText(country);
+    }
+    public void setUGender(String gender) {
+        uGender.setSelectedItem(gender);
+    }
+    public void setUAge(String age) {
+        uAge.setText(age);
+    }
+    public void setUBio(String bio) {
+        uBio.setText(bio);
+    }
+
+    public String getUFirstName() {
+        return uFirstName.getText().trim();
+    }
+
+    public String getUMiddleName() {
+        return uMiddleName.getText().trim();
+    }
+
+    public String getULastName() {
+        return uLastName.getText().trim();
+    }
+
+    public String getUNationality() {
+        return uNationality.getText().trim();
+    }
+
+    public String getUCountry() {
+        return uCountry.getText().trim();
+    }
+
+    public String getUGender() {
+        return (String) uGender.getSelectedItem();
+    }
+
+    public String getUBio() {
+        return uBio.getText().trim();
+    }
+
+    public String getUAge() {
+        return uAge.getText().trim();
+    }
+
+    public String getUserIdText() {
+        return uProfile_id.getText().trim();
+    }
+
+//    public JLabel getU_img() {
+//        return u_img;
+//    }
     
+    public javax.swing.JTable getUserTable() {
+    return userTable;
+}
+
 
 
 
@@ -2279,15 +2338,14 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTable paymentTable;
     private javax.swing.JButton searchBooking;
     private javax.swing.JTextField uAge;
-    private javax.swing.JTextPane uBio;
+    private javax.swing.JTextArea uBio;
     private javax.swing.JButton uClear;
     private javax.swing.JTextField uCountry;
     private javax.swing.JButton uDelete;
@@ -2303,6 +2361,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel u_img;
     private javax.swing.JButton updateBooking;
     private javax.swing.JButton updateButton;
+    private javax.swing.JTable userTable;
     private javax.swing.JLabel userTotalLabel;
     // End of variables declaration//GEN-END:variables
 }
