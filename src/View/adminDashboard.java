@@ -394,9 +394,7 @@ public class adminDashboard extends javax.swing.JFrame {
         DeleteBooking = new javax.swing.JButton();
         updateBooking = new javax.swing.JButton();
         addPayment = new javax.swing.JButton();
-        bStartDate = new com.toedter.calendar.JDateChooser();
         bPayment = new javax.swing.JComboBox<>();
-        bEndDate = new com.toedter.calendar.JDateChooser();
         jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1422,17 +1420,11 @@ public class adminDashboard extends javax.swing.JFrame {
         });
         jPanel_payment.add(addPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 710, -1, -1));
 
-        bStartDate.setPreferredSize(new java.awt.Dimension(88, 34));
-        jPanel_payment.add(bStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 500, 130, -1));
-
         bPayment.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Esewa" }));
         bPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bPayment.setPreferredSize(new java.awt.Dimension(72, 34));
         jPanel_payment.add(bPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 130, -1));
-
-        bEndDate.setPreferredSize(new java.awt.Dimension(88, 34));
-        jPanel_payment.add(bEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 550, 130, -1));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("End Date:");
@@ -2058,7 +2050,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField bBookingId;
     private javax.swing.JTextField bCountry;
     private javax.swing.JTextField bEmail;
-    private com.toedter.calendar.JDateChooser bEndDate;
     private javax.swing.JTextField bFirstName;
     private javax.swing.JTextField bGuide_ID;
     private javax.swing.JTextField bLastName;
@@ -2067,7 +2058,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField bNumber;
     private javax.swing.JTextField bNumberOfPeople;
     private javax.swing.JComboBox<String> bPayment;
-    private com.toedter.calendar.JDateChooser bStartDate;
     private javax.swing.JTextField bZipCode;
     private javax.swing.JButton clearBooking;
     private javax.swing.JButton clearButton;

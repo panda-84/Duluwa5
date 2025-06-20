@@ -8,7 +8,7 @@ import Controller.userDeleteController;
 import Dao.GuideDa;
 import Dao.UserDa;
 import Model.GuideA;
-import Model.SignUp;
+import Model.*;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +28,8 @@ import javax.swing.border.Border;
  * @author acer
  */
 public class Dashboard extends javax.swing.JFrame {
-    private SignUp user;
+    private SignUp user = new SignUp();
+    
 //    private SignUp currentUser;
     
 
@@ -36,6 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard() {
+        
         initComponents();
 //        int height = guideArrayPanel.getComponentCount() * 150;
 //        guideArrayPanel.setPreferredSize(new Dimension(1020,height));
@@ -172,6 +174,14 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jPanel_Plans = new javax.swing.JPanel();
         plansBack = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        EqSelector = new javax.swing.JComboBox<>();
+        addPlan = new javax.swing.JButton();
+        planEntry = new javax.swing.JTextField();
+        addEq = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        planList = new java.awt.List();
+        eqList = new java.awt.List();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(246, 240, 237));
@@ -766,21 +776,94 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jLabel26.setText("Plans");
+
+        addPlan.setText("ADD");
+        addPlan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addPlanMouseClicked(evt);
+            }
+        });
+        addPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPlanActionPerformed(evt);
+            }
+        });
+
+        planEntry.setText("Enter Your Plans");
+
+        addEq.setText("ADD");
+        addEq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addEqMouseClicked(evt);
+            }
+        });
+
+        jLabel28.setText("Equipments");
+
         javax.swing.GroupLayout jPanel_PlansLayout = new javax.swing.GroupLayout(jPanel_Plans);
         jPanel_Plans.setLayout(jPanel_PlansLayout);
         jPanel_PlansLayout.setHorizontalGroup(
             jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(plansBack)
-                .addContainerGap(1300, Short.MAX_VALUE))
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(plansBack))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(addPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(270, 270, 270)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(planList, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(166, 166, 166)
+                                .addComponent(planEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(236, 236, 236)
+                                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                        .addComponent(EqSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(addEq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(216, 216, 216)
+                                .addComponent(eqList, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
         jPanel_PlansLayout.setVerticalGroup(
             jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(plansBack)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(planList, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(planEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addPlan)
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eqList, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EqSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addEq))
+                .addGap(126, 126, 126))
         );
 
         jPanel_Container.add(jPanel_Plans, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 1340, 720));
@@ -824,6 +907,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void plansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plansMouseClicked
         // TODO add your handling code here:
         showOnlyPanel(jPanel_Plans);
+        user.setUserId(2);
+        setPlansEquipments();
+        
     }//GEN-LAST:event_plansMouseClicked
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
@@ -855,6 +941,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void plansBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plansBackMouseClicked
         // TODO add your handling code here:
         showOnlyPanel(jPanel_Dashboard);
+        
     }//GEN-LAST:event_plansBackMouseClicked
 
     private void guideBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideBackMouseClicked
@@ -909,6 +996,25 @@ public class Dashboard extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_changePButtonActionPerformed
 
+    private void addPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addPlanActionPerformed
+
+    private void addPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPlanMouseClicked
+       String plan = planEntry.getText();
+       UserDa dao = new UserDa();
+       dao.insertPlan(user.getUserId(), plan);
+       setPlansEquipments();
+    }//GEN-LAST:event_addPlanMouseClicked
+
+    private void addEqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEqMouseClicked
+        String eqipment = EqSelector.getSelectedItem().toString();
+        UserDa dao = new UserDa();
+        dao.insertEquipment(user.getUserId(),eqipment);
+        setPlansEquipments();
+        
+    }//GEN-LAST:event_addEqMouseClicked
+
     
     
     private void loadGuideCards(){
@@ -920,9 +1026,9 @@ public class Dashboard extends javax.swing.JFrame {
         
         for (GuideA guide : guideList){
             GuideLists panel = new GuideLists(guide);
-            panel.setGuide(guide);
+            
             guideArrayPanel.add(panel);
-            guideArrayPanel.add(Box.createVerticalStrut(0));
+            guideArrayPanel.add(Box.createVerticalStrut(10));
         }
         
         guideArrayPanel.revalidate();
@@ -970,8 +1076,12 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> EqSelector;
+    private javax.swing.JButton addEq;
+    private javax.swing.JButton addPlan;
     private javax.swing.JButton changePButton;
     private javax.swing.JButton deleteAccount;
+    private java.awt.List eqList;
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
     private javax.swing.JLabel guideBack;
@@ -1003,7 +1113,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1036,9 +1148,32 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel logOut;
     private javax.swing.JLabel map;
     private javax.swing.JLabel navigationBack;
+    private javax.swing.JTextField planEntry;
+    private java.awt.List planList;
     private javax.swing.JLabel plans;
     private javax.swing.JLabel plansBack;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel profileBack;
     // End of variables declaration//GEN-END:variables
+
+    public void setPlansEquipments(){
+        planList.removeAll();
+        eqList.removeAll();
+        EqSelector.removeAllItems();
+        EqSelector.addItem("Bag");
+        EqSelector.addItem("shoes");
+        EqSelector.addItem("Hat");
+        EqSelector.addItem("stick");
+       
+        UserDa dao = new UserDa();
+        ArrayList<UserPlan> plans = dao.getPlansByUserId(user.getUserId());
+        for (UserPlan plan : plans){
+            planList.add(plan.getPlan());
+        }
+        
+        ArrayList<UserEquipment> equipments = dao.getEquipmentsByUserId(user.getUserId());
+        for(UserEquipment equipment : equipments){
+            eqList.add(equipment.getEquipment());
+        }
+    }
 }

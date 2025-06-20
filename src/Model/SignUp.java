@@ -15,6 +15,8 @@ public class SignUp {
     private String code;
     private String password;
     
+    public SignUp(){
+    }
     
     public SignUp(String email,String name,String code,String password){
        this.email =email;

@@ -3,10 +3,13 @@ package Dao;
 import Database.MySqlConnection;
 
 import Model.SignUp;
+import Model.UserEquipment;
+import Model.UserPlan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -38,7 +41,7 @@ public class UserDa {
     
     public boolean emailExists(String email) {
         Connection conn = mysql.openConnection();
-        String sql = "SELECT user_id FROM user_DB WHERE email = ?";
+        String sql = "SELECT id FROM user_DB WHERE email = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
@@ -183,6 +186,86 @@ public class UserDa {
         return count;
     }
     
+    
+    public ArrayList<UserPlan> getPlansByUserId(int userId) {
+        ArrayList<UserPlan> plans = new ArrayList<>();
+        String query = "SELECT plan_id, user_id, plan FROM user_plans WHERE user_id = ?";
+        Connection conn = mysql.openConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                UserPlan plan = new UserPlan();
+                plan.setPlanId(rs.getInt("plan_id"));
+                plan.setUserId(rs.getInt("user_id"));
+                plan.setPlan(rs.getString("plan"));
+
+                plans.add(plan);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return plans;
+    }
+    
+    public ArrayList<UserEquipment> getEquipmentsByUserId(int userId) {
+        ArrayList<UserEquipment> equipments = new ArrayList<>();
+        String query = "SELECT equipment_id, user_id, equipment FROM user_equipments WHERE user_id = ?";
+        Connection conn = mysql.openConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                UserEquipment equipment = new UserEquipment();
+                equipment.setEquipmentId(rs.getInt("equipment_id"));
+                equipment.setUserId(rs.getInt("user_id"));
+                equipment.setEquipment(rs.getString("equipment"));
+
+                equipments.add(equipment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return equipments;
+    }
+        
+    public boolean insertPlan(int userId, String planText) {
+        String query = "INSERT INTO user_plans (user_id, plan) VALUES (?, ?)";
+        Connection conn = mysql.openConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, planText);
+
+            int rows = stmt.executeUpdate();
+            return rows > 0; // true if insertion was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean insertEquipment(int userId, String Equipment) {
+        String query = "INSERT INTO user_equipments (user_id, equipment) VALUES (?, ?)";
+        Connection conn = mysql.openConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, Equipment);
+
+            int rows = stmt.executeUpdate();
+            return rows > 0; // true if insertion was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
 
 }
