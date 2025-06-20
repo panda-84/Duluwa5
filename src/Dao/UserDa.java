@@ -36,6 +36,8 @@ public class UserDa {
         }
     }
     
+    
+    
     public boolean emailExists(String email) {
         Connection conn = mysql.openConnection();
         String sql = "SELECT user_id FROM user_DB WHERE email = ?";
@@ -183,6 +185,25 @@ public class UserDa {
         return count;
     }
     
+    
+    public int getUserIdByEmail(String email) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT user_id FROM user_DB WHERE email = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("user_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+
+        return -1; // Not found
+    }
     
 
 }

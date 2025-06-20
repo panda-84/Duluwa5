@@ -5,6 +5,7 @@
 package Controller;
 
 
+import Dao.ProfileDa;
 import Dao.UserDa;
 import Model.SignUp;
 import View.Dashboard;
@@ -35,9 +36,13 @@ public class LoginController {
               
 
             if (success) {
+                int userId = dao.getUserIdByEmail(emailText); // get ID
+                ProfileDa profileDao = new ProfileDa();
+                profileDao.createUserProfileIfNotExists(userId);
+                
                 JOptionPane.showMessageDialog(null, "Logged in successfully");
                 
-                Dashboard d = new Dashboard();
+                Dashboard d = new Dashboard(userId);
                 d.setVisible(true);
                 d.pack();
                 d.setLocationRelativeTo(null);

@@ -30,6 +30,8 @@ public class SignUp {
     }
     
     
+    
+    
     public int getUserId(){
         return user_id;
     }

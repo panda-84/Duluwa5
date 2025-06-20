@@ -9,13 +9,14 @@ import Model.SignUp;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author acer
  */
 public class GuideLists extends javax.swing.JPanel {
     private GuideA guide;
-//    private SignUp user;
+    private SignUp user;
     /**
      * Creates new form GuideLists
      */
@@ -23,9 +24,9 @@ public class GuideLists extends javax.swing.JPanel {
         initComponents();
        
     }
-    public GuideLists(GuideA guide) {
+    public GuideLists(GuideA guide, SignUp user) {
         this.guide = guide;
-//        this.user = user;
+        this.user = user;
         initComponents();
         setGuide(guide);
 
@@ -220,7 +221,12 @@ public class GuideLists extends javax.swing.JPanel {
     private void seeMeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeMeButtonActionPerformed
 //        // TODO add your handling code here:
 System.out.println("Guide full name: " + this.guide.getFullName());
-        GuideView guideView = new GuideView(this.guide); 
+//if (this.user == null) {
+//    JOptionPane.showMessageDialog(this, "User info not loaded.");
+//    return;
+//}
+//System.out.println("Guide full name: " + this.user.getUserName());
+        GuideView guideView = new GuideView(this.guide, this.user); 
     guideView.setVisible(true);
     guideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     

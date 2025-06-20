@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class GuideView extends javax.swing.JFrame {
     private GuideA guide;
-//    private SignUp user;
+    private SignUp user;
     
     private final JButton[] stars = new JButton[5];
     private int selectedRating = 0;
@@ -34,35 +34,35 @@ public class GuideView extends javax.swing.JFrame {
 
     }
     
-    public GuideView(GuideA guide){
+    public GuideView(GuideA guide, SignUp user){
         initComponents();
         this.guide = guide;
-//        this.user = user;
+        this.user = user;
         
 //        this.currentGuideId = guide.getGuideId();
 //         this.currentUserId = user.getUserId();
          setGuideProfile(guide);
         //start rating
-//        JPanel starPanel = new JPanel();
-//        for (int i = 0; i < 5; i++) {
-//            stars[i] = new JButton("☆");
-//            final int ratingValue = i + 1;
-//            stars[i].setFocusPainted(false);
-//            stars[i].setBorderPainted(false);
-//            stars[i].setContentAreaFilled(false);
-//            stars[i].setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
-//
-//            stars[i].addActionListener(e -> {
-//                selectedRating = ratingValue;
-//                for (int j = 0; j < 5; j++) {
-//                    stars[j].setText(j < selectedRating ? "★" : "☆");
-//                }
-//            });
-//            starPanel.add(stars[i]);
-//        }
-//
-//        // Add starPanel to your form layout
-//        jPanel1.add(starPanel); 
+        JPanel starPanel = new JPanel();
+        for (int i = 0; i < 5; i++) {
+            stars[i] = new JButton("☆");
+            final int ratingValue = i + 1;
+            stars[i].setFocusPainted(false);
+            stars[i].setBorderPainted(false);
+            stars[i].setContentAreaFilled(false);
+            stars[i].setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 20));
+
+            stars[i].addActionListener(e -> {
+                selectedRating = ratingValue;
+                for (int j = 0; j < 5; j++) {
+                    stars[j].setText(j < selectedRating ? "★" : "☆");
+                }
+            });
+            starPanel.add(stars[i]);
+        }
+
+        // Add starPanel to your form layout
+        jPanel1.add(starPanel); 
         
     }
     
@@ -404,25 +404,25 @@ public class GuideView extends javax.swing.JFrame {
     }//GEN-LAST:event_bookGuideActionPerformed
 
     private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
-//        String comment = msg_text.getText().trim();
-//
-//        if (selectedRating == 0 || comment.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Please provide a rating and a comment.");
-//            return;
-//        }
-//
-//        int guideId = guide.getGuideId();
-//        int userId = user.getUserId(); // make sure SignUp user is passed
-//
-//        boolean success = Feedback.submitFeedback(guideId, userId, selectedRating, comment);
-//        if (success) {
-//            msg_area.append("You (" + selectedRating + "★): " + comment + "\n");
-//            msg_text.setText("");
-//            selectedRating = 0;
-//            for (JButton star : stars) star.setText("☆");
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Failed to submit feedback.");
-//        }
+        String comment = msg_text.getText().trim();
+
+        if (selectedRating == 0 || comment.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please provide a rating and a comment.");
+            return;
+        }
+
+        int guideId = guide.getGuideId();
+        int userId = user.getUserId(); // make sure SignUp user is passed
+
+        boolean success = Feedback.submitFeedback(guideId, userId, selectedRating, comment);
+        if (success) {
+            msg_area.append("You (" + selectedRating + "★): " + comment + "\n");
+            msg_text.setText("");
+            selectedRating = 0;
+            for (JButton star : stars) star.setText("☆");
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to submit feedback.");
+        }
     }//GEN-LAST:event_msg_sendActionPerformed
 
     /**

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author acer
  */
 public class Login extends javax.swing.JFrame {
-
+    private SignUp user;
     /**
      * Creates new form Login
      */
@@ -30,6 +30,11 @@ public class Login extends javax.swing.JFrame {
         signUp.setText(s);
         
         
+    }
+    
+    public Login(SignUp user){
+        initComponents();
+        this.user = user;
     }
 
     /**

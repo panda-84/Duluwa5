@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.UserController;
 import Controller.userDeleteController;
 import Dao.GuideDa;
 import Dao.UserDa;
@@ -19,6 +20,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -29,6 +31,9 @@ import javax.swing.border.Border;
  */
 public class Dashboard extends javax.swing.JFrame {
     private SignUp user;
+     private int userId;
+     private UserController controller;
+     private byte[] currentImageBytes;
 //    private SignUp currentUser;
     
 
@@ -37,13 +42,17 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        
 //        int height = guideArrayPanel.getComponentCount() * 150;
 //        guideArrayPanel.setPreferredSize(new Dimension(1020,height));
 //        loadGuideCards();
+//         loadUserProfile(userID);
          jScrollPane2.setViewportView(guideArrayPanel);
         showOnlyPanel(jPanel_Dashboard);
         
-     
+        
+        
+
       
 
         //default border for menu item
@@ -54,11 +63,19 @@ public class Dashboard extends javax.swing.JFrame {
       
     }
     
-//    public Dashboard(SignUp user){
-//        initComponents();
-//        this.currentUser = user;
-//        loadGuideCards();
-//    }
+    public Dashboard(int userId){
+//        this.user = user;
+        this.userId = userId;
+        initComponents();
+        controller = new UserController(userId, null); 
+        controller.displayProfileSummary(this);
+        controller.loadProfileImage(this);
+        loadGuideCards();
+        
+        
+    }
+    
+    
     
     
     
@@ -156,11 +173,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jPanel_Profile_Management = new javax.swing.JPanel();
         profileBack = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        label_img = new javax.swing.JLabel();
+        changePhoto = new javax.swing.JButton();
+        editProfile = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         changePButton = new javax.swing.JButton();
         deleteAccount = new javax.swing.JButton();
@@ -170,6 +185,20 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        labelFullName = new javax.swing.JLabel();
+        labelAge = new javax.swing.JLabel();
+        labelGender = new javax.swing.JLabel();
+        labelCountry = new javax.swing.JLabel();
+        labelNationality = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        labelBio = new javax.swing.JTextArea();
         jPanel_Plans = new javax.swing.JPanel();
         plansBack = new javax.swing.JLabel();
 
@@ -598,24 +627,30 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        label_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setBackground(new java.awt.Color(40, 83, 107));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Change Photo");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePhoto.setBackground(new java.awt.Color(40, 83, 107));
+        changePhoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        changePhoto.setForeground(new java.awt.Color(255, 255, 255));
+        changePhoto.setText("Change Photo");
+        changePhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePhotoActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jButton2.setBackground(new java.awt.Color(40, 83, 107));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Edit");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setPreferredSize(new java.awt.Dimension(72, 34));
+        editProfile.setBackground(new java.awt.Color(40, 83, 107));
+        editProfile.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        editProfile.setForeground(new java.awt.Color(255, 255, 255));
+        editProfile.setText("Edit");
+        editProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editProfile.setPreferredSize(new java.awt.Dimension(72, 34));
+        editProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProfileActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(187, 177, 147));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -667,13 +702,95 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel17.setText("duluwa@gmail.com");
 
+        jLabel26.setText("Name:");
+
+        jLabel28.setText("Age:");
+
+        jLabel29.setText("Gender:");
+
+        jLabel30.setText("Country:");
+
+        jLabel31.setText("Nationality:");
+
+        jLabel32.setText("Bio:");
+
+        labelFullName.setText("jLabel33");
+
+        labelAge.setText("jLabel34");
+
+        labelGender.setText("jLabel35");
+
+        labelCountry.setText("jLabel36");
+
+        labelNationality.setText("jLabel37");
+
+        labelBio.setEditable(false);
+        labelBio.setColumns(20);
+        labelBio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelBio.setLineWrap(true);
+        labelBio.setRows(5);
+        jScrollPane3.setViewportView(labelBio);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelFullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCountry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(labelFullName))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(labelAge))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(labelGender))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(labelCountry))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(labelNationality))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel_Profile_ManagementLayout = new javax.swing.GroupLayout(jPanel_Profile_Management);
         jPanel_Profile_Management.setLayout(jPanel_Profile_ManagementLayout);
         jPanel_Profile_ManagementLayout.setHorizontalGroup(
             jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_Profile_ManagementLayout.createSequentialGroup()
                 .addGap(515, 515, 515)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
@@ -688,19 +805,6 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
-                        .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_Profile_ManagementLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton1)
-                                .addGap(68, 68, 68))
-                            .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(43, 43, 43)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -711,7 +815,19 @@ public class Dashboard extends javax.swing.JFrame {
                             .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel17)))))
+                                .addComponent(jLabel17))))
+                    .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
+                        .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_img, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(changePhoto)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_Profile_ManagementLayout.setVerticalGroup(
@@ -724,15 +840,16 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_img, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(changePhoto)
+                        .addGap(214, 214, 214))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(changePButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -750,7 +867,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel17))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         jPanel_Container.add(jPanel_Profile_Management, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, 710));
@@ -909,6 +1026,19 @@ public class Dashboard extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_changePButtonActionPerformed
 
+    private void editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileActionPerformed
+        // TODO add your handling code here:
+        userProfileEdit userEdit = new userProfileEdit(this.userId, this); 
+            userEdit.setVisible(true);
+            userEdit.setLocationRelativeTo(null); 
+            userEdit.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_editProfileActionPerformed
+
+    private void changePhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePhotoActionPerformed
+        // TODO add your handling code here:
+        controller.changeUserPhoto(this);
+    }//GEN-LAST:event_changePhotoActionPerformed
+
     
     
     private void loadGuideCards(){
@@ -919,7 +1049,7 @@ public class Dashboard extends javax.swing.JFrame {
         ArrayList<GuideA> guideList = dao.getGuides();
         
         for (GuideA guide : guideList){
-            GuideLists panel = new GuideLists(guide);
+            GuideLists panel = new GuideLists(guide, user);
             panel.setGuide(guide);
             guideArrayPanel.add(panel);
             guideArrayPanel.add(Box.createVerticalStrut(0));
@@ -930,6 +1060,42 @@ public class Dashboard extends javax.swing.JFrame {
         
         
 
+    }
+    
+    public void setLabelFullName(String fullName) {
+    labelFullName.setText(fullName);
+    }
+
+    public void setLabelAge(String age) {
+        labelAge.setText(age);
+    }
+
+    public void setLabelGender(String gender) {
+        labelGender.setText(gender);
+    }
+
+    public void setLabelCountry(String country) {
+        labelCountry.setText(country);
+    }
+
+    public void setLabelNationality(String nationality) {
+        labelNationality.setText(nationality);
+    }
+
+    public void setLabelBio(String bio) {
+        labelBio.setText(bio);
+    }
+
+    public JLabel getLabelImg() {
+    return label_img;
+    }
+
+    public void setCurrentImageBytes(byte[] imageBytes) {
+        this.currentImageBytes = imageBytes;
+    }
+
+    public byte[] getCurrentImageBytes() {
+        return this.currentImageBytes;
     }
    
 
@@ -971,14 +1137,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changePButton;
+    private javax.swing.JButton changePhoto;
     private javax.swing.JButton deleteAccount;
+    private javax.swing.JButton editProfile;
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
     private javax.swing.JLabel guideBack;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -1003,8 +1169,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1020,6 +1191,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanel_Container;
     private javax.swing.JPanel jPanel_Dashboard;
     private javax.swing.JPanel jPanel_Guide;
@@ -1028,11 +1200,17 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Navigation;
     private javax.swing.JPanel jPanel_Plans;
     private javax.swing.JPanel jPanel_Profile_Management;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelAge;
+    private javax.swing.JTextArea labelBio;
+    private javax.swing.JLabel labelCountry;
+    private javax.swing.JLabel labelFullName;
+    private javax.swing.JLabel labelGender;
+    private javax.swing.JLabel labelNationality;
+    private javax.swing.JLabel label_img;
     private javax.swing.JLabel logOut;
     private javax.swing.JLabel map;
     private javax.swing.JLabel navigationBack;
