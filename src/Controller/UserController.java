@@ -7,6 +7,7 @@ package Controller;
 import Dao.ProfileDa;
 import Model.ProfileModel;
 import View.Dashboard;
+import View.Login;
 import View.userProfileEdit;
 import java.awt.Image;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,17 +25,56 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author acer
  */
 public class UserController {
-     private final int userId;
+    private final int userId;
     private final userProfileEdit view;
+    private final JFrame parentView;
+    
+    public UserController(int userId, JFrame parentView) {
+        this.userId = userId;
+        this.parentView = parentView;
+        this.view = null;
+    }
+    
     
     
     public UserController(int userId, userProfileEdit view) {
         this.userId = userId;
         this.view = view;
+        this.parentView = null;
         if (view != null) {
            loadProfile(); // ✅ Only load if editing view is present
          } // Load when controller is created
     }
+    
+    public void deleteLoggedInUserAccount() {
+        int confirm = JOptionPane.showConfirmDialog(
+            parentView,
+            "Are you sure you want to permanently delete your account?",
+            "Confirm Deletion",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            ProfileDa dao = new ProfileDa();
+            boolean deleted = dao.deleteUserAccountById(userId);
+
+            if (deleted) {
+                JOptionPane.showMessageDialog(parentView, "Your account has been deleted.");
+
+                // Close current dashboard window
+                parentView.dispose();
+
+                // Show login screen
+                Login login = new Login();
+                login.setVisible(true);
+                login.setLocationRelativeTo(null);
+            } else {
+                JOptionPane.showMessageDialog(parentView, "Failed to delete your account.");
+            }
+        }
+    }
+    
+    
     public void loadProfile() {
     ProfileDa dao = new ProfileDa();
     ProfileModel profile = dao.loadProfileByUserId(userId);
@@ -201,6 +242,11 @@ System.out.println("UserId = " + profile.getUserId());
         ImageIcon icon = (path != null) ? new ImageIcon(path) : new ImageIcon(imageBytes);
         Image img = icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         return new ImageIcon(img);
+    }
+    
+    public boolean deleteCurrentUserAccount(int userId) {
+        ProfileDa dao = new ProfileDa();
+        return dao.deleteUserAccountById(userId); // deletes from user_db
     }
    
 

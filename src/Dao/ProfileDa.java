@@ -278,7 +278,7 @@ public class ProfileDa {
     
     public boolean deleteUserAccountById(int userId) {
         Connection conn = mysql.openConnection();
-        String sql = "DELETE FROM user_db WHERE user_id = ?"; // ✅ delete from main table
+        String sql = "DELETE FROM user_db WHERE user_id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);

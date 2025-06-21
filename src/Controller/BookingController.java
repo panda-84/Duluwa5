@@ -62,24 +62,7 @@ public class BookingController {
         
         
     }
-    
-//    private void clearBooking(String firstNameText, String middleNameText, String lastNameText, String phoneNumberText, String emailText,
-//        String startDateText, String peopleText, String ageText, String countryText, String nationalityText, String addressText, String zipCodeText, String paymentText){
-//        firstNameText.setText("");
-//        middleNameText.setText("");
-//        lastNameText.setText("");
-//        phoneNumberText.setText("");
-//        emailText.setText("");
-//        startDateText.setDate(null);
-//        peopleText.setText("");
-//        ageText.setText("");
-//        countryText.setText("");
-//        nationalityText.setText("");
-//        addressText.setText("");
-//        zipCodeText.setText("");
-//        paymentText.setSelectedIndex(0);
-//    
-//    }  
+     
     
     
 
