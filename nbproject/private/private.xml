@@ -4,8 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/View/GuideView.java</file>
-            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Controller/BookingController.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Controller/FeedbackController.java</file>
             <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Dao/Feedback.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Dao/BookingDa.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/View/Login.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/View/GuideLists.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/View/Dashboard.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Controller/SignUpController.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Controller/LoginController.java</file>
+            <file>file:/C:/Users/acer/OneDrive/Desktop/tour/Duluwa5/src/Controller/GuidesController.java</file>
         </group>
     </open-files>
 </project-private>

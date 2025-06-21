@@ -3,6 +3,7 @@ package Controller;
 
 import Dao.GuideDa;
 import Model.GuideA;
+import Model.SignUp;
 import View.Dashboard;
 import View.GuideLists;
 import java.awt.Dimension;
@@ -21,9 +22,10 @@ public class GuidesController {
 
         GuideDa dao = new GuideDa();
         ArrayList<GuideA> guideList = dao.getGuides();
-
+        
+        SignUp currentUser =view.getCurrentUser();
         for (GuideA guide : guideList) {
-            GuideLists panel = new GuideLists(guide, null);  // you can pass the user if needed
+            GuideLists panel = new GuideLists(guide, currentUser);  // you can pass the user if needed
             panel.setGuide(guide);
             view.getGuideArrayPanel().add(panel);
             view.getGuideArrayPanel().add(Box.createVerticalStrut(0));

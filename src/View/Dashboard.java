@@ -30,6 +30,7 @@ public class Dashboard extends javax.swing.JFrame {
     private int userId;
     private UserController controller;
     private byte[] currentImageBytes;
+    
 
     public Dashboard() {
         initComponents();
@@ -38,18 +39,31 @@ public class Dashboard extends javax.swing.JFrame {
       
     }
     
-    public Dashboard(int userId){
+//    public Dashboard(int userId){
+//       
+//        this.userId = userId;
+//        initComponents();
+//        controller = new UserController(userId, null); 
+//        controller.displayProfileSummary(this);
+//        controller.loadProfileImage(this);
+//        GuidesController.loadGuideCards(this);    
+//    }
+    
+  
 
-        this.userId = userId;
-        initComponents();
-        controller = new UserController(userId, null); 
-        controller.displayProfileSummary(this);
-        controller.loadProfileImage(this);
-        GuidesController.loadGuideCards(this);    
+public Dashboard(SignUp user) {
+    this.user = user;
+    this.userId = user.getUserId(); // you can keep using this too if needed
+    initComponents();
+    controller = new UserController(userId, null); 
+    controller.displayProfileSummary(this);
+    controller.loadProfileImage(this);
+    GuidesController.loadGuideCards(this);   // or any setup
+}
+
+    public SignUp getCurrentUser(){
+        return user;
     }
-    
-    
-    
     
     
     
@@ -71,15 +85,6 @@ public class Dashboard extends javax.swing.JFrame {
 
     }
     
-    
-    
-    
-    
-    
-   
-  
-    
-
 
     
     @SuppressWarnings("unchecked")
@@ -885,13 +890,13 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        // TODO add your handling code here:
+        
        showOnlyPanel(jPanel_Profile_Management);
         
     }//GEN-LAST:event_profileMouseClicked
 
     private void guideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideMouseClicked
-        // TODO add your handling code here:
+       
         showOnlyPanel(jPanel_Guide);
         GuidesController.loadGuideCards(this);
 
