@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Dao.ProfileDa;
 import Dao.UserDa;
 import Model.SignUp;
 import View.Login;
@@ -39,10 +40,17 @@ public class SignUpController {
             JOptionPane.showMessageDialog(null, "This email is already registered.");
             return false;
         } else {
+//            int userId = dao.getUserIdByEmail(emailText); // fetch just created ID
+//            ProfileDa profileDao = new ProfileDa();
+//            profileDao.createUserProfileIfNotExists(userId);
             SignUp newUser = new SignUp(emailText, nameText, codeText, passwordText);
             boolean success = dao.signUp(newUser);
             if (success) {
+               int userId = dao.getUserIdByEmail(emailText); // fetch just created ID
+                ProfileDa profileDao = new ProfileDa();
+                profileDao.createUserProfileIfNotExists(userId);
                 JOptionPane.showMessageDialog(null, "Account created successfully");
+                
                 Login login = new Login();
                 login.setVisible(true);
                 login.pack();

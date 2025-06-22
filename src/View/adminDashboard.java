@@ -28,11 +28,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import Controller.BookingController;
+import Controller.ProfileController;
 import Controller.adminBookingController;
 import Dao.AdminBookingDa;
 import Dao.UserDa;
 import Model.BookingT;
+import Model.ProfileModel;
 import View.AdminLogin;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +51,9 @@ public class adminDashboard extends javax.swing.JFrame {
      * Creates new form adminDashboard
      */
     private String imagePath = null;
+    private String picturePath = null;
     private GuideA currentGuide;
+    private ProfileModel currentProfile;
     private BookingT currentBook;
    
     
@@ -72,6 +77,9 @@ public class adminDashboard extends javax.swing.JFrame {
         adminBookingController controller = new adminBookingController();
 
         controller.loadPaymentDataIntoTable(paymentTable);
+        
+        ProfileController profileController = new ProfileController();
+        profileController.loadAllUserProfilesIntoTable(this);
         
         
 
@@ -196,7 +204,7 @@ public class adminDashboard extends javax.swing.JFrame {
     
    
     
-    //check input fields
+    //check guide input fields
     public boolean checkInputs(){
         if(        gFirstName.getText() == null
                 || gMiddleName.getText() == null
@@ -221,7 +229,7 @@ public class adminDashboard extends javax.swing.JFrame {
     
     
     
-    // resize image
+    // resize guide image
     public ImageIcon ResizeImage(String imagePath, byte[] pic){
         ImageIcon myImage = null;
         if(imagePath != null){
@@ -232,6 +240,21 @@ public class adminDashboard extends javax.swing.JFrame {
         
         Image img = myImage.getImage();
         Image img2 = img.getScaledInstance(i_img.getWidth(),i_img.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(img2);
+        return image;
+    }
+    
+    // for user profile
+    public ImageIcon ResizePicture(String picturePath, byte[] pic){
+        ImageIcon myImage = null;
+        if(picturePath != null){
+            myImage = new ImageIcon(picturePath);
+        } else{
+            myImage = new ImageIcon(pic);
+        }
+        
+        Image img = myImage.getImage();
+        Image img2 = img.getScaledInstance(u_img.getWidth(),u_img.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(img2);
         return image;
     }
@@ -291,6 +314,9 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         adminTotalLabel = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jPanel_guide = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -334,27 +360,26 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         uLastName = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jTextField31 = new javax.swing.JTextField();
-        jTextField32 = new javax.swing.JTextField();
+        uNationality = new javax.swing.JTextField();
+        uProfile_id = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
+        uCountry = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton3 = new javax.swing.JButton();
-        jLabel43 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        uImageButton = new javax.swing.JButton();
+        u_img = new javax.swing.JLabel();
+        uSearch = new javax.swing.JButton();
+        uClear = new javax.swing.JButton();
+        uDelete = new javax.swing.JButton();
+        uUpdate = new javax.swing.JButton();
+        uGender = new javax.swing.JComboBox<>();
+        uAge = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        uBio = new javax.swing.JTextArea();
         jPanel_payment = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
@@ -562,6 +587,16 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         jPanel_home.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 88, -1, -1));
+
+        jLabel32.setText("An admin manages guide data by adding, updating, or removing guide profiles and verifying their details. They handle user data by monitoring activity, editing profiles, and ensuring security. Payment data ");
+        jPanel_home.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 700, 1140, -1));
+
+        jLabel33.setText("is managed by tracking transactions, verifying successful payments, resolving disputes, and generating reports for transparency and financial accuracy.");
+        jPanel_home.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 1100, -1));
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel34.setText("These are the numbers of users and admins who have access to our application.");
+        jPanel_home.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 700, -1));
 
         jPanel_guide.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_guide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -918,40 +953,37 @@ public class adminDashboard extends javax.swing.JFrame {
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 412));
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "User ID", "First Name", "Middle Name", "Last Name", "Gender", "Nationality", "Age", "Country", "Bio"
+                "User ID", "First Name", "Middle Name", "Last Name", "Age", "Nationality", "Bio", "Country", "Gender"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(300);
+        userTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        userTable.setShowHorizontalLines(true);
+        userTable.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(userTable);
+        if (userTable.getColumnModel().getColumnCount() > 0) {
+            userTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            userTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+            userTable.getColumnModel().getColumn(5).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(6).setPreferredWidth(300);
+            userTable.getColumnModel().getColumn(7).setPreferredWidth(250);
+            userTable.getColumnModel().getColumn(8).setPreferredWidth(200);
         }
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -960,14 +992,14 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel39.setText("Nationality:");
 
-        jTextField31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField31.addActionListener(new java.awt.event.ActionListener() {
+        uNationality.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        uNationality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField31ActionPerformed(evt);
+                uNationalityActionPerformed(evt);
             }
         });
 
-        jTextField32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        uProfile_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel40.setText("User ID:");
@@ -975,7 +1007,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel41.setText("Age:");
 
-        jTextField34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        uCountry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel42.setText("Country:");
@@ -984,50 +1016,80 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel6.setText("Bio:");
         jLabel6.setPreferredSize(new java.awt.Dimension(38, 34));
 
-        jScrollPane4.setViewportView(jTextPane1);
+        uImageButton.setBackground(new java.awt.Color(40, 83, 107));
+        uImageButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        uImageButton.setForeground(new java.awt.Color(255, 255, 255));
+        uImageButton.setText("Add photo");
+        uImageButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uImageButton.setPreferredSize(new java.awt.Dimension(76, 34));
+        uImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uImageButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(40, 83, 107));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Add photo");
-        jButton3.setPreferredSize(new java.awt.Dimension(76, 34));
+        u_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        u_img.setOpaque(true);
 
-        jLabel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        uSearch.setBackground(new java.awt.Color(40, 83, 107));
+        uSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        uSearch.setForeground(new java.awt.Color(255, 255, 255));
+        uSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
+        uSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uSearch.setPreferredSize(new java.awt.Dimension(76, 34));
+        uSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uSearchActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(40, 83, 107));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
-        jButton4.setPreferredSize(new java.awt.Dimension(76, 34));
+        uClear.setBackground(new java.awt.Color(40, 83, 107));
+        uClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        uClear.setForeground(new java.awt.Color(255, 255, 255));
+        uClear.setText("Clear");
+        uClear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uClear.setPreferredSize(new java.awt.Dimension(76, 34));
+        uClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uClearActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(40, 83, 107));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Clear");
-        jButton5.setPreferredSize(new java.awt.Dimension(76, 34));
+        uDelete.setBackground(new java.awt.Color(194, 148, 138));
+        uDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        uDelete.setForeground(new java.awt.Color(255, 255, 255));
+        uDelete.setText("Delete");
+        uDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uDelete.setPreferredSize(new java.awt.Dimension(76, 34));
+        uDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uDeleteActionPerformed(evt);
+            }
+        });
 
-        jButton6.setBackground(new java.awt.Color(194, 148, 138));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Delete");
-        jButton6.setPreferredSize(new java.awt.Dimension(76, 34));
+        uUpdate.setBackground(new java.awt.Color(126, 168, 190));
+        uUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        uUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        uUpdate.setText("Update");
+        uUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uUpdate.setPreferredSize(new java.awt.Dimension(82, 34));
+        uUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uUpdateActionPerformed(evt);
+            }
+        });
 
-        jButton7.setBackground(new java.awt.Color(126, 168, 190));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Update");
-        jButton7.setPreferredSize(new java.awt.Dimension(82, 34));
+        uGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
+        uGender.setPreferredSize(new java.awt.Dimension(72, 34));
 
-        jButton8.setBackground(new java.awt.Color(126, 168, 190));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Add");
-        jButton8.setPreferredSize(new java.awt.Dimension(76, 34));
+        uAge.setPreferredSize(new java.awt.Dimension(73, 34));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(72, 34));
-
-        jSpinner1.setPreferredSize(new java.awt.Dimension(64, 34));
+        uBio.setColumns(20);
+        uBio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        uBio.setLineWrap(true);
+        uBio.setRows(5);
+        uBio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane5.setViewportView(uBio);
 
         javax.swing.GroupLayout jPanel_userLayout = new javax.swing.GroupLayout(jPanel_user);
         jPanel_user.setLayout(jPanel_userLayout);
@@ -1064,9 +1126,9 @@ public class adminDashboard extends javax.swing.JFrame {
                                     .addComponent(jLabel38)
                                     .addGap(28, 28, 28)))
                             .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(uNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel_userLayout.createSequentialGroup()
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(uGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGap(2, 2, 2)))))
                     .addGroup(jPanel_userLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1075,44 +1137,43 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(uCountry)
+                    .addComponent(uAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_userLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(uImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_userLayout.createSequentialGroup()
-                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(u_img, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
             .addGroup(jPanel_userLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_userLayout.createSequentialGroup()
-                        .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton17))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_userLayout.createSequentialGroup()
+                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton17))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel_userLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel40)
+                        .addGap(27, 27, 27)
+                        .addComponent(uProfile_id, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(uSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(uClear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(uDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(uUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(jPanel_userLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel40)
-                .addGap(27, 27, 27)
-                .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
         );
         jPanel_userLayout.setVerticalGroup(
             jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1127,24 +1188,9 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_userLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel_userLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel_userLayout.createSequentialGroup()
-                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(u_img, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(uImageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_userLayout.createSequentialGroup()
                         .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1167,24 +1213,38 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(uGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(81, 81, 81)
+                            .addComponent(uNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel_userLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel_userLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(uCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_userLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(uProfile_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(uClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(uDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(uUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1810,9 +1870,9 @@ public class adminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField26ActionPerformed
 
-    private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
+    private void uNationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uNationalityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField31ActionPerformed
+    }//GEN-LAST:event_uNationalityActionPerformed
 
     private void addPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentActionPerformed
         // TODO add your handling code here:
@@ -1935,6 +1995,68 @@ public class adminDashboard extends javax.swing.JFrame {
     private void bNumberOfPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNumberOfPeopleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bNumberOfPeopleActionPerformed
+
+    private void uSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uSearchActionPerformed
+        // TODO add your handling code here:
+        String idText = uProfile_id.getText().trim();
+
+        if (idText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a user ID.");
+            return;
+        }
+
+        int userId;
+        try {
+            userId = Integer.parseInt(idText);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid user ID format.");
+            return;
+        }
+
+        ProfileController controller = new ProfileController(); // create controller
+        controller.searchUserProfileById(userId, this);
+    }//GEN-LAST:event_uSearchActionPerformed
+
+    private void uClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uClearActionPerformed
+        // TODO add your handling code here:
+         ProfileController controller = new ProfileController();
+         controller.clearUserProfileFields(this);
+    }//GEN-LAST:event_uClearActionPerformed
+    public void setUserIdText(String text){
+        uProfile_id.setText(text);
+    }
+    private void uDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uDeleteActionPerformed
+        // TODO add your handling code here:
+        ProfileController controller = new ProfileController();
+        controller.deleteUserProfileFromAdmin(this);
+    }//GEN-LAST:event_uDeleteActionPerformed
+    
+    
+    private void uUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uUpdateActionPerformed
+        // TODO add your handling code here:
+        ProfileController controller = new ProfileController();
+        controller.updateUserProfileFromAdmin(this);
+    }//GEN-LAST:event_uUpdateActionPerformed
+
+    private void uImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uImageButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser file  = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","jpg","png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = file.getSelectedFile();
+            String path  = selectedFile.getAbsolutePath();
+            u_img.setIcon(ResizePicture(path, null));
+            picturePath = path;
+        }
+        else{
+            System.out.println("NO FILE SELECTED");
+        }
+        
+    }//GEN-LAST:event_uImageButtonActionPerformed
     
     
     private void loadRowDataToFields(int rowIndex) {
@@ -2002,6 +2124,7 @@ public class adminDashboard extends javax.swing.JFrame {
     }
     
     
+    
     private void updateGuideCountLabel() {
     GuideDa dao = new GuideDa();
     int count = dao.getGuideCount();
@@ -2012,6 +2135,86 @@ public class adminDashboard extends javax.swing.JFrame {
     int count = dao.getUserCount();
     userTotalLabel.setText(String.valueOf(count));
 }
+     
+    public JLabel getUImageLabel() {
+        return u_img;
+    }
+
+    public void setUImageIcon(ImageIcon icon) {
+        u_img.setIcon(icon);
+    }
+
+    public void setUFirstName(String firstName) {
+        uFirstName.setText(firstName);
+    }
+    public void setUMiddleName(String middleName) {
+        uMiddleName.setText(middleName);
+    }
+    public void setULastName(String lastName) {
+        uLastName.setText(lastName);
+    }
+    public void setUNationality(String nationality) {
+        uNationality.setText(nationality);
+    }
+    public void setUCountry(String country) {
+        uCountry.setText(country);
+    }
+    public void setUGender(String gender) {
+        uGender.setSelectedItem(gender);
+    }
+    public void setUAge(String age) {
+        uAge.setText(age);
+    }
+    public void setUBio(String bio) {
+        uBio.setText(bio);
+    }
+
+    public String getUFirstName() {
+        return uFirstName.getText().trim();
+    }
+
+    public String getUMiddleName() {
+        return uMiddleName.getText().trim();
+    }
+
+    public String getULastName() {
+        return uLastName.getText().trim();
+    }
+
+    public String getUNationality() {
+        return uNationality.getText().trim();
+    }
+
+    public String getUCountry() {
+        return uCountry.getText().trim();
+    }
+
+    public String getUGender() {
+        return (String) uGender.getSelectedItem();
+    }
+
+    public String getUBio() {
+        return uBio.getText().trim();
+    }
+
+    public String getUAge() {
+        return uAge.getText().trim();
+    }
+
+    public String getUserIdText() {
+        return uProfile_id.getText().trim();
+    }
+
+//    public JLabel getU_img() {
+//        return u_img;
+//    }
+    
+    public javax.swing.JTable getUserTable() {
+    return userTable;
+}
+
+
+
 
     /**
      * @param args the command line arguments
@@ -2091,14 +2294,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2124,6 +2320,9 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -2133,7 +2332,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2156,23 +2354,30 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTable paymentTable;
     private javax.swing.JButton searchBooking;
+    private javax.swing.JTextField uAge;
+    private javax.swing.JTextArea uBio;
+    private javax.swing.JButton uClear;
+    private javax.swing.JTextField uCountry;
+    private javax.swing.JButton uDelete;
     private javax.swing.JTextField uFirstName;
+    private javax.swing.JComboBox<String> uGender;
+    private javax.swing.JButton uImageButton;
     private javax.swing.JTextField uLastName;
     private javax.swing.JTextField uMiddleName;
+    private javax.swing.JTextField uNationality;
+    private javax.swing.JTextField uProfile_id;
+    private javax.swing.JButton uSearch;
+    private javax.swing.JButton uUpdate;
+    private javax.swing.JLabel u_img;
     private javax.swing.JButton updateBooking;
     private javax.swing.JButton updateButton;
+    private javax.swing.JTable userTable;
     private javax.swing.JLabel userTotalLabel;
     // End of variables declaration//GEN-END:variables
 }
