@@ -314,6 +314,9 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         adminTotalLabel = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jPanel_guide = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -584,6 +587,16 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         jPanel_home.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 88, -1, -1));
+
+        jLabel32.setText("An admin manages guide data by adding, updating, or removing guide profiles and verifying their details. They handle user data by monitoring activity, editing profiles, and ensuring security. Payment data ");
+        jPanel_home.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 700, 1140, -1));
+
+        jLabel33.setText("is managed by tracking transactions, verifying successful payments, resolving disputes, and generating reports for transparency and financial accuracy.");
+        jPanel_home.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 1100, -1));
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel34.setText("These are the numbers of users and admins who have access to our application.");
+        jPanel_home.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 700, -1));
 
         jPanel_guide.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_guide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2307,6 +2320,9 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;

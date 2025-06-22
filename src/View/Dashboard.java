@@ -125,10 +125,7 @@ public Dashboard(SignUp user) {
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         guideArrayPanel = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel_Navigation = new javax.swing.JPanel();
         navigationBack = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -151,7 +148,7 @@ public Dashboard(SignUp user) {
         jButton3 = new javax.swing.JButton();
         changePButton = new javax.swing.JButton();
         deleteAccount = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        bankLinkButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -352,12 +349,14 @@ public Dashboard(SignUp user) {
 
         jButton5.setBackground(new java.awt.Color(40, 83, 107));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setPreferredSize(new java.awt.Dimension(76, 34));
 
         jButton7.setBackground(new java.awt.Color(40, 83, 107));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Filter");
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setPreferredSize(new java.awt.Dimension(76, 34));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,17 +370,8 @@ public Dashboard(SignUp user) {
         guideArrayPanel.setBackground(new java.awt.Color(246, 240, 237));
         jScrollPane2.setViewportView(guideArrayPanel);
 
-        jButton8.setBackground(new java.awt.Color(194, 148, 138));
-        jButton8.setPreferredSize(new java.awt.Dimension(76, 34));
-
-        jButton9.setBackground(new java.awt.Color(194, 148, 138));
-        jButton9.setPreferredSize(new java.awt.Dimension(76, 34));
-
-        jButton10.setBackground(new java.awt.Color(194, 148, 138));
-        jButton10.setPreferredSize(new java.awt.Dimension(76, 34));
-
-        jButton11.setBackground(new java.awt.Color(194, 148, 138));
-        jButton11.setPreferredSize(new java.awt.Dimension(76, 34));
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setText("Users are able to evaluate guides by their ratings and select the most suitable option.");
 
         javax.swing.GroupLayout jPanel_GuideLayout = new javax.swing.GroupLayout(jPanel_Guide);
         jPanel_Guide.setLayout(jPanel_GuideLayout);
@@ -400,14 +390,10 @@ public Dashboard(SignUp user) {
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_GuideLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(107, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         jPanel_GuideLayout.setVerticalGroup(
             jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,17 +406,10 @@ public Dashboard(SignUp user) {
                     .addComponent(guideBack)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
-                .addGroup(jPanel_GuideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_GuideLayout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jPanel_Container.add(jPanel_Guide, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 1330, 710));
@@ -630,6 +609,11 @@ public Dashboard(SignUp user) {
         jButton3.setText("Booked History");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setPreferredSize(new java.awt.Dimension(76, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         changePButton.setBackground(new java.awt.Color(40, 83, 107));
         changePButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -655,11 +639,17 @@ public Dashboard(SignUp user) {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(40, 83, 107));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Bank Link");
-        jButton6.setPreferredSize(new java.awt.Dimension(99, 34));
+        bankLinkButton.setBackground(new java.awt.Color(40, 83, 107));
+        bankLinkButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bankLinkButton.setForeground(new java.awt.Color(255, 255, 255));
+        bankLinkButton.setText("Bank Link");
+        bankLinkButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bankLinkButton.setPreferredSize(new java.awt.Dimension(99, 34));
+        bankLinkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bankLinkButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("If you need assistance, please contact us by email or phone, and our team will be happy to help you.");
@@ -793,7 +783,7 @@ public Dashboard(SignUp user) {
                             .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel_Profile_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bankLinkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label_img, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel_Profile_ManagementLayout.createSequentialGroup()
                                 .addGap(68, 68, 68)
@@ -828,7 +818,7 @@ public Dashboard(SignUp user) {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bankLinkButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel4)
                 .addGap(11, 11, 11)
@@ -989,6 +979,14 @@ public Dashboard(SignUp user) {
         controller.changeUserPhoto(this);
     }//GEN-LAST:event_changePhotoActionPerformed
 
+    private void bankLinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankLinkButtonActionPerformed
+        JOptionPane.showMessageDialog(null, "While this feature is not available at the moment, it is planned for a future release.");
+    }//GEN-LAST:event_bankLinkButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JOptionPane.showMessageDialog(null, "While this feature is not available at the moment, it is planned for a future release.");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public javax.swing.JPanel getGuideArrayPanel() {
         return guideArrayPanel;
     }
@@ -1045,6 +1043,7 @@ public Dashboard(SignUp user) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bankLinkButton;
     private javax.swing.JButton changePButton;
     private javax.swing.JButton changePhoto;
     private javax.swing.JButton deleteAccount;
@@ -1052,14 +1051,9 @@ public Dashboard(SignUp user) {
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
     private javax.swing.JLabel guideBack;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1082,6 +1076,7 @@ public Dashboard(SignUp user) {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
