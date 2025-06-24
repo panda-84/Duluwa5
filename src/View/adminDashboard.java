@@ -396,6 +396,8 @@ public class adminDashboard extends javax.swing.JFrame {
         addPayment = new javax.swing.JButton();
         bPayment = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
+        bStartDate = new com.toedter.calendar.JDateChooser();
+        bEndDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1460, 840));
@@ -1430,6 +1432,8 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel30.setText("End Date:");
         jLabel30.setPreferredSize(new java.awt.Dimension(44, 34));
         jPanel_payment.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 70, -1));
+        jPanel_payment.add(bStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 510, -1, -1));
+        jPanel_payment.add(bEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 560, -1, -1));
 
         javax.swing.GroupLayout jPanel_containerLayout = new javax.swing.GroupLayout(jPanel_container);
         jPanel_container.setLayout(jPanel_containerLayout);
@@ -2050,6 +2054,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField bBookingId;
     private javax.swing.JTextField bCountry;
     private javax.swing.JTextField bEmail;
+    private com.toedter.calendar.JDateChooser bEndDate;
     private javax.swing.JTextField bFirstName;
     private javax.swing.JTextField bGuide_ID;
     private javax.swing.JTextField bLastName;
@@ -2058,6 +2063,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField bNumber;
     private javax.swing.JTextField bNumberOfPeople;
     private javax.swing.JComboBox<String> bPayment;
+    private com.toedter.calendar.JDateChooser bStartDate;
     private javax.swing.JTextField bZipCode;
     private javax.swing.JButton clearBooking;
     private javax.swing.JButton clearButton;

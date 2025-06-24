@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,8 +28,11 @@ import javax.swing.border.Border;
  *
  * @author acer
  */
+
 public class Dashboard extends javax.swing.JFrame {
+    DefaultListModel<UserPlan> listModel = new DefaultListModel<>();
     private SignUp user = new SignUp();
+    
     
 //    private SignUp currentUser;
     
@@ -38,10 +42,15 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         
-        initComponents();
+        initComponents(); 
+        planList.setModel(listModel);
+        
+        
+
 //        int height = guideArrayPanel.getComponentCount() * 150;
 //        guideArrayPanel.setPreferredSize(new Dimension(1020,height));
 //        loadGuideCards();
+
          jScrollPane2.setViewportView(guideArrayPanel);
         showOnlyPanel(jPanel_Dashboard);
         
@@ -57,9 +66,9 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
 //    public Dashboard(SignUp user){
-//        initComponents();
-//        this.currentUser = user;
-//        loadGuideCards();
+////        initComponents();
+//       this.currentUser = user;
+//       loadGuideCards();
 //    }
     
     
@@ -182,6 +191,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         planList = new java.awt.List();
         eqList = new java.awt.List();
+        deleteButton = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(246, 240, 237));
@@ -776,8 +787,16 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jLabel26.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel26.setText("Plans");
 
+        EqSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EqSelectorActionPerformed(evt);
+            }
+        });
+
+        addPlan.setBackground(new java.awt.Color(40, 83, 107));
         addPlan.setText("ADD");
         addPlan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -791,7 +810,21 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         planEntry.setText("Enter Your Plans");
+        planEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                planEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                planEntryFocusLost(evt);
+            }
+        });
+        planEntry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                planEntryActionPerformed(evt);
+            }
+        });
 
+        addEq.setBackground(new java.awt.Color(40, 83, 107));
         addEq.setText("ADD");
         addEq.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -799,7 +832,25 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jLabel28.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel28.setText("Equipments");
+
+        planList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                planListActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setBackground(new java.awt.Color(40, 83, 107));
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        jButton12.setBackground(new java.awt.Color(40, 83, 107));
+        jButton12.setText("Delete");
 
         javax.swing.GroupLayout jPanel_PlansLayout = new javax.swing.GroupLayout(jPanel_Plans);
         jPanel_Plans.setLayout(jPanel_PlansLayout);
@@ -808,62 +859,72 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
                 .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(planList, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(planEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PlansLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PlansLayout.createSequentialGroup()
+                                .addComponent(eqList, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(241, 241, 241))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PlansLayout.createSequentialGroup()
+                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(272, 272, 272))))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addComponent(EqSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addEq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(plansBack))
                     .addGroup(jPanel_PlansLayout.createSequentialGroup()
                         .addGap(262, 262, 262)
-                        .addComponent(addPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
                         .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                .addGap(270, 270, 270)
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(planList, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(planEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                .addGap(236, 236, 236)
-                                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                        .addComponent(EqSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(addEq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                                .addGap(216, 216, 216)
-                                .addComponent(eqList, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(353, Short.MAX_VALUE))
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_PlansLayout.setVerticalGroup(
             jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(plansBack)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(planList, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(planEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addPlan)
-                .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(eqList, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteButton)
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eqList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EqSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addEq))
-                .addGap(126, 126, 126))
+                .addGap(18, 18, 18)
+                .addComponent(jButton12)
+                .addGap(85, 85, 85))
         );
 
         jPanel_Container.add(jPanel_Plans, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 1340, 720));
@@ -1015,6 +1076,53 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addEqMouseClicked
 
+    private void planEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_planEntryFocusGained
+        // TODO add your handling code here:
+          if(planEntry.getText().equals("Enter Your Plans")){
+            planEntry.setText("");
+        }
+    }//GEN-LAST:event_planEntryFocusGained
+
+    private void planEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_planEntryFocusLost
+        // TODO add your handling code here:
+          if(planEntry.getText().isEmpty()){
+            planEntry.setText("Enter Your Plans");
+        }
+    }//GEN-LAST:event_planEntryFocusLost
+
+    private void planEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planEntryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_planEntryActionPerformed
+
+    private void EqSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqSelectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EqSelectorActionPerformed
+    
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+
+        int selectedIndex = planList.getSelectedIndex();
+        if (selectedIndex != -1) {
+            UserPlan selected = listModel.get(selectedIndex);
+            UserDa dao = new UserDa();
+            boolean success = dao.deletePlan(selected.getPlanId());
+
+            if (success) {
+                listModel.remove(selectedIndex);
+                JOptionPane.showMessageDialog(this, "Plan deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to delete plan in database.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a plan to delete.");
+        }
+
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void planListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_planListActionPerformed
+
     
     
     private void loadGuideCards(){
@@ -1081,6 +1189,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton addPlan;
     private javax.swing.JButton changePButton;
     private javax.swing.JButton deleteAccount;
+    private javax.swing.JButton deleteButton;
     private java.awt.List eqList;
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
@@ -1088,6 +1197,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
@@ -1156,24 +1266,62 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel profileBack;
     // End of variables declaration//GEN-END:variables
 
-    public void setPlansEquipments(){
+    public void setPlansEquipments() {
         planList.removeAll();
         eqList.removeAll();
         EqSelector.removeAllItems();
-        EqSelector.addItem("Bag");
-        EqSelector.addItem("shoes");
-        EqSelector.addItem("Hat");
-        EqSelector.addItem("stick");
-       
+        EqSelector.addItem("Hiking Boots - Rs. 6000");
+        EqSelector.addItem("Trekking Pants - Rs. 2000");
+        EqSelector.addItem("Thermal Innerwear (Top) - Rs. 1500");
+        EqSelector.addItem("Thermal Innerwear (Bottom) - Rs. 1500");
+        EqSelector.addItem("Fleece Jacket - Rs. 2500");
+        EqSelector.addItem("Down Jacket - Rs. 8000");
+        EqSelector.addItem("Waterproof Jacket - Rs. 5000");
+        EqSelector.addItem("Quick-Dry T-Shirt - Rs. 800");
+        EqSelector.addItem("Woolen Hat - Rs. 400");
+        EqSelector.addItem("Sun Hat / Cap - Rs. 500");
+        EqSelector.addItem("Gloves Set - Rs. 1200");
+        EqSelector.addItem("Woolen Socks - Rs. 250");
+        EqSelector.addItem("Rucksack (60L) - Rs. 7000");
+        EqSelector.addItem("Daypack (25L) - Rs. 2500");
+        EqSelector.addItem("Rain Cover for Bag - Rs. 700");
+        EqSelector.addItem("Dry Bag - Rs. 800");
+        EqSelector.addItem("Sleeping Bag - Rs. 7000");
+        EqSelector.addItem("Sleeping Pad - Rs. 2000");
+        EqSelector.addItem("Tent (2-person) - Rs. 10000");
+        EqSelector.addItem("Portable Stove - Rs. 3000");
+        EqSelector.addItem("Gas Canister - Rs. 600");
+        EqSelector.addItem("Cooking Pot Set - Rs. 2000");
+        EqSelector.addItem("Spoon/Fork Set - Rs. 400");
+        EqSelector.addItem("Water Bottle (Insulated) - Rs. 1500");
+        EqSelector.addItem("Water Purifier - Rs. 3000");
+        EqSelector.addItem("Trekking Poles - Rs. 2500");
+        EqSelector.addItem("Headlamp - Rs. 1500");
+        EqSelector.addItem("Sunglasses (UV) - Rs. 1200");
+        EqSelector.addItem("Power Bank (10000mAh) - Rs. 2500");
+        EqSelector.addItem("Multi-tool Knife - Rs. 1200");
+        EqSelector.addItem("Map & Compass - Rs. 700");
+        EqSelector.addItem("Sunscreen - Rs. 800");
+        EqSelector.addItem("Lip Balm - Rs. 200");
+        EqSelector.addItem("First Aid Kit - Rs. 1000");
+        EqSelector.addItem("Wet Wipes - Rs. 200");
+        EqSelector.addItem("Quick-Dry Towel - Rs. 600");
+        EqSelector.addItem("Toiletries Kit - Rs. 800");
+        EqSelector.addItem("Solar Charger - Rs. 4000");
+        EqSelector.addItem("Portable Seat Pad - Rs. 800");
+        
         UserDa dao = new UserDa();
         ArrayList<UserPlan> plans = dao.getPlansByUserId(user.getUserId());
-        for (UserPlan plan : plans){
-            planList.add(plan.getPlan());
+        for (UserPlan plan : plans) {
+            listModel.addElement(plan); // stores full object
+            
         }
+
         
         ArrayList<UserEquipment> equipments = dao.getEquipmentsByUserId(user.getUserId());
         for(UserEquipment equipment : equipments){
             eqList.add(equipment.getEquipment());
         }
+
     }
 }

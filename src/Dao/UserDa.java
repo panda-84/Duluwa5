@@ -250,6 +250,22 @@ public class UserDa {
             return false;
         }
     }
+    public boolean deletePlan(int planId) {
+        String query = "DELETE FROM user_plans WHERE plan_id = ?";
+
+        try (Connection conn = mysql.openConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, planId);
+            int rows = stmt.executeUpdate();
+            return rows > 0; // true if a row was deleted
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     
     public boolean insertEquipment(int userId, String Equipment) {
         String query = "INSERT INTO user_equipments (user_id, equipment) VALUES (?, ?)";
