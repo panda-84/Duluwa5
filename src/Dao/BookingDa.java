@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 
@@ -26,7 +27,7 @@ public class BookingDa {
     public BookingT bookTicket(BookingT book) {
         Connection conn = mysql.openConnection();
         
-        String sql = "INSERT INTO booking (guide_ID,first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO booking (guide_ID,first_name, middle_name, last_name, phone_number, email, start_date, people_number, age, country, nationality, address, zip_code, payment, end_date, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         
         
     try (PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -45,6 +46,7 @@ public class BookingDa {
             pstmt.setString(13, book.getZipCode());
             pstmt.setString(14, book.getPayment());
             pstmt.setString(15, book.getEndDate());
+            pstmt.setBigDecimal(16, book.getTotalPrice());
 
             int result = pstmt.executeUpdate();
             
@@ -92,7 +94,8 @@ public class BookingDa {
                     rs.getString("address"),
                     rs.getString("zip_code"),
                     rs.getString("payment"),
-                    rs.getString("endDate")
+                    rs.getString("endDate"),
+                    rs.getBigDecimal("total_price")
                     
                 );
                 book.setBookId(rs.getInt("booking_ID"));
@@ -140,6 +143,34 @@ public class BookingDa {
 
     return bookList;
 }
+    
+    public List<String> getUnavailableDateRanges(int guideId, LocalDate newStart, LocalDate newEnd) {
+        List<String> unavailableRanges = new ArrayList<>();
+        String sql = "SELECT start_date, end_date FROM booking WHERE guide_id = ? " +
+                     "AND (start_date <= ? AND end_date >= ?)";
+
+        try (Connection conn = mysql.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, guideId);
+            stmt.setString(2, newEnd.toString());
+            stmt.setString(3, newStart.toString());
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String start = rs.getString("start_date");
+                String end = rs.getString("end_date");
+                unavailableRanges.add(start + " to " + end);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return unavailableRanges;
+    }
+
+
    
     
     

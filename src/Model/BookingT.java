@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author acer
@@ -25,10 +27,11 @@ public class BookingT {
     private String zipCode;
     private String payment;
     private String endDate;
+    private BigDecimal totalPrice;
     private String fullName;
     
     public BookingT( String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
-                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate)
+                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate,BigDecimal totalPrice)
     {
        
        this.firstName = firstName;
@@ -45,11 +48,11 @@ public class BookingT {
        this.zipCode = zipCode;
        this.payment = payment;
        this.endDate = endDate;
-       
+       this.totalPrice =totalPrice;
        
     }
     public BookingT( int guide_ID,String firstName, String middleName, String lastName, String phoneNumber, String email, String startDate, String numberOfPeople,
-                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate)
+                   int age, String country, String nationality, String address, String zipCode, String payment, String endDate, BigDecimal totalPrice)
     {
        this.guide_ID = guide_ID;
        this.firstName = firstName;
@@ -66,8 +69,10 @@ public class BookingT {
        this.zipCode = zipCode;
        this.payment = payment;
        this.endDate = endDate;
-       
+       this.totalPrice=totalPrice;
     }
+    
+
     
     public BookingT(String fullName,int age, String phoneNumber, String email, String country, String address,String numberOfPeople, String payment, String startDate, String endDate){
        
@@ -217,6 +222,14 @@ public class BookingT {
     
     public void setPayment(String payment){
         this.payment = payment;
+    }
+    
+    public BigDecimal getTotalPrice(){
+        return totalPrice;
+    }
+    
+    public void setTotalPrice(BigDecimal totalPrice){
+        this.totalPrice=totalPrice;
     }
     
     

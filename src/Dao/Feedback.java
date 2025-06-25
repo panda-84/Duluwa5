@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -72,5 +74,47 @@ public class Feedback {
         }
         return average;
     }
+    
+    public boolean hasUserRatedGuide(int guideId, int userId) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT 1 FROM guide_feedback WHERE guide_id = ? AND user_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, guideId);
+            stmt.setInt(2, userId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // returns true if a record exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    
+    public Map<Integer, Double> getGuideRatingPercentages() {
+        Map<Integer, Double> ratingPercentages = new HashMap<>();
+        String sql = """
+            SELECT guide_id, 
+                   (COUNT(DISTINCT user_id) / (SELECT COUNT(*) FROM user_db) * 100) AS percentage
+            FROM guide_feedback
+            GROUP BY guide_id
+        """;
+
+        try (Connection conn = mysql.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int guideId = rs.getInt("guide_id");
+                double percentage = rs.getDouble("percentage");
+                ratingPercentages.put(guideId, percentage);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ratingPercentages;
+    }
+
 
 }

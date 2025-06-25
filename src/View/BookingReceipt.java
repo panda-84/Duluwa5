@@ -116,16 +116,7 @@ public class BookingReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        // TODO add your handling code here:
-        
-//        try {
-//        java.io.FileWriter writer = new java.io.FileWriter("booking_receipt.txt");
-//            writer.write(area.getText());
-//            writer.close();
-//            javax.swing.JOptionPane.showMessageDialog(this, "Receipt downloaded as booking_receipt.txt");
-//        } catch (Exception e) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-//        }
+      
 
           try{
               area.print();
@@ -135,53 +126,41 @@ public class BookingReceipt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_downloadButtonActionPerformed
 
-    public void generateReceipt(BookingT book){
-        area.append("");
-        area.append("                                       Duluwa Trave Receipt                   \n");
+    public void generateReceipt(BookingT book) {
+        area.setText(""); // Clear previous receipt
+        area.append("                                      Duluwa Travel Receipt                   \n");
         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
-       
-        area.append("Booking ID: " + book.getBookId() +"\n" );
+
+        area.append("Booking ID: " + book.getBookId() + "\n");
         area.append("Guide ID: " + book.getGuideID() + "\n\n");
-        
-         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
         area.append("Customer Info:\n");
-         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
         area.append("Name: " + book.getFullName() + "\n");
         area.append("Age: " + book.getAge() + "\n");
         area.append("Phone Number: " + book.getPhoneNumber() + "\n");
-        area.append("email: " + book.getEmail() + "\n");
+        area.append("Email: " + book.getEmail() + "\n");
         area.append("Country: " + book.getCountry() + "\n");
         area.append("Address: " + book.getAddress() + "\n");
         area.append("Number Of People: " + book.getNumberOfPeople() + "\n\n");
-//        area.append("Payment: " + book.getPayment() + "\n");
-         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
-        area.append("Booking Dates:\n");
-         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
-        area.append("Start Date: " + book.getStartDate() + "\n");
-        area.append("End Date: " + book.getEndDate() + "\n");
-        
-        try {
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date start = sdf.parse(book.getStartDate());
-            java.util.Date end = sdf.parse(book.getEndDate());
-
-            long diffInMillies = end.getTime() - start.getTime();
-            long days = (diffInMillies / (1000 * 60 * 60 * 24)) + 1;
-
-            long total = days * 5000;
-
-            area.append("Total Days: " + days + "\n");
-            area.append("Rate Per Day: Rs. 5000\n");
-            area.append("Total Payment: Rs. " + total + "\n");
-
-        } catch (Exception e) {
-            area.append("Error calculating date difference.\n");
-        }
 
         area.append("----------------------------------------------------------------------------------------------------------------------------\n");
-        area.append("                                       Thank you for choosing Duluwa.\n");
+        area.append("Booking Dates:\n");
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Start Date: " + book.getStartDate() + "\n");
+        area.append("End Date: " + book.getEndDate() + "\n");
 
-        }
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Payment Info:\n");
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("Rate Per Day: Rs. 5000\n");
+        area.append("Total Payment: Rs. " + book.getTotalPrice() + "\n");
+
+        area.append("----------------------------------------------------------------------------------------------------------------------------\n");
+        area.append("                                    Thank you for choosing Duluwa.\n");
+    }
+
     /**
      * @param args the command line arguments
      */

@@ -92,37 +92,50 @@ public class Booking extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(126, 171, 190));
         jPanel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 56)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DULUWA");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 47, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Frist Name:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 171, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Middle Name:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 229, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Last Name:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 288, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Phone Number:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 345, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Email:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 404, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Start Date:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 79, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Number of people:");
+        jLabel8.setPreferredSize(new java.awt.Dimension(116, 34));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, -1, -1));
 
         bFirstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 162, 210, 35));
 
         bMiddleName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bMiddleName, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 220, 210, 35));
 
         bLastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 279, 210, 35));
 
         bNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -130,28 +143,37 @@ public class Booking extends javax.swing.JFrame {
                 bNumberActionPerformed(evt);
             }
         });
+        jPanel2.add(bNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 335, 210, 35));
 
         bEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 395, 210, 35));
 
         bNumberOfPeople.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bNumberOfPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, 210, 35));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Age:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 175, 37, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Country:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 229, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Nationality:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 286, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("address:");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Address:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 345, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Zip code:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 405, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Payment:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 461, -1, -1));
 
         bAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bAge.addActionListener(new java.awt.event.ActionListener() {
@@ -159,14 +181,19 @@ public class Booking extends javax.swing.JFrame {
                 bAgeActionPerformed(evt);
             }
         });
+        jPanel2.add(bAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 165, 206, 35));
 
         bCountry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 220, 206, 35));
 
         bNationality.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 277, 206, 35));
 
         bAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 206, 35));
 
         bZipCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(bZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 395, 206, 35));
 
         bBookNow.setBackground(new java.awt.Color(40, 83, 107));
         bBookNow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -178,208 +205,31 @@ public class Booking extends javax.swing.JFrame {
                 bBookNowActionPerformed(evt);
             }
         });
+        jPanel2.add(bBookNow, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 638, -1, 40));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/logo1.png"))); // NOI18N
         jLabel15.setText("jLabel15");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 25, 115, -1));
 
         bStartDate.setPreferredSize(new java.awt.Dimension(88, 34));
+        jPanel2.add(bStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 144, -1));
 
         bPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "esewa", "cash" }));
         bPayment.setPreferredSize(new java.awt.Dimension(72, 34));
+        jPanel2.add(bPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 453, 206, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("How long would you like to book the guide for?");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 505, -1, -1));
 
         bEndDate.setPreferredSize(new java.awt.Dimension(88, 34));
+        jPanel2.add(bEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 530, 149, -1));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("End Date:");
         jLabel17.setPreferredSize(new java.awt.Dimension(44, 34));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel5)
-                                .addGap(20, 20, 20)
-                                .addComponent(bNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel12)
-                                .addGap(30, 30, 30)
-                                .addComponent(bAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jLabel1))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(15, 15, 15)
-                                                .addComponent(bFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(102, 102, 102)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(23, 23, 23))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addGap(27, 27, 27)))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bAge, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(bMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jLabel4)
-                                .addGap(15, 15, 15)
-                                .addComponent(bLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(bStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(86, 86, 86)
-                                        .addComponent(bPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(16, 16, 16)
-                                        .addComponent(bEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(70, 70, 70)
-                                        .addComponent(jLabel13))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel14)))
-                                .addGap(26, 26, 26)
-                                .addComponent(bZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(57, 57, 57))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(bBookNow)
-                        .addGap(344, 344, 344))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(24, 24, 24)
-                        .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160)
-                        .addComponent(bEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel15)))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel2))
-                    .addComponent(bFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(bAge, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10)
-                        .addComponent(bCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jLabel4))
-                        .addComponent(bLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(2, 2, 2)))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel5))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel12)))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel13))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(bPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(bStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bNumberOfPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(bBookNow, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-        );
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 530, 64, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -387,13 +237,12 @@ public class Booking extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -427,101 +276,82 @@ public class Booking extends javax.swing.JFrame {
     private void bBookNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBookNowActionPerformed
         // TODO add your handling code here:
         
-        Date selectedDate = bStartDate.getDate(); 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date endDate = bEndDate.getDate(); 
-        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
-        String firstNameText = bFirstName.getText();
-        String middleNameText = bMiddleName.getText();
-        String lastNameText = bLastName.getText();
-        String phoneNumberText = bNumber.getText();
-        String emailText = bEmail.getText();
-        String startDateText = sdf.format(selectedDate);
-        String peopleText = bNumberOfPeople.getText();
-        String ageText = bAge.getText();
-        String countryText = bCountry.getText();
-        String nationalityText = bNationality.getText();
-        String addressText = bAddress.getText();
-        String zipCodeText = bZipCode.getText();
-        String paymentText =(String) bPayment.getSelectedItem();
-        String endDateText = end.format(endDate);
-        
-        
-        
-        this.book = BookingController.bookingAll(
-            firstNameText, middleNameText, lastNameText, phoneNumberText, emailText,
-            startDateText, peopleText, ageText, countryText, nationalityText,
-            addressText, zipCodeText, paymentText, endDateText, guide, Booking.this
-        );
+        try {
+            Date selectedDate = bStartDate.getDate();
+            Date endDate = bEndDate.getDate();
 
-        if (this.book != null) {
-            BookingReceipt receipt = new BookingReceipt(this.book); 
-            receipt.setVisible(true);
-            receipt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Booking failed. Cannot show receipt.");
+            if (selectedDate == null || endDate == null) {
+                JOptionPane.showMessageDialog(this, "Please select both Start Date and End Date.");
+                return;
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String startDateText = sdf.format(selectedDate);
+            String endDateText = sdf.format(endDate);
+
+            String firstNameText = bFirstName.getText().trim();
+            String middleNameText = bMiddleName.getText().trim();
+            String lastNameText = bLastName.getText().trim();
+            String phoneNumberText = bNumber.getText().trim();
+            String emailText = bEmail.getText().trim();
+            String peopleText = bNumberOfPeople.getText().trim();
+            String ageText = bAge.getText().trim();
+            String countryText = bCountry.getText().trim();
+            String nationalityText = bNationality.getText().trim();
+            String addressText = bAddress.getText().trim();
+            String zipCodeText = bZipCode.getText().trim();
+            String paymentText = (String) bPayment.getSelectedItem();
+
+            // ✅ Optional: simple field presence check before calling bookingAll()
+            if (firstNameText.isEmpty() || lastNameText.isEmpty() || phoneNumberText.isEmpty() || emailText.isEmpty() ||
+                peopleText.isEmpty() || ageText.isEmpty() || addressText.isEmpty() || zipCodeText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill all required fields.");
+                return;
+            }
+
+            // ✅ Call booking method
+            this.book = BookingController.bookingAll(
+                firstNameText, middleNameText, lastNameText, phoneNumberText, emailText,
+                startDateText, peopleText, ageText, countryText, nationalityText,
+                addressText, zipCodeText, paymentText, endDateText, guide, Booking.this
+            );
+
+            if (this.book != null) {
+                BookingReceipt receipt = new BookingReceipt(this.book);
+                receipt.setVisible(true);
+                receipt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Booking failed. Cannot show receipt.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Something went wrong: " + e.getMessage());
         }
 
-//        BookingController.bookingAll(firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, ageText, countryText, nationalityText, addressText, zipCodeText, paymentText,guide, Booking.this);
     }//GEN-LAST:event_bBookNowActionPerformed
     
-    public void generateReceipt(){
-        Date selectedDate = bStartDate.getDate(); 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-        Date endDate = bEndDate.getDate(); 
-        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
-        String firstNameText = bFirstName.getText();
-        String middleNameText = bMiddleName.getText();
-        String lastNameText = bLastName.getText();
-        String phoneNumberText = bNumber.getText();
-        String emailText = bEmail.getText();
-        String startDateText = sdf.format(selectedDate);
-        String peopleText = bNumberOfPeople.getText();
-        String ageText = bAge.getText();
-        String countryText = bCountry.getText();
-        String nationalityText = bNationality.getText();
-        String addressText = bAddress.getText();
-        String zipCodeText = bZipCode.getText();
-        String paymentText =(String) bPayment.getSelectedItem();
-        String endDateText = end.format(endDate);
-    }
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Booking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Booking().setVisible(true);
-//            }
-//        });
+//    public void generateReceipt(){
+//        Date selectedDate = bStartDate.getDate(); 
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+//        Date endDate = bEndDate.getDate(); 
+//        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
+//        String firstNameText = bFirstName.getText();
+//        String middleNameText = bMiddleName.getText();
+//        String lastNameText = bLastName.getText();
+//        String phoneNumberText = bNumber.getText();
+//        String emailText = bEmail.getText();
+//        String startDateText = sdf.format(selectedDate);
+//        String peopleText = bNumberOfPeople.getText();
+//        String ageText = bAge.getText();
+//        String countryText = bCountry.getText();
+//        String nationalityText = bNationality.getText();
+//        String addressText = bAddress.getText();
+//        String zipCodeText = bZipCode.getText();
+//        String paymentText =(String) bPayment.getSelectedItem();
+//        String endDateText = end.format(endDate);
 //    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bAddress;
