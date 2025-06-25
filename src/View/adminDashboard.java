@@ -28,6 +28,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import Controller.BookingController;
+import Controller.FeedbackController;
 import Controller.ProfileController;
 import Controller.adminBookingController;
 import Dao.AdminBookingDa;
@@ -81,6 +82,8 @@ public class adminDashboard extends javax.swing.JFrame {
         ProfileController profileController = new ProfileController();
         profileController.loadAllUserProfilesIntoTable(this);
         
+        FeedbackController rate = new FeedbackController();
+        rate.loadRatingPercentagesIntoTable(rateTable);
         
 
         
@@ -311,16 +314,22 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         userTotalLabel = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         adminTotalLabel = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        rateTable = new javax.swing.JTable();
+        jLabel43 = new javax.swing.JLabel();
         jPanel_guide = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         gFirstName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         gMiddleName = new javax.swing.JTextField();
@@ -352,7 +361,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel_user = new javax.swing.JPanel();
         jTextField26 = new javax.swing.JTextField();
         jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
         uFirstName = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -383,7 +391,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel_payment = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         paymentTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -529,6 +536,12 @@ public class adminDashboard extends javax.swing.JFrame {
         userTotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         userTotalLabel.setText("00");
 
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-user-64.png"))); // NOI18N
+
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-plus-24.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -536,18 +549,28 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                    .addComponent(userTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(userTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userTotalLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGap(61, 61, 61))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel_home.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 88, -1, 250));
@@ -558,12 +581,18 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Admin");
+        jLabel17.setText("Guide");
 
         adminTotalLabel.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         adminTotalLabel.setForeground(new java.awt.Color(255, 255, 255));
         adminTotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         adminTotalLabel.setText("00");
+
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-signpost-50.png"))); // NOI18N
+
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-plus-24.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -572,31 +601,60 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                    .addComponent(adminTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adminTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(adminTotalLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
-                .addGap(58, 58, 58))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel_home.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 88, -1, -1));
 
-        jLabel32.setText("An admin manages guide data by adding, updating, or removing guide profiles and verifying their details. They handle user data by monitoring activity, editing profiles, and ensuring security. Payment data ");
-        jPanel_home.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 700, 1140, -1));
+        jLabel32.setText("An admin manages guide data by adding, updating, or removing guide profiles and verifying their details. They handle user data by monitoring activity, editing profiles, and ensuring security.");
+        jPanel_home.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 700, 1030, -1));
 
-        jLabel33.setText("is managed by tracking transactions, verifying successful payments, resolving disputes, and generating reports for transparency and financial accuracy.");
-        jPanel_home.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 1100, -1));
+        jLabel33.setText("Payment data is managed by tracking transactions, verifying successful payments, resolving disputes, and generating reports for transparency and financial accuracy.");
+        jPanel_home.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 720, 910, -1));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel34.setText("These are the numbers of users and admins who have access to our application.");
-        jPanel_home.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 700, -1));
+        jPanel_home.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 700, -1));
+
+        rateTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rateTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Guide ID", "Rating rate"
+            }
+        ));
+        rateTable.setShowHorizontalLines(true);
+        rateTable.setShowVerticalLines(true);
+        jScrollPane4.setViewportView(rateTable);
+
+        jPanel_home.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 400, 230));
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel43.setText("Guide rating percentage");
+        jPanel_home.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 580, -1));
 
         jPanel_guide.setBackground(new java.awt.Color(246, 240, 237));
         jPanel_guide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -605,11 +663,6 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(40, 83, 107));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
-
-        jButton2.setBackground(new java.awt.Color(40, 83, 107));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Filter");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("First Name:");
@@ -768,9 +821,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton2))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_guideLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -848,8 +899,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -929,11 +979,6 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jButton16.setBackground(new java.awt.Color(40, 83, 107));
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons8-search-24 (1).png"))); // NOI18N
-
-        jButton17.setBackground(new java.awt.Color(40, 83, 107));
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("Filter");
 
         uFirstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -1156,9 +1201,7 @@ public class adminDashboard extends javax.swing.JFrame {
                             .addGroup(jPanel_userLayout.createSequentialGroup()
                                 .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton17))
+                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel_userLayout.createSequentialGroup()
                         .addGap(76, 76, 76)
@@ -1181,8 +1224,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -1265,23 +1307,16 @@ public class adminDashboard extends javax.swing.JFrame {
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel_payment.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 18, 48, 34));
 
-        jButton11.setBackground(new java.awt.Color(40, 83, 107));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Filter");
-        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel_payment.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 18, -1, 34));
-
         paymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Booking ID", "Guide ID", "First Name", "Middle Name", "Last Name", "Phone Number", "Email", "Start Date", "# of people", "Age", "Country", "Nationality", "Address", "Zip code", "payment", "End Date"
+                "Booking ID", "Guide ID", "First Name", "Middle Name", "Last Name", "Phone Number", "Email", "Start Date", "# of people", "Age", "Country", "Nationality", "Address", "Zip code", "payment", "End Date", "Total Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1309,6 +1344,7 @@ public class adminDashboard extends javax.swing.JFrame {
             paymentTable.getColumnModel().getColumn(13).setPreferredWidth(200);
             paymentTable.getColumnModel().getColumn(14).setPreferredWidth(200);
             paymentTable.getColumnModel().getColumn(15).setPreferredWidth(250);
+            paymentTable.getColumnModel().getColumn(16).setPreferredWidth(200);
         }
 
         jPanel_payment.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 81, 1143, 298));
@@ -1927,68 +1963,10 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void updateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBookingActionPerformed
         // TODO add your handling code here:
-        Date selectedDate = bStartDate.getDate(); 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-         Date endDate = bEndDate.getDate(); 
-        SimpleDateFormat end = new SimpleDateFormat("yyyy-MM-dd"); 
-        String firstNameText = bFirstName.getText();
-        String middleNameText = bMiddleName.getText();
-        String lastNameText = bLastName.getText();
-        String phoneNumberText = bNumber.getText();
-        String emailText = bEmail.getText();
-        String startDateText = sdf.format(selectedDate);
-        String peopleText = bNumberOfPeople.getText();
-        String ageText = bAge.getText();
-        String countryText = bCountry.getText();
-        String nationalityText = bNationality.getText();
-        String addressText = bAddress.getText();
-        String zipCodeText = bZipCode.getText();
-        String paymentText =(String) bPayment.getSelectedItem();
-        String endDateText = end.format(endDate);
-        String guideIdText = bGuide_ID.getText();
-
-        
-        if (firstNameText.isEmpty() || middleNameText.isEmpty()|| lastNameText.isEmpty()|| phoneNumberText.isEmpty()|| emailText.isEmpty()||
-                startDateText.isEmpty()|| peopleText.isEmpty()|| ageText.isEmpty()|| countryText.isEmpty()|| nationalityText.isEmpty()||
-                addressText.isEmpty()|| zipCodeText.isEmpty()|| paymentText.isEmpty()||endDateText.isEmpty()|| guideIdText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill all the fields");
-            
-        }
-        {
-            try {
-                int age = Integer.parseInt(ageText);
-                int booking_id = Integer.parseInt(bBookingId.getText().trim());
-                int guide_ID = Integer.parseInt(bGuide_ID.getText().trim());
-
-                
-               
-                
-
-                
-                BookingT book = new BookingT(guide_ID, firstNameText, middleNameText, lastNameText, phoneNumberText, emailText, startDateText, peopleText, age, countryText, nationalityText, addressText, zipCodeText, paymentText, endDateText);
-
-                
-                book.setBookId(booking_id);
-                
-
-                
-                AdminBookingDa dao = new AdminBookingDa();
-                boolean success = dao.updateBooking(book);
-
-                if (success) {
-                    JOptionPane.showMessageDialog(null, "Booking updated successfully.");
-                    // table update
-                    adminBookingController controller = new adminBookingController();
-                    controller.loadPaymentDataIntoTable(paymentTable);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Failed to update guide.");
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            }
-        }
+        adminBookingController controller = new adminBookingController();
+        controller.updateBookingSubmit(paymentTable, bBookingId, bGuide_ID, bFirstName, bMiddleName, bLastName,
+            bNumber, bEmail, bStartDate, bEndDate, bNumberOfPeople, bAge, bCountry, bNationality,
+            bAddress, bZipCode, bPayment);
         
     }//GEN-LAST:event_updateBookingActionPerformed
 
@@ -2290,10 +2268,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton imageButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2332,6 +2307,11 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2354,11 +2334,13 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTable paymentTable;
+    private javax.swing.JTable rateTable;
     private javax.swing.JButton searchBooking;
     private javax.swing.JTextField uAge;
     private javax.swing.JTextArea uBio;

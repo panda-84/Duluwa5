@@ -60,7 +60,7 @@ public class Login extends javax.swing.JFrame {
         show = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1460, 840));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(126, 168, 190));
@@ -171,7 +171,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 84, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 505));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 590, 505));
 
         pack();
         setLocationRelativeTo(null);
