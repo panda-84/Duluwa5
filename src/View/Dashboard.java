@@ -1,8 +1,10 @@
 
 package View;
 
+import Controller.EquipmentsController;
 import Controller.GuidesController;
 import Controller.NavigationController;
+import Controller.PlansController;
 import Controller.ProfileController;
 import Controller.UserController;
 import Controller.userDeleteController;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,12 +35,14 @@ public class Dashboard extends javax.swing.JFrame {
     private UserController controller;
     private byte[] currentImageBytes;
     
-
+    
+ 
+    
     public Dashboard() {
         initComponents();
         jScrollPane2.setViewportView(guideArrayPanel);
         showOnlyPanel(jPanel_Dashboard);
-        NavigationController nav = new NavigationController(this);
+        
 
       
     }
@@ -58,6 +63,27 @@ public Dashboard(SignUp user) {
     this.user = user;
     this.userId = user.getUserId(); // you can keep using this too if needed
     initComponents();
+    //plans
+    DefaultListModel<String> planListModel = new DefaultListModel<>();
+    planList.setModel(planListModel);
+    new PlansController(planList, planListModel, plansField, addPlans, deletePlans, userId);
+
+    //equipments
+    DefaultListModel<String> equipmentModel = new DefaultListModel<>();
+    equipmentsList.setModel(equipmentModel);
+
+    new EquipmentsController(
+        equipmentsList,
+        equipmentModel,
+        equipmentComboBox,
+        addEquipments,
+        deleteEquipments,
+        userId
+    );
+    
+    NavigationController nav = new NavigationController(this);
+    showOnlyPanel(jPanel_Dashboard);
+    
     controller = new UserController(userId, null); 
     controller.displayProfileSummary(this);
     controller.loadProfileImage(this);
@@ -173,6 +199,18 @@ public Dashboard(SignUp user) {
         labelBio = new javax.swing.JTextArea();
         jPanel_Plans = new javax.swing.JPanel();
         plansBack = new javax.swing.JLabel();
+        addPlans = new javax.swing.JButton();
+        plansField = new javax.swing.JTextField();
+        deletePlans = new javax.swing.JButton();
+        equipmentComboBox = new javax.swing.JComboBox<>();
+        addEquipments = new javax.swing.JButton();
+        deleteEquipments = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        planList = new javax.swing.JList<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        equipmentsList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(246, 240, 237));
@@ -856,21 +894,123 @@ public Dashboard(SignUp user) {
             }
         });
 
+        addPlans.setBackground(new java.awt.Color(40, 83, 107));
+        addPlans.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addPlans.setForeground(new java.awt.Color(255, 255, 255));
+        addPlans.setText("ADD");
+        addPlans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addPlans.setPreferredSize(new java.awt.Dimension(72, 34));
+
+        plansField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        plansField.setText("Enter your plans");
+        plansField.setPreferredSize(new java.awt.Dimension(73, 34));
+        plansField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                plansFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                plansFieldFocusLost(evt);
+            }
+        });
+
+        deletePlans.setBackground(new java.awt.Color(194, 148, 138));
+        deletePlans.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deletePlans.setForeground(new java.awt.Color(255, 255, 255));
+        deletePlans.setText("DELETE");
+        deletePlans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deletePlans.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        equipmentComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        equipmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiking Boots - Rs. 6000", "Trekking Pants - Rs. 2000", "Thermal Innerwear (Top) - Rs. 1500", "Thermal Innerwear (Bottom) - Rs. 1500", "Fleece Jacket - Rs. 2500", "Down Jacket - Rs. 8000", "Waterproof Jacket - Rs. 5000", "Quick-Dry T-Shirt - Rs. 800", "Woolen Hat - Rs. 400", "Sun Hat / Cap - Rs. 500", "Gloves Set - Rs. 1200", "Woolen Socks - Rs. 250", "Rucksack (60L) - Rs. 7000", "Daypack (25L) - Rs. 2500", "Rain Cover for Bag - Rs. 700", "Dry Bag - Rs. 800", "Sleeping Bag - Rs. 7000", "Sleeping Pad - Rs. 2000", "Tent (2-person) - Rs. 10000", "Portable Stove - Rs. 3000", "Gas Canister - Rs. 600", "Cooking Pot Set - Rs. 2000", "Spoon/Fork Set - Rs. 400", "Water Bottle (Insulated) - Rs. 1500", "Water Purifier - Rs. 3000", "Trekking Poles - Rs. 2500", "Headlamp - Rs. 1500", "Sunglasses (UV) - Rs. 1200", "Power Bank (10000mAh) - Rs. 2500", "Multi-tool Knife - Rs. 1200", "Map & Compass - Rs. 700", " " }));
+        equipmentComboBox.setPreferredSize(new java.awt.Dimension(73, 34));
+
+        addEquipments.setBackground(new java.awt.Color(40, 83, 107));
+        addEquipments.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addEquipments.setForeground(new java.awt.Color(255, 255, 255));
+        addEquipments.setText("ADD");
+        addEquipments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addEquipments.setPreferredSize(new java.awt.Dimension(72, 34));
+
+        deleteEquipments.setBackground(new java.awt.Color(194, 148, 138));
+        deleteEquipments.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deleteEquipments.setForeground(new java.awt.Color(255, 255, 255));
+        deleteEquipments.setText("DELETE");
+        deleteEquipments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteEquipments.setPreferredSize(new java.awt.Dimension(76, 34));
+
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel13.setText("Plans");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel18.setText("Equipments");
+
+        jScrollPane5.setViewportView(planList);
+
+        jScrollPane6.setViewportView(equipmentsList);
+
         javax.swing.GroupLayout jPanel_PlansLayout = new javax.swing.GroupLayout(jPanel_Plans);
         jPanel_Plans.setLayout(jPanel_PlansLayout);
         jPanel_PlansLayout.setHorizontalGroup(
             jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(plansBack)
-                .addContainerGap(1300, Short.MAX_VALUE))
+                .addGap(300, 300, 300)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addGap(234, 234, 234))
+            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(plansBack))
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(plansField, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                        .addComponent(addPlans, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(deletePlans, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PlansLayout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(129, 129, 129)
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                                .addComponent(addEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(deleteEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(equipmentComboBox, 0, 469, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6))))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel_PlansLayout.setVerticalGroup(
             jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PlansLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(plansBack)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel_PlansLayout.createSequentialGroup()
+                        .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(plansField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(equipmentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_PlansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addPlans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletePlans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteEquipments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         jPanel_Container.add(jPanel_Plans, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 1340, 720));
@@ -998,6 +1138,18 @@ public Dashboard(SignUp user) {
         JOptionPane.showMessageDialog(null, "While this feature is not available at the moment, it is planned for a future release.");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void plansFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_plansFieldFocusGained
+        if(plansField.getText().equals("Enter your plans")){
+            plansField.setText("");
+        }
+    }//GEN-LAST:event_plansFieldFocusGained
+
+    private void plansFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_plansFieldFocusLost
+        if(plansField.getText().isEmpty()){
+            plansField.setText("Enter your plans");
+        }
+    }//GEN-LAST:event_plansFieldFocusLost
+
     //navigation
     public JLabel[] getNavigationLabels() {
         return new JLabel[]{label1, label2, label3, label4, label5, label6, label7, label8};
@@ -1068,11 +1220,17 @@ public Dashboard(SignUp user) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addEquipments;
+    private javax.swing.JButton addPlans;
     private javax.swing.JButton bankLinkButton;
     private javax.swing.JButton changePButton;
     private javax.swing.JButton changePhoto;
     private javax.swing.JButton deleteAccount;
+    private javax.swing.JButton deleteEquipments;
+    private javax.swing.JButton deletePlans;
     private javax.swing.JButton editProfile;
+    private javax.swing.JComboBox<String> equipmentComboBox;
+    private javax.swing.JList<String> equipmentsList;
     private javax.swing.JLabel guide;
     private javax.swing.JPanel guideArrayPanel;
     private javax.swing.JLabel guideBack;
@@ -1082,10 +1240,12 @@ public Dashboard(SignUp user) {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
@@ -1121,6 +1281,8 @@ public Dashboard(SignUp user) {
     private javax.swing.JPanel jPanel_Profile_Management;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
@@ -1142,8 +1304,10 @@ public Dashboard(SignUp user) {
     private javax.swing.JLabel map;
     private javax.swing.JLabel mapLabel;
     private javax.swing.JLabel navigationBack;
+    private javax.swing.JList<String> planList;
     private javax.swing.JLabel plans;
     private javax.swing.JLabel plansBack;
+    private javax.swing.JTextField plansField;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel profileBack;
     private javax.swing.JButton searchGuideName;
