@@ -47,15 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
       
     }
     
-//    public Dashboard(int userId){
-//       
-//        this.userId = userId;
-//        initComponents();
-//        controller = new UserController(userId, null); 
-//        controller.displayProfileSummary(this);
-//        controller.loadProfileImage(this);
-//        GuidesController.loadGuideCards(this);    
-//    }
+
     
   
 
@@ -1160,7 +1152,6 @@ public Dashboard(SignUp user) {
     }
 
     
-    //
     
     
     
