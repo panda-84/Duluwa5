@@ -47,6 +47,7 @@ public class EquipmentsController {
             model.addElement(item);
         }
     }
+    
 
     private void setupListeners() {
         addBtn.addActionListener(e -> {

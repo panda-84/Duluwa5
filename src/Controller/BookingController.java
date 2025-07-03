@@ -47,6 +47,11 @@ public class BookingController {
         JOptionPane.showMessageDialog(null, "Invalid email.");
         return null;
     }
+    
+    if (paymentText.equalsIgnoreCase("esewa")) {
+        JOptionPane.showMessageDialog(null, "Currently, we do not support eSewa payment. Please choose 'Cash' instead.");
+        return null;
+    }
 
     try {
         int age = Integer.parseInt(ageText);
