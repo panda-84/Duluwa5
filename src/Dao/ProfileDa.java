@@ -176,12 +176,12 @@ public class ProfileDa {
         }
     }
 
-    public boolean deleteUserById(int id) {
+    public boolean deleteUserById(int userId) {
         Connection conn = mysql.openConnection();
         String sql = "DELETE FROM user_DB WHERE user_id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, userId);
             int result = pstmt.executeUpdate();
             return result > 0;
         } catch (SQLException e) {
